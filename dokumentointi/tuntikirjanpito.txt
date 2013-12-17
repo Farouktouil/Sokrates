@@ -1,1 +1,2 @@
-16.11.	3-4h	aloitusluento, repon perustaminen, komentorivin opettelemista
+16.12.	3-4h	aloitusluento, repon perustaminen, komentorivin opettelemista
+17.12.	5h	git omalle koneelle, komentirivin opettelemista, yleinen setup
