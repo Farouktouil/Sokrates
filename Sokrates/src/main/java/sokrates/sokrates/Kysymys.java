@@ -20,7 +20,7 @@ public class Kysymys {
     public Kysymys(Kieli kieli, String kysymys) {
         this.kysymysKaikillaKielilla.put(kieli, kysymys);
     }
-    
+
     public void lisaaKysymysEriKielella(Kieli kieli, String kysymys) {
         if (!this.kysymysKaikillaKielilla.containsKey(kieli)) {
             this.kysymysKaikillaKielilla.put(kieli, kysymys);
@@ -35,30 +35,32 @@ public class Kysymys {
         this.vastaukset.add(vastaus);
     }
 
+    public String esimerkkivastaus() {
+        return this.esimerkkivastaus;
+    }
+
+    public ArrayList<String> vastaukset() {
+        return this.vastaukset;
+    }
+
+    public HashMap<Kieli, String> kysymysKaikillaKielilla() {
+        return this.kysymysKaikillaKielilla;
+    }
+
+    // Kannattanee muuttaa toStringiksi, jota kutsutaan käyttöliittymästä.
     public void kysy(boolean examples) {
-        System.out.println(this.kysymysKaikillaKielilla.get(Asetukset.nykyinenKieli()));
-        System.out.println("");
+        Kieli nykyinenKieli = Asetukset.nykyinenKieli();
+        System.out.println(this.kysymysKaikillaKielilla.get(nykyinenKieli));
 
         if (examples = true) {
             tulostaEsimerkkiVastaus();
         }
     }
-    
-    public String esimerkkivastaus() {
-        return this.esimerkkivastaus;
-    }
-    
-    public ArrayList<String> vastaukset() {
-        return this.vastaukset;
-    }
-    
-    public HashMap<Kieli, String> kysymysKaikillaKielilla() {
-        return this.kysymysKaikillaKielilla;
-    }
 
+    // Kannattanee muuttaa toStringiksi, jota kutsutaan käyttöliittymästä.
     public void tulostaEsimerkkiVastaus() {
         if (!this.esimerkkivastaus.isEmpty()) {
-            System.out.println("Esim.: " + this.esimerkkivastaus);
+            System.out.println("    Esim.: " + this.esimerkkivastaus);
         }
     }
 }

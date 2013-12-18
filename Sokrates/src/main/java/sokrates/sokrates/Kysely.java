@@ -37,6 +37,8 @@ public class Kysely {
         }
     }
 
+    // Tämäkin kannattanee muuttaa toStringiksi, jota kutsutaan käyttöliittymästä.
+    // Esim. väliaikainen ArrayList jota tulostellaan kälistä ja jonka jäseniin (Q's) vastaillaan.
     public void kysele() {
         for (Kysymys kysymys : this.kysymykset) {
             kysymys.kysy(examples);
