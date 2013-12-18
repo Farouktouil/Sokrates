@@ -1,2 +1,3 @@
 16.12.	3-4h	aloitusluento, repon perustaminen, komentorivin opettelemista
 17.12.	  5h	git omalle koneelle, komentirivin opettelemista, yleinen setup
+18.12.    7h	kytkentärajoitteiden miettimistä, eka luokkakaavio, ekat koodit ja testit
