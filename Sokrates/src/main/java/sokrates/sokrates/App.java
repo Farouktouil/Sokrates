@@ -19,3 +19,7 @@ public class App {
         kannustaja.kysele();
     }
 }
+
+// http://sourcemaking.com/design_patterns/command
+// https://github.com/Vaakapallo/NPC-dangerzone/tree/master/NPCBibtexter/src/main/java/CommandInterpreter
+// https://github.com/Vaakapallo/NPC-dangerzone/blob/master/NPCBibtexter/src/main/java/textUI/TextUI.java
