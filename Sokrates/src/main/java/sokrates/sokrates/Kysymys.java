@@ -49,7 +49,7 @@ public class Kysymys {
 
     // Kannattanee muuttaa toStringiksi, jota kutsutaan käyttöliittymästä.
     public void kysy(boolean examples) {
-        Kieli nykyinenKieli = Asetukset.nykyinenKieli();
+        Kieli nykyinenKieli = Asetukset.getKieli();
         System.out.println(this.kysymysKaikillaKielilla.get(nykyinenKieli));
 
         if (examples = true) {

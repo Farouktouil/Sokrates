@@ -6,13 +6,14 @@ package sokrates.komennot;
 
 /**
  *
- * @author tepi
+ * @author Teo
  */
-public class KyseleOletusKysely extends Komento {
+public class VaihdaKieli extends Komento {
 
     @Override
     public void suorita() {
-        // Asetukset.getOletusKysely().kysele()
+        // kieli := valitseKieli()
+        // Asetukset.setKieli(Kieli kieli)
     }
     
 }
