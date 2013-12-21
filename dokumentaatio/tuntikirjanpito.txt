@@ -1,5 +1,6 @@
-16.12.	3-4h	aloitusluento, repon perustaminen, komentorivin opettelemista
-17.12.	  5h	git omalle koneelle, komentirivin opettelemista, yleinen setup
-18.12.    7h    kytkentärajoitteiden miettimistä, eka luokkakaavio, ekat koodit ja testit
-19.12.	  1h	distraktiopäivä; vain vähän komentotulkin miettimistä
-20.12.    1h    asunnonkatselupäivä; vain vähän komentojen miettimistä
+16.12.  3-4h   aloitusluento, repon perustaminen, komentorivin opettelemista
+17.12.    5h   git omalle koneelle, komentirivin opettelemista, yleinen setup
+18.12.    7h   kytkentärajoitteiden miettimistä, eka luokkakaavio, ekat koodit ja testit
+19.12.    1h   distraktiopäivä; vain vähän komentotulkin miettimistä
+20.12.    1h   asunnonkatselupäivä; vain vähän komentojen miettimistä
+21.12.    5h   oliosuunnittelusuota, komentotulkin rakentamista, toimimaton tiedostonkäsittelijä

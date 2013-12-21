@@ -2,9 +2,11 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package sokrates.sokrates;
+package sokrates.sovelluslogiikka;
 
 import java.util.ArrayList;
+import sokrates.tiedostonkasittely.Tiedostonkasittelija;
+import sokrates.util.Lukija;
 
 /**
  *
@@ -29,20 +31,19 @@ public class Kysely {
         return this.kysymykset;
     }
 
-    public void esimerkkiToggle() {
-        if (this.examples = true) {
-            this.examples = false;
-        } else {
-            this.examples = true;
-        }
-    }
+    public void kysele(Lukija lukija, boolean examples) {
 
-    // Tämäkin kannattanee muuttaa toStringiksi, jota kutsutaan käyttöliittymästä.
-    // Esim. väliaikainen ArrayList jota tulostellaan kälistä ja jonka jäseniin (Q's) vastaillaan.
-    public void kysele() {
         for (Kysymys kysymys : this.kysymykset) {
-            kysymys.kysy(examples);
-            kysymys.lisaaVastaus("Tähän käyttäjän vapaasti kirjoittama vastaus.");
+
+            System.out.println(kysymys.getKysymys());
+
+            if (examples) {
+                System.out.println("  (esim. " + kysymys.esimerkkivastaus() + ")");
+            }
+
+            System.out.print("  ");
+            String kayttajanVastaus = lukija.lueMerkkijono();
+            kysymys.lisaaVastaus(kayttajanVastaus);
         }
     }
 }

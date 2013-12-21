@@ -2,8 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package sokrates.sokrates;
+package sokrates.sovelluslogiikka;
 
+import sokrates.sovelluslogiikka.Kysymys;
+import sokrates.sovelluslogiikka.Kieli;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -58,7 +60,7 @@ public class KysymysTest {
     
     @Test
     public void EsimVastauksenLisaamisenJalkeenKysymyksellaOnEsimVastaus() {        
-        this.kysymys.lisaaEsimerkkiVastaus(esimerkkivastaus);
+        this.kysymys.setEsimerkkiVastaus(esimerkkivastaus);
         
         assertTrue(!kysymys.esimerkkivastaus().isEmpty());
     }

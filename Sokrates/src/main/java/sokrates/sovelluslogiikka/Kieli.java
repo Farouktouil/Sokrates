@@ -2,12 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package sokrates.komennot;
+package sokrates.sovelluslogiikka;
 
 /**
  *
- * @author Teo
+ * @author tepi
  */
-public class LisaaKysymys {
-    
+public enum Kieli {
+
+    SUOMI, ENGLANTI
 }

@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package sokrates.sokrates;
+package sokrates.sovelluslogiikka;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,7 +27,7 @@ public class Kysymys {
         }
     }
 
-    public void lisaaEsimerkkiVastaus(String esimerkkivastaus) {
+    public void setEsimerkkiVastaus(String esimerkkivastaus) {
         this.esimerkkivastaus = esimerkkivastaus;
     }
 
@@ -46,21 +46,11 @@ public class Kysymys {
     public HashMap<Kieli, String> kysymysKaikillaKielilla() {
         return this.kysymysKaikillaKielilla;
     }
-
-    // Kannattanee muuttaa toStringiksi, jota kutsutaan käyttöliittymästä.
-    public void kysy(boolean examples) {
+    
+    public String getKysymys() {
         Kieli nykyinenKieli = Asetukset.getKieli();
-        System.out.println(this.kysymysKaikillaKielilla.get(nykyinenKieli));
-
-        if (examples = true) {
-            tulostaEsimerkkiVastaus();
-        }
-    }
-
-    // Kannattanee muuttaa toStringiksi, jota kutsutaan käyttöliittymästä.
-    public void tulostaEsimerkkiVastaus() {
-        if (!this.esimerkkivastaus.isEmpty()) {
-            System.out.println("    Esim.: " + this.esimerkkivastaus);
-        }
+        String kysymysNykyisellaKielella = this.kysymysKaikillaKielilla.get(nykyinenKieli);
+        
+        return kysymysNykyisellaKielella;
     }
 }
