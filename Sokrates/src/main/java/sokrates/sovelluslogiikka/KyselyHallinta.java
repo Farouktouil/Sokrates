@@ -1,19 +1,11 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package sokrates.sovelluslogiikka;
 
 import java.util.HashMap;
 
-/**
- *
- * @author Teo
- */
 public class KyselyHallinta {
 
     private HashMap<String, Kysely> kyselyt = new HashMap<>();
-    private Kysely oletuskysely;
+    private Kysely oletuskysely = null;
     private boolean examples = true;
 
     public void lisaaKysely(String nimi) {
@@ -38,10 +30,14 @@ public class KyselyHallinta {
         this.oletuskysely = kysely;
     }
 
+    public HashMap<String, Kysely> getKyselyt() {
+        return this.kyselyt;
+    }
+
     public boolean getExamples() {
         return this.examples;
     }
-    
+
     public void setExamples(boolean examples) {
         this.examples = examples;
     }

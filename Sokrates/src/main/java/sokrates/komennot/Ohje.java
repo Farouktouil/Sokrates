@@ -1,17 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package sokrates.komennot;
 
 import java.util.Collection;
 import sokrates.sovelluslogiikka.KyselyHallinta;
 import sokrates.util.Lukija;
 
-/**
- *
- * @author Teo
- */
 public class Ohje extends Komento {
 
     private Collection<Komento> komennot;
@@ -28,7 +20,7 @@ public class Ohje extends Komento {
         for (Komento komento : komennot) {
             System.out.println(komento.getNimi() + " " + komento.getSelite());
         }
-        
+
         return true;
     }
 }

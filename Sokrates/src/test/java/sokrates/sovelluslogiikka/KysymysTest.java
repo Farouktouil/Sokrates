@@ -1,30 +1,14 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package sokrates.sovelluslogiikka;
 
-import sokrates.sovelluslogiikka.Kysymys;
-import sokrates.sovelluslogiikka.Kieli;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author tepi
- */
 public class KysymysTest {
 
     private Kysymys kysymys;
     private String esimerkkivastaus;
     private String vastaus;
-
-    public KysymysTest() {
-    }
 
     @Before
     public void setUp() {
@@ -75,5 +59,20 @@ public class KysymysTest {
         this.kysymys.lisaaVastaus(vastaus);
 
         assertEquals(1, kysymys.getVastaukset().size());
+    }
+
+    @Test
+    public void getKysymysPalauttaaKysymyksenEnglanniksiKunKieliOnEnglanti() {
+        Asetukset.kieli = Kieli.ENGLANTI;
+
+        assertEquals("Hello, world?", this.kysymys.getKysymys());
+    }
+
+    @Test
+    public void getKysymysPalauttaaKysymyksenSuomeksiKunKieliOnSuomi() {
+        Kysymys kysymys = new Kysymys(Kieli.SUOMI, "Hei, maailma?");
+        Asetukset.kieli = Kieli.SUOMI;
+
+        assertEquals("Hei, maailma?", kysymys.getKysymys());
     }
 }

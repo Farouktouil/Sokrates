@@ -1,16 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package sokrates.sovelluslogiikka;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- *
- * @author tepi
- */
 public class Kysymys {
 
     private HashMap<Kieli, String> kysymysKaikillaKielilla = new HashMap();
