@@ -1,6 +1,6 @@
-package kayttoliittyma;
+package sokrates.kayttoliittyma;
 
-import kayttoliittyma.Sovellus;
+import sokrates.kayttoliittyma.Sovellus;
 
 /**
  * Hello world!
