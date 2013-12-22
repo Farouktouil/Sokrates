@@ -13,12 +13,7 @@ import sokrates.util.Lukija;
  */
 public class Kysely {
 
-    private ArrayList<Kysymys> kysymykset;
-    private boolean examples = true;
-
-    public Kysely() {
-        this.kysymykset = new ArrayList<Kysymys>();
-    }
+    private ArrayList<Kysymys> kysymykset = new ArrayList<>();
 
     public void lisaaKysymys(Kysymys kysymys) {
         if (!this.kysymykset.contains(kysymys)) {
@@ -40,6 +35,7 @@ public class Kysely {
 
             System.out.print("  ");
             String kayttajanVastaus = lukija.lueMerkkijono();
+            System.out.println("");
             kysymys.lisaaVastaus(kayttajanVastaus);
         }
     }

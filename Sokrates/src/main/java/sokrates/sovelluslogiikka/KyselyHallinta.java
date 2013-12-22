@@ -4,7 +4,6 @@
  */
 package sokrates.sovelluslogiikka;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -13,14 +12,9 @@ import java.util.HashMap;
  */
 public class KyselyHallinta {
 
-    private HashMap<String, Kysely> kyselyt;
+    private HashMap<String, Kysely> kyselyt = new HashMap<>();
     private Kysely oletuskysely;
-    private boolean examples;
-
-    public KyselyHallinta() {
-        this.kyselyt = new HashMap<String, Kysely>();
-        this.examples = true;
-    }
+    private boolean examples = true;
 
     public void lisaaKysely(String nimi) {
         if (!this.kyselyt.containsKey(nimi)) {

@@ -17,6 +17,6 @@ public class Asetukset {
     }
 
     public void setKieli(Kieli kieli) {
-        this.kieli = kieli;
+        Asetukset.kieli = kieli;
     }
 }

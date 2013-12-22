@@ -35,7 +35,7 @@ public class KyseleOletusKysely extends Komento {
         ArrayList<Kysymys> kysymykset = oletuskysely.getKysymykset();
         luoTiedosto(kysymykset);
 
-        return true;
+        return false;
     }
 
     public void luoTiedosto(ArrayList<Kysymys> kysymykset) {
@@ -44,9 +44,7 @@ public class KyseleOletusKysely extends Komento {
         try {
             String ekanKysymyksenEkaVastaus = kysymykset.get(0).getVastaukset().get(0);
             writer = new PrintWriter(ekanKysymyksenEkaVastaus + ".txt", "UTF-8");
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(KyseleOletusKysely.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (UnsupportedEncodingException ex) {
+        } catch (FileNotFoundException | UnsupportedEncodingException ex) {
             Logger.getLogger(KyseleOletusKysely.class.getName()).log(Level.SEVERE, null, ex);
         }
         
@@ -56,7 +54,9 @@ public class KyseleOletusKysely extends Komento {
     public void kirjoitaKysymyksetVastauksineenLuotuunTiedostoon(PrintWriter writer, ArrayList<Kysymys> kysymykset) {
         for (Kysymys kysymys : kysymykset) {
             writer.println(kysymys.getKysymys());
+            writer.println("");
             writer.println("    " + kysymys.getVastaukset().get(0));
+            writer.println("");
             writer.println("");
         }
         
