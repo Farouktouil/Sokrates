@@ -51,18 +51,4 @@ public class KyselyHallinta {
     public void setExamples(boolean examples) {
         this.examples = examples;
     }
-
-    public void esimerkkiToggle() {
-        if (this.examples = false) {
-            setExamples(true);
-            System.out.println("Esimerkkivastaukset ovat nyt päällä.");
-            return;
-        }
-        
-        if (this.examples = true) {
-            setExamples(false);
-            System.out.println("Esimerkkivastaukset ovat nyt pois päältä.");
-            return;
-        }
-    }
 }

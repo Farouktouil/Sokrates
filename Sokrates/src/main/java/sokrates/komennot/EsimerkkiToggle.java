@@ -19,7 +19,15 @@ public class EsimerkkiToggle extends Komento {
 
     @Override
     public boolean suorita() {
-        hallinta.esimerkkiToggle();
+
+        if (this.hallinta.getExamples() == true) {
+            this.hallinta.setExamples(false);
+            System.out.println("Esimerkkivastaukset ovat nyt pois päältä.");
+        } else if (this.hallinta.getExamples() == false) {
+            this.hallinta.setExamples(true);
+            System.out.println("Esimerkkivastaukset ovat nyt päällä.");
+        }
+
         return true;
     }
 }

@@ -5,7 +5,6 @@
 package sokrates.sovelluslogiikka;
 
 import java.util.ArrayList;
-import sokrates.tiedostonkasittely.Tiedostonkasittelija;
 import sokrates.util.Lukija;
 
 /**
@@ -34,11 +33,9 @@ public class Kysely {
     public void kysele(Lukija lukija, boolean examples) {
 
         for (Kysymys kysymys : this.kysymykset) {
-
             System.out.println(kysymys.getKysymys());
-
             if (examples) {
-                System.out.println("  (esim. " + kysymys.esimerkkivastaus() + ")");
+                System.out.println("  (esim. " + kysymys.getEsimerkkiVastaus() + ")");
             }
 
             System.out.print("  ");

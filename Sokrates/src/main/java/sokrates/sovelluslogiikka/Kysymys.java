@@ -31,26 +31,26 @@ public class Kysymys {
         this.esimerkkivastaus = esimerkkivastaus;
     }
 
+    public String getEsimerkkiVastaus() {
+        return this.esimerkkivastaus;
+    }
+
     public void lisaaVastaus(String vastaus) {
         this.vastaukset.add(vastaus);
     }
 
-    public String esimerkkivastaus() {
-        return this.esimerkkivastaus;
-    }
-
-    public ArrayList<String> vastaukset() {
+    public ArrayList<String> getVastaukset() {
         return this.vastaukset;
     }
 
-    public HashMap<Kieli, String> kysymysKaikillaKielilla() {
+    public HashMap<Kieli, String> getKysymysKaikillaKielilla() {
         return this.kysymysKaikillaKielilla;
     }
-    
+
     public String getKysymys() {
         Kieli nykyinenKieli = Asetukset.getKieli();
         String kysymysNykyisellaKielella = this.kysymysKaikillaKielilla.get(nykyinenKieli);
-        
+
         return kysymysNykyisellaKielella;
     }
 }

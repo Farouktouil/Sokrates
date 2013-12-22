@@ -32,48 +32,48 @@ public class KysymysTest {
         this.esimerkkivastaus = "Roger!";
         this.vastaus = "Hello! -World";
     }
-    
+
     @Test
-    public void YhdellaKielellaEksistoivaaKysymystaOnYksi() {        
-        assertEquals(1, kysymys.kysymysKaikillaKielilla().size());
+    public void YhdellaKielellaEksistoivaaKysymystaOnYksi() {
+        assertEquals(1, kysymys.getKysymysKaikillaKielilla().size());
     }
-    
+
     @Test
-    public void KahdellaKielellaEksistoivaaKysymystaOnKaksi() {      
+    public void KahdellaKielellaEksistoivaaKysymystaOnKaksi() {
         String samaSuomeksi = "Hei, maailma?";
         this.kysymys.lisaaKysymysEriKielella(Kieli.SUOMI, samaSuomeksi);
-        
-        assertEquals(2, kysymys.kysymysKaikillaKielilla().size());
+
+        assertEquals(2, kysymys.getKysymysKaikillaKielilla().size());
     }
-    
+
     @Test
-    public void KysymyksenLisaaminenUudestaanSamallaKielellaEiKasvataKysymystenMaaraa() {        
+    public void KysymyksenLisaaminenUudestaanSamallaKielellaEiKasvataKysymystenMaaraa() {
         this.kysymys.lisaaKysymysEriKielella(Kieli.ENGLANTI, "Hello??? WORLD!!!");
-        
-        assertEquals(1, kysymys.kysymysKaikillaKielilla().size());
+
+        assertEquals(1, kysymys.getKysymysKaikillaKielilla().size());
     }
-    
+
     @Test
-    public void EsimVastauksettomanKysymyksenEsimVastausOnTyhja() {        
-        assertEquals(null, kysymys.esimerkkivastaus());
+    public void EsimVastauksettomanKysymyksenEsimVastausOnTyhja() {
+        assertEquals(null, kysymys.getEsimerkkiVastaus());
     }
-    
+
     @Test
-    public void EsimVastauksenLisaamisenJalkeenKysymyksellaOnEsimVastaus() {        
+    public void EsimVastauksenLisaamisenJalkeenKysymyksellaOnEsimVastaus() {
         this.kysymys.setEsimerkkiVastaus(esimerkkivastaus);
-        
-        assertTrue(!kysymys.esimerkkivastaus().isEmpty());
+
+        assertTrue(!kysymys.getEsimerkkiVastaus().isEmpty());
     }
-    
+
     @Test
-    public void VastauksettomanKysymyksenVastausOnTyhja() {        
-        assertTrue(kysymys.vastaukset().isEmpty());
+    public void VastauksettomanKysymyksenVastausOnTyhja() {
+        assertTrue(kysymys.getVastaukset().isEmpty());
     }
-    
+
     @Test
-    public void VastauksenLisaamisenJalkeenKysymyksellaOnYksiVastaus() {       
+    public void VastauksenLisaamisenJalkeenKysymyksellaOnYksiVastaus() {
         this.kysymys.lisaaVastaus(vastaus);
-        
-        assertEquals(1, kysymys.vastaukset().size());
+
+        assertEquals(1, kysymys.getVastaukset().size());
     }
 }

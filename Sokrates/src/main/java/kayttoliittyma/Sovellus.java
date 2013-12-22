@@ -11,7 +11,6 @@ import sokrates.sovelluslogiikka.Kieli;
 import sokrates.sovelluslogiikka.Kysely;
 import sokrates.sovelluslogiikka.KyselyHallinta;
 import sokrates.sovelluslogiikka.Kysymys;
-import sokrates.tiedostonkasittely.Tiedostonkasittelija;
 import sokrates.util.Lukija;
 
 /**
@@ -24,7 +23,6 @@ public class Sovellus {
     private Map<String, Komento> komennot;
     private Komento ohje;
     private KyselyHallinta hallinta;
-    private Tiedostonkasittelija tk;
     
     public Sovellus() {
         this.lukija = new Lukija();
@@ -34,7 +32,6 @@ public class Sovellus {
         this.ohje = new Ohje(lukija, hallinta, null, null, komennot.values());
         Kysely oletuskysely = luoOletusKysely();
         hallinta.setOletusKysely(oletuskysely);
-        this.tk = new Tiedostonkasittelija();
     }
     
     public void suorita() {
@@ -55,7 +52,7 @@ public class Sovellus {
     }
     
     private void luoKomennot(KyselyHallinta hallinta) {
-        luoKomento(new KyseleOletusKysely(lukija, hallinta, "1", "kysele oletuskysely", tk));
+        luoKomento(new KyseleOletusKysely(lukija, hallinta, "1", "kysele oletuskysely"));
         luoKomento(new EsimerkkiToggle(lukija, hallinta, "2", "esimerkkivastaukset off/on"));
     }
 
@@ -69,11 +66,11 @@ public class Sovellus {
         
         Kysymys onkoOngelmia = new Kysymys(Kieli.SUOMI, "Ongelma?");
         onkoOngelmia.lisaaKysymysEriKielella(Kieli.ENGLANTI, "Problem?");
-        onkoOngelmia.setEsimerkkiVastaus("Oliosuunnittelu takkuaa");
+        onkoOngelmia.setEsimerkkiVastaus("Osa koodista ei toimi");
         
-        Kysymys ekaAskel = new Kysymys(Kieli.SUOMI, "Mikä voisi auttaa?");
-        ekaAskel.lisaaKysymysEriKielella(Kieli.ENGLANTI, "What could help?");
-        ekaAskel.setEsimerkkiVastaus("Rauhallinen suunnittelu pala kerrallaan, esim. paperilla");
+        Kysymys ekaAskel = new Kysymys(Kieli.SUOMI, "Mitä et ole vielä kokeillut?");
+        ekaAskel.lisaaKysymysEriKielella(Kieli.ENGLANTI, "What haven't you tried yet?");
+        ekaAskel.setEsimerkkiVastaus("Pala kerrallaan rakentamista tbh");
         
         oletuskysely.lisaaKysymys(onkoOngelmia);
         oletuskysely.lisaaKysymys(ekaAskel);
