@@ -4,3 +4,4 @@
 19.12.    1h   distraktiop‰iv‰; vain v‰h‰n komentotulkin miettimist‰
 20.12.    1h   asunnonkatselup‰iv‰; vain v‰h‰n komentojen miettimist‰
 21.12.    5h   oliosuunnittelusuota, komentotulkin rakentamista, toimimaton tiedostonk‰sittelij‰
+22.12.  8-9h   ohjelman saattaminen perustoimintakuntoon; siistimist‰; lis‰‰ testej‰; kaikkikaavio
