@@ -22,15 +22,20 @@ public class KyseleOletusKysely extends Komento {
         boolean examples = hallinta.getExamples();
 
         Kysely oletuskysely = hallinta.getOletusKysely();
-        kysele(lukija, examples, oletuskysely);
+        ArrayList<Kysymys> kysymykset = oletuskysely.getKysymykset();
+
+        if (kysymykset.isEmpty()) {
+            System.out.println("Kyselyssä ei ole yhtään kysymystä.");
+        } else {
+            kysele(lukija, examples, kysymykset);
+        }
 
         return false;
     }
 
-    public void kysele(Lukija lukija, boolean examples, Kysely kysely) {
+    public void kysele(Lukija lukija, boolean examples, ArrayList<Kysymys> kysymykset) {
 
         System.out.println("");
-        ArrayList<Kysymys> kysymykset = kysely.getKysymykset();
 
         for (Kysymys kysymys : kysymykset) {
             System.out.println(kysymys.getKysymys());

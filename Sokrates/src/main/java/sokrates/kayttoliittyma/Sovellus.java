@@ -20,6 +20,7 @@ public class Sovellus {
         luoKomennot(hallinta);
         this.ohje = new Ohje(lukija, hallinta, null, null, komennot.values());
         hallinta.setOletusKysely(luoOletusKysely());
+        luoPaivaKirjaKysely();
     }
 
     public void suorita() {
@@ -41,15 +42,17 @@ public class Sovellus {
 
     private void luoKomennot(KyselyHallinta hallinta) {
         luoKomento(new KyseleOletusKysely(lukija, hallinta, "1", "kysele oletuskysely"));
-        luoKomento(new EsimerkkiToggle(lukija, hallinta, "2", "esimerkkivastaukset off/on"));
-        luoKomento(new VaihdaKieli(lukija, hallinta, "3", "vaihda kieleksi englanti/suomi"));
+        luoKomento(new VaihdaOletusKysely(lukija, hallinta, "2", "vaihda oletuskysely"));
+        luoKomento(new LuoKysely(lukija, hallinta, "3", "luo uusi kysely"));
+        luoKomento(new VaihdaKieli(lukija, hallinta, "4", "vaihda kieleksi englanti/suomi"));
+        luoKomento(new EsimerkkiToggle(lukija, hallinta, "5", "esimerkkivastaukset off/on"));
     }
 
     private void luoKomento(Komento komento) {
         komennot.put(komento.getNimi(), komento);
     }
 
-    public Kysely luoOletusKysely() {
+    private Kysely luoOletusKysely() {
         hallinta.lisaaKysely("ongelmanratkaisu");
         Kysely oletuskysely = hallinta.haeKyselyNimenPerusteella("ongelmanratkaisu");
 
@@ -57,23 +60,23 @@ public class Sovellus {
         nimeaOngelma.lisaaKysymysEriKielella(Kieli.ENGLANTI, "Name a problem (this will be the name of the file):");
         nimeaOngelma.setEsimerkkiVastaus("PDF-tiedoston generointi");
 
-        Kysymys tunnetkoOngelmattomia = new Kysymys(Kieli.SUOMI, "Tunnetko ongelmattomia?");
-        tunnetkoOngelmattomia.lisaaKysymysEriKielella(Kieli.ENGLANTI, "Do you know people who have solved or don't have the problem?");
+        Kysymys tunnetkoOngelmattomia = new Kysymys(Kieli.SUOMI, "Keillä tätä ongelmaa ei ole?");
+        tunnetkoOngelmattomia.lisaaKysymysEriKielella(Kieli.ENGLANTI, "Who've solved or don't have the problem?");
         tunnetkoOngelmattomia.setEsimerkkiVastaus("Varmaankin vastaavaa koodanneet");
 
-        Kysymys negaationKuvittelu = new Kysymys(Kieli.SUOMI, "Voitko kuvitella tai kuvailla maailmaa tai tilannetta, jossa ongelmaa ei ole tai se on ratkaistu?");
-        negaationKuvittelu.lisaaKysymysEriKielella(Kieli.ENGLANTI, "Can you imagine or describe a world or situation where the problem has been solved or doesn't exist?");
+        Kysymys negaationKuvittelu = new Kysymys(Kieli.SUOMI, "Kuvaile maailmaa tai tilannetta, jossa ongelmaa ei ole tai se on ratkaistu:");
+        negaationKuvittelu.lisaaKysymysEriKielella(Kieli.ENGLANTI, "Describe a world or situation where the problem has been solved or doesn't exist:");
         negaationKuvittelu.setEsimerkkiVastaus("Ratkaisun jälkeen tämä ohjelma generoi kyselyt vastauksineen PDF-muodossa =)");
 
-        Kysymys tietoLahteita = new Kysymys(Kieli.SUOMI, "Voisiko tai kannattaisiko puhua jollekulle? Mistä voisi löytää tietoa?");
-        tietoLahteita.lisaaKysymysEriKielella(Kieli.ENGLANTI, "Could or should you talk to someone? Where could you find information?");
+        Kysymys tietoLahteita = new Kysymys(Kieli.SUOMI, "Kenelle voisi tai kannattaisi puhua? Mistä voisi löytää tietoa?");
+        tietoLahteita.lisaaKysymysEriKielella(Kieli.ENGLANTI, "Who could or should you talk to? Where could you find information?");
         tietoLahteita.setEsimerkkiVastaus("iText-kirjasto, Stack Overflow; ehkä iTextiä käyttäneitä jos löytäisi.");
 
-        Kysymys hakuTaitoja = new Kysymys(Kieli.SUOMI, "Millaisia kysymyksiä tai hakusanoja ongelmaan liittyy?");
+        Kysymys hakuTaitoja = new Kysymys(Kieli.SUOMI, "Mitä kysymyksiä tai hakusanoja ongelmaan liittyy?");
         hakuTaitoja.lisaaKysymysEriKielella(Kieli.ENGLANTI, "What questions or keywords are relevant to the problem?");
         hakuTaitoja.setEsimerkkiVastaus("iText, Java PDF generate, How to create and write to a PDF file in java");
 
-        Kysymys muuttujiaVaihtokauppoja = new Kysymys(Kieli.SUOMI, "Mitä muuttujia ongelmaan liittyy? Huomaatko vaihtokauppoja?");
+        Kysymys muuttujiaVaihtokauppoja = new Kysymys(Kieli.SUOMI, "Mitä muuttujia ongelmaan liittyy? Huomaatko vaihtokauppoja (tasapainottelua, 'trade-offs')?");
         muuttujiaVaihtokauppoja.lisaaKysymysEriKielella(Kieli.ENGLANTI, "What variables are there? Are there trade-offs, can it be described as an optimization or balancing problem?");
         muuttujiaVaihtokauppoja.setEsimerkkiVastaus("PDF olisi kiva, mutta voi osoittautua työlääksi. Lassi sanoi että korvaisi graafisen UI:n :^D");
 
@@ -81,12 +84,12 @@ public class Sovellus {
         relevanttejaAloja.lisaaKysymysEriKielella(Kieli.ENGLANTI, "What fields of expertise are relevant to the problem?");
         relevanttejaAloja.setEsimerkkiVastaus("Java-ohjelmointikielen ongelmahan tämä lähinnä on");
 
-        Kysymys heikkojaOletuksia = new Kysymys(Kieli.SUOMI, "Mihin ongelma perustuu? Voisiko joitakin oletuksia kyseenalaistaa?");
-        heikkojaOletuksia.lisaaKysymysEriKielella(Kieli.ENGLANTI, "What is the problem based on? Could some assumptions be questioned?");
+        Kysymys heikkojaOletuksia = new Kysymys(Kieli.SUOMI, "Mihin ongelma perustuu? Mitä oletuksia voisi kyseenalaistaa?");
+        heikkojaOletuksia.lisaaKysymysEriKielella(Kieli.ENGLANTI, "What is the problem based on? What assumptions could be questioned?");
         heikkojaOletuksia.setEsimerkkiVastaus("En vielä tiedä miten saisin ohjelmani generoimaan PDF-tiedostoja, ja luulen että se saattaisi olla hankalaa. Valmiilla kirjastolla näin yksinkertaisen tulostamisen saattaa kuitenkin voida tehdä yllättävän helposti. Sikäli ainakin ongelman vaikeus on atm tuntematon.");
 
         Kysymys toimintaSuunnitelmaa = new Kysymys(Kieli.SUOMI, "Mitä voisit yrittää ainakin ensimmäiseksi tehdä?");
-        toimintaSuunnitelmaa.lisaaKysymysEriKielella(Kieli.ENGLANTI, "What are some first small steps that could be taken towards solving the problem?");
+        toimintaSuunnitelmaa.lisaaKysymysEriKielella(Kieli.ENGLANTI, "What are some first small steps that could be taken?");
         toimintaSuunnitelmaa.setEsimerkkiVastaus("Googlettelua, lukemista, iText-kirjaston installaamista ja esimerkin kopiointia.");
 
         oletuskysely.lisaaKysymys(nimeaOngelma);
@@ -100,5 +103,21 @@ public class Sovellus {
         oletuskysely.lisaaKysymys(toimintaSuunnitelmaa);
 
         return oletuskysely;
+    }
+
+    private void luoPaivaKirjaKysely() {
+        hallinta.lisaaKysely("päiväkirja");
+        Kysely paivakirja = hallinta.haeKyselyNimenPerusteella("päiväkirja");
+
+        Kysymys nimeaPaiva = new Kysymys(Kieli.SUOMI, "Anna nimi päivälle (tämä tulee tekstitiedoston nimeksi):");
+        nimeaPaiva.lisaaKysymysEriKielella(Kieli.ENGLANTI, "Name a day (this will be the name of the file):");
+        nimeaPaiva.setEsimerkkiVastaus("2014-1-1");
+
+        Kysymys miltaTuntuu = new Kysymys(Kieli.SUOMI, "Miltä tuntuu?");
+        miltaTuntuu.lisaaKysymysEriKielella(Kieli.ENGLANTI, "How are you feeling?");
+        miltaTuntuu.setEsimerkkiVastaus("Could be worse!");
+
+        paivakirja.lisaaKysymys(nimeaPaiva);
+        paivakirja.lisaaKysymys(miltaTuntuu);
     }
 }

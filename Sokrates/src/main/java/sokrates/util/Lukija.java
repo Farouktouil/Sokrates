@@ -18,6 +18,7 @@ public class Lukija {
         System.out.print(kysymys);
         return lukija.nextLine();
     }
+//    Onko mitään syytä käyttää tätä lukujen lukemiseen, sen sijaan että käyttäisi siihenkin lueMerkkijonoa?
 //    public int lueKokonaisluku() {
 //        return Integer.parseInt( lukija.nextLine() );
 //    }
