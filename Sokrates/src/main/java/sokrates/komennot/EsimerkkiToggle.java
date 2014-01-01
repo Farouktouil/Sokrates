@@ -14,10 +14,10 @@ public class EsimerkkiToggle extends Komento {
 
         if (this.hallinta.getExamples() == true) {
             this.hallinta.setExamples(false);
-            System.out.println("    Esimerkkivastaukset ovat nyt pois päältä.");
+            System.out.println("    Esimerkkivastaukset ovat nyt pois päältä.\n");
         } else if (this.hallinta.getExamples() == false) {
             this.hallinta.setExamples(true);
-            System.out.println("    Esimerkkivastaukset ovat nyt päällä.");
+            System.out.println("    Esimerkkivastaukset ovat nyt päällä.\n");
         }
 
         return true;

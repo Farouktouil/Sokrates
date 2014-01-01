@@ -21,10 +21,6 @@ public class Kysely {
         return this.kysymykset;
     }
 
-    public String getNimi() {
-        return this.nimi;
-    }
-
     @Override
     public String toString() {
         return this.nimi;

@@ -15,10 +15,10 @@ public class VaihdaKieli extends Komento {
     public boolean suorita() {
         if (Asetukset.getKieli() == Kieli.SUOMI) {
             Asetukset.kieli = Kieli.ENGLANTI;
-            System.out.println("    Kieli on nyt englanti.");
+            System.out.println("    Kieli on nyt englanti.\n");
         } else if (Asetukset.getKieli() == Kieli.ENGLANTI) {
             Asetukset.kieli = Kieli.SUOMI;
-            System.out.println("    Kieli on nyt suomi.");
+            System.out.println("    Kieli on nyt suomi.\n");
         }
 
         return true;

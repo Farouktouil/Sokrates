@@ -25,37 +25,32 @@ public abstract class Komento {
     public String getSelite() {
         return selite;
     }
-    
-    public Kysely kayttajaValitseeKyselyn() {
+
+    public Kysely kayttajanOsoittamaKysely() {
         Kysely kysely = null;
-        
-        System.out.println("    Valitse jokin seuraavista kyselyistä:");
-        tulostaKyselyjenNimet();
+
+        System.out.println("Valitse kysely:");
+        tulostaKyselyVaihtoehdot();
+        System.out.println();
 
         while (true) {
-            String syote = lukija.lueMerkkijono("    valittavan kyselyn nimi: ");
+            int syote = lukija.lueKokonaisluku("kysely: ");
 
-            if (kayttajanValitsemaKyselyOnOlemassa(syote)) {
-                kysely = this.hallinta.haeKyselyNimenPerusteella(syote);
+            if (this.hallinta.getNimiTaulukko().containsKey(syote)) {
+                String valitunKyselynNimi = this.hallinta.getNimiTaulukko().get(syote);
+                kysely = this.hallinta.haeKyselyNimenPerusteella(valitunKyselynNimi);
                 break;
             }
         }
-        
+
         return kysely;
     }
-    
-    public void tulostaKyselyjenNimet() {
-        for (String nimi : this.hallinta.getKyselyt().keySet()) {
-            System.out.println("        " + nimi);
-        }
-    }
 
-    public boolean kayttajanValitsemaKyselyOnOlemassa(String syote) {
-        if (this.hallinta.getKyselyt().containsKey(syote)) {
-            return true;
+    public void tulostaKyselyVaihtoehdot() {
+        for (Integer avainluku : this.hallinta.getNimiTaulukko().keySet()) {
+            System.out.println("  " + avainluku + " "
+                    + this.hallinta.getNimiTaulukko().get(avainluku));
         }
-
-        return false;
     }
 
     public abstract boolean suorita();

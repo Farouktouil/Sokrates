@@ -24,23 +24,23 @@ public class Sovellus {
     }
 
     public void suorita() {
+        System.out.print("Tervetuloa kyselyohjelmaan. ");
         ohje.suorita();
-
         boolean jatketaan = true;
 
         while (jatketaan) {
             String syote = lukija.lueMerkkijono("komento: ");
-
+            System.out.println("");
             Komento komento = komennot.get(syote);
             if (komento == null) {
                 komento = ohje;
             }
-
             jatketaan = komento.suorita();
         }
     }
 
     private void luoKomennot(KyselyHallinta hallinta) {
+        luoKomento(new Lopeta(lukija, hallinta, "0", "lopeta"));
         luoKomento(new KyseleOletusKysely(lukija, hallinta, "1", "kysele oletuskysely"));
         luoKomento(new VaihdaOletusKysely(lukija, hallinta, "2", "vaihda oletuskysely"));
         luoKomento(new LisaaKysely(lukija, hallinta, "3", "lisää uusi kysely"));

@@ -34,22 +34,32 @@ public class KyseleOletusKysely extends Komento {
     }
 
     public void kysele(Lukija lukija, boolean examples, ArrayList<Kysymys> kysymykset) {
-
-        System.out.println();
-
         for (Kysymys kysymys : kysymykset) {
             System.out.println(kysymys.getKysymys());
             if (examples) {
-                System.out.println("  (esim. " + kysymys.getEsimerkkiVastaus() + ")");
+                System.out.println("    (esim. " + kysymys.getEsimerkkiVastaus() + ")");
             }
 
-            System.out.print("  ");
+            System.out.print("\n    ");
             String kayttajanVastaus = lukija.lueMerkkijono();
             System.out.println();
             kysymys.lisaaVastaus(kayttajanVastaus);
         }
 
         luoTiedosto(kysymykset);
+        
+//        for (Kysymys kysymys : kysymykset) {
+//            String tulostettavaKysymys = kysymys.getKysymys();
+//            if (examples) {
+//                tulostettavaKysymys.concat("\n    (esim. " + kysymys.getEsimerkkiVastaus() + ")");
+//            }
+//            System.out.println(tulostettavaKysymys + "\n    ");
+//            String kayttajanVastaus = lukija.lueMerkkijono();
+//            System.out.println();
+//            kysymys.lisaaVastaus(kayttajanVastaus);
+//        }
+//
+//        luoTiedosto(kysymykset);
     }
 
     public void luoTiedosto(ArrayList<Kysymys> kysymykset) {

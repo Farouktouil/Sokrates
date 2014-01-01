@@ -13,11 +13,11 @@ public class LisaaKysely extends Komento {
     public boolean suorita() {
 
         while (true) {
-            String syote = lukija.lueMerkkijono("    Anna kyselylle nimi: ");
+            String nimi = lukija.lueMerkkijono("Anna kyselylle nimi: ");
 
-            if (!syote.isEmpty()) {
-                this.hallinta.lisaaKysely((syote));
-                System.out.println("    Luotu kysely nimeltä " + syote + ".");
+            if (!nimi.isEmpty()) {
+                this.hallinta.lisaaKysely((nimi));
+                System.out.println("\n    Luotu kysely nimeltä " + nimi + ".\n");
                 break;
             }
         }

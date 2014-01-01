@@ -1,31 +1,39 @@
 package sokrates.sovelluslogiikka;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.TreeMap;
 
 public class KyselyHallinta {
 
-    private HashMap<String, Kysely> kyselyt = new HashMap<>();
+    private ArrayList<Kysely> kyselyt = new ArrayList<>();
+    private TreeMap<Integer, String> nimiTaulukko = new TreeMap<>();
     private Kysely oletuskysely = null;
     private boolean examples = true;
 
     public void lisaaKysely(String nimi) {
-        if (!this.kyselyt.containsKey(nimi)) {
-            this.kyselyt.put(nimi, new Kysely(nimi));
+        if (!this.nimiTaulukko.containsValue(nimi)) {
+            this.kyselyt.add(new Kysely(nimi));
+            this.nimiTaulukko.put(this.kyselyt.size(), nimi);
         }
     }
-    
+
     public void poistaKysely(String nimi) {
-        if (this.kyselyt.containsKey(nimi)) {
+        if (this.nimiTaulukko.containsValue(nimi)) {
+            // luultavasti ei toimi näin!
             this.kyselyt.remove(nimi);
         }
     }
 
     public Kysely haeKyselyNimenPerusteella(String nimi) {
-        if (this.kyselyt.containsKey(nimi)) {
-            return this.kyselyt.get(nimi);
-        } else {
-            return null;
+        if (this.nimiTaulukko.containsValue(nimi)) {
+            for (Kysely kysely : this.kyselyt) {
+                if (kysely.toString().equals(nimi)) {
+                    return kysely;
+                }
+            }
         }
+
+        return null;
     }
 
     public Kysely getOletusKysely() {
@@ -36,8 +44,12 @@ public class KyselyHallinta {
         this.oletuskysely = kysely;
     }
 
-    public HashMap<String, Kysely> getKyselyt() {
+    public ArrayList<Kysely> getKyselyt() {
         return this.kyselyt;
+    }
+
+    public TreeMap<Integer, String> getNimiTaulukko() {
+        return this.nimiTaulukko;
     }
 
     public boolean getExamples() {

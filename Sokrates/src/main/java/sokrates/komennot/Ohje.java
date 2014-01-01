@@ -15,12 +15,11 @@ public class Ohje extends Komento {
 
     @Override
     public boolean suorita() {
-        System.out.println("Tervetuloa kyselyohjelmaan. Käytettävissä on seuraavat komennot:");
-
+        System.out.println("Valitse komento");
         for (Komento komento : komennot) {
-            System.out.println(komento.getNimi() + " " + komento.getSelite());
+            System.out.println("  " + komento.getNimi() + " " + komento.getSelite());
         }
-
+        System.out.println();
         return true;
     }
 }

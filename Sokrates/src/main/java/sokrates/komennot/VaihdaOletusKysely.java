@@ -12,9 +12,9 @@ public class VaihdaOletusKysely extends Komento {
 
     @Override
     public boolean suorita() {
-        Kysely uusiOletusKysely = super.kayttajaValitseeKyselyn();
+        Kysely uusiOletusKysely = super.kayttajanOsoittamaKysely();
         this.hallinta.setOletusKysely(uusiOletusKysely);
-        System.out.println("    Oletuskysely on nyt " + uusiOletusKysely + ".");
+        System.out.println("\n    Oletuskysely on nyt " + uusiOletusKysely + ".\n");
 
         return true;
     }

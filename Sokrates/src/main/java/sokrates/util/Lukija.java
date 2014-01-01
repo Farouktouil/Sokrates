@@ -20,10 +20,11 @@ public class Lukija {
     }
 
     public int lueKokonaisluku() {
-        if (Integer.parseInt(lukija.nextLine()) < 2) {
-            return 1;
-        }
+        return Integer.parseInt(lukija.nextLine());
+    }
 
+    public int lueKokonaisluku(String kysymys) {
+        System.out.print(kysymys);
         return Integer.parseInt(lukija.nextLine());
     }
 }

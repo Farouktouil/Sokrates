@@ -12,10 +12,11 @@ public class PoistaKysely extends Komento {
 
     @Override
     public boolean suorita() {
-        Kysely poistettavaKysely = super.kayttajaValitseeKyselyn();
-        String poistettavanKyselynNimi = poistettavaKysely.getNimi();
+        Kysely poistettavaKysely = super.kayttajanOsoittamaKysely();
+        String poistettavanKyselynNimi = poistettavaKysely.toString();
         this.hallinta.poistaKysely(poistettavanKyselynNimi);
-        System.out.println("    Poistettiin kysely " + poistettavanKyselynNimi + ".");
+        System.out.println("\n    Poistettu kysely nimeltä "
+                + poistettavanKyselynNimi + ".\n");
         return true;
     }
 }
