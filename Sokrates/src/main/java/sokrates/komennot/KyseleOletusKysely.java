@@ -35,7 +35,7 @@ public class KyseleOletusKysely extends Komento {
 
     public void kysele(Lukija lukija, boolean examples, ArrayList<Kysymys> kysymykset) {
 
-        System.out.println("");
+        System.out.println();
 
         for (Kysymys kysymys : kysymykset) {
             System.out.println(kysymys.getKysymys());
@@ -45,7 +45,7 @@ public class KyseleOletusKysely extends Komento {
 
             System.out.print("  ");
             String kayttajanVastaus = lukija.lueMerkkijono();
-            System.out.println("");
+            System.out.println();
             kysymys.lisaaVastaus(kayttajanVastaus);
         }
 

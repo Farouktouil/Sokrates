@@ -3,9 +3,9 @@ package sokrates.komennot;
 import sokrates.sovelluslogiikka.KyselyHallinta;
 import sokrates.util.Lukija;
 
-public class LuoKysely extends Komento {
+public class LisaaKysely extends Komento {
 
-    public LuoKysely(Lukija lukija, KyselyHallinta hallinta, String nimi, String selite) {
+    public LisaaKysely(Lukija lukija, KyselyHallinta hallinta, String nimi, String selite) {
         super(lukija, hallinta, nimi, selite);
     }
 

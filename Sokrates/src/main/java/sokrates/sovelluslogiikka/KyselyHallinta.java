@@ -10,7 +10,13 @@ public class KyselyHallinta {
 
     public void lisaaKysely(String nimi) {
         if (!this.kyselyt.containsKey(nimi)) {
-            this.kyselyt.put(nimi, new Kysely());
+            this.kyselyt.put(nimi, new Kysely(nimi));
+        }
+    }
+    
+    public void poistaKysely(String nimi) {
+        if (this.kyselyt.containsKey(nimi)) {
+            this.kyselyt.remove(nimi);
         }
     }
 

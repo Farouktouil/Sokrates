@@ -1,5 +1,6 @@
 package sokrates.komennot;
 
+import sokrates.sovelluslogiikka.Kysely;
 import sokrates.sovelluslogiikka.KyselyHallinta;
 import sokrates.util.Lukija;
 
@@ -23,6 +24,38 @@ public abstract class Komento {
 
     public String getSelite() {
         return selite;
+    }
+    
+    public Kysely kayttajaValitseeKyselyn() {
+        Kysely kysely = null;
+        
+        System.out.println("    Valitse jokin seuraavista kyselyistä:");
+        tulostaKyselyjenNimet();
+
+        while (true) {
+            String syote = lukija.lueMerkkijono("    valittavan kyselyn nimi: ");
+
+            if (kayttajanValitsemaKyselyOnOlemassa(syote)) {
+                kysely = this.hallinta.haeKyselyNimenPerusteella(syote);
+                break;
+            }
+        }
+        
+        return kysely;
+    }
+    
+    public void tulostaKyselyjenNimet() {
+        for (String nimi : this.hallinta.getKyselyt().keySet()) {
+            System.out.println("        " + nimi);
+        }
+    }
+
+    public boolean kayttajanValitsemaKyselyOnOlemassa(String syote) {
+        if (this.hallinta.getKyselyt().containsKey(syote)) {
+            return true;
+        }
+
+        return false;
     }
 
     public abstract boolean suorita();

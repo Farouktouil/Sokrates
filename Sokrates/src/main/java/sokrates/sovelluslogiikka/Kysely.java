@@ -5,6 +5,11 @@ import java.util.ArrayList;
 public class Kysely {
 
     private ArrayList<Kysymys> kysymykset = new ArrayList<>();
+    private String nimi;
+
+    public Kysely(String nimi) {
+        this.nimi = nimi;
+    }
 
     public void lisaaKysymys(Kysymys kysymys) {
         if (!this.kysymykset.contains(kysymys)) {
@@ -14,5 +19,14 @@ public class Kysely {
 
     public ArrayList<Kysymys> getKysymykset() {
         return this.kysymykset;
+    }
+
+    public String getNimi() {
+        return this.nimi;
+    }
+
+    @Override
+    public String toString() {
+        return this.nimi;
     }
 }

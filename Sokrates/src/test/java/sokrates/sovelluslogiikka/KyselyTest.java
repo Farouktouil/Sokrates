@@ -14,7 +14,7 @@ public class KyselyTest {
 
     @Before
     public void setUp() {
-        this.kysely = new Kysely();
+        this.kysely = new Kysely("");
         this.kysymys = new Kysymys(Kieli.ENGLANTI, "Hello, world?");
     }
 
