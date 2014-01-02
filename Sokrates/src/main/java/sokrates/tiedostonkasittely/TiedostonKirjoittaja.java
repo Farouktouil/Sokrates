@@ -10,8 +10,24 @@ import java.util.logging.Logger;
 import sokrates.komennot.KyseleOletusKysely;
 import sokrates.sovelluslogiikka.Kysymys;
 
+/**
+ * Vastaa tekstitiedoston luomisesta ja siihen kirjoittelusta kyselytyksen
+ * jälkeen.
+ *
+ * @author Teo
+ */
 public class TiedostonKirjoittaja {
     
+    /**
+     * Metodi antaa tekstitiedoston nimeksi aina käyttäjän ensimmäisen vastauksen
+     * ensimmäiseen kysymykseen, mikä selvennetään myös kysymys käyttäjälle
+     * esitettäessä.
+     * 
+     * Tiedoston luotuaan metodi kirjoituttaa sinne kysymykset vastauksineen
+     * kutsumalla alempaa toista metodia.
+     *
+     * @param kysymykset Lista kysymyksistä joiden pohjalta tekstitiedosto luodaan
+     */
     public void luoTiedosto(ArrayList<Kysymys> kysymykset) {
         PrintWriter writer = null;
 
