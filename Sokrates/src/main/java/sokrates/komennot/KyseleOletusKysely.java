@@ -26,7 +26,7 @@ public class KyseleOletusKysely extends Komento {
         return false; // lopettaa siis ohjelman joka tapauksessa
     }
 
-    public void kysele(Lukija lukija, boolean examples, ArrayList<Kysymys> kysymykset) {
+    private void kysele(Lukija lukija, boolean examples, ArrayList<Kysymys> kysymykset) {
 
         for (Kysymys kysymys : kysymykset) {
             System.out.println(kysymys.getKysymysNykyisellaKielella());

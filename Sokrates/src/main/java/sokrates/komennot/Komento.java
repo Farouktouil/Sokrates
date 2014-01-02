@@ -44,7 +44,7 @@ public abstract class Komento {
         return kysely;
     }
 
-    public void tulostaKyselyVaihtoehdot() {
+    private void tulostaKyselyVaihtoehdot() {
         for (Integer avainluku : this.hallinta.getNimiTaulukko().keySet()) {
             System.out.println("  " + avainluku + " "
                     + this.hallinta.getNimiTaulukko().get(avainluku));

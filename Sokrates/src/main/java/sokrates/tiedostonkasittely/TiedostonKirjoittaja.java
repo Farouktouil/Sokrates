@@ -26,7 +26,7 @@ public class TiedostonKirjoittaja {
         kirjoitaKysymyksetVastauksineenLuotuunTiedostoon(writer, kysymykset);
     }
 
-    public void kirjoitaKysymyksetVastauksineenLuotuunTiedostoon(PrintWriter writer, ArrayList<Kysymys> kysymykset) {
+    private void kirjoitaKysymyksetVastauksineenLuotuunTiedostoon(PrintWriter writer, ArrayList<Kysymys> kysymykset) {
         for (Kysymys kysymys : kysymykset) {
             writer.println(kysymys.getKysymysNykyisellaKielella());
             writer.println();
