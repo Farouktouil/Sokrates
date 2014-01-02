@@ -17,11 +17,12 @@ public class KyselyHallinta {
         }
     }
 
-    public void poistaKysely(String nimi) {
-        if (this.nimiTaulukko.containsValue(nimi)) {
-            // luultavasti ei toimi näin!
-            this.kyselyt.remove(nimi);
-        }
+    public void poistaKysely(Kysely poistettavaKysely, String poistettavanKyselynNimi) {
+//        ei toiminut:        
+//        this.kyselyt.remove(poistettavaKysely);
+//        if (this.nimiTaulukko.containsValue(poistettavanKyselynNimi)) {
+//            this.nimiTaulukko.remove(poistettavanKyselynNimi);
+//        }
     }
 
     public Kysely haeKyselyNimenPerusteella(String nimi) {

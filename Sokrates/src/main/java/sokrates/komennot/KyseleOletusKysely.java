@@ -1,14 +1,9 @@
 package sokrates.komennot;
 
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import sokrates.sovelluslogiikka.Kysely;
 import sokrates.sovelluslogiikka.KyselyHallinta;
 import sokrates.sovelluslogiikka.Kysymys;
+import sokrates.tiedostonkasittely.TiedostonKirjoittaja;
 import sokrates.util.Lukija;
 
 public class KyseleOletusKysely extends Komento {
@@ -19,71 +14,32 @@ public class KyseleOletusKysely extends Komento {
 
     @Override
     public boolean suorita() {
-        boolean examples = hallinta.getExamples();
-
-        Kysely oletuskysely = hallinta.getOletusKysely();
-        ArrayList<Kysymys> kysymykset = oletuskysely.getKysymykset();
+        ArrayList<Kysymys> kysymykset = hallinta.getOletusKysely().getKysymykset();
 
         if (kysymykset.isEmpty()) {
             System.out.println("Kyselyssä ei ole yhtään kysymystä.");
         } else {
+            boolean examples = hallinta.getExamples();
             kysele(lukija, examples, kysymykset);
         }
 
-        return false;
+        return false; // lopettaa siis ohjelman joka tapauksessa
     }
 
     public void kysele(Lukija lukija, boolean examples, ArrayList<Kysymys> kysymykset) {
+
         for (Kysymys kysymys : kysymykset) {
-            System.out.println(kysymys.getKysymys());
+            System.out.println(kysymys.getKysymysNykyisellaKielella());
             if (examples) {
                 System.out.println("    (esim. " + kysymys.getEsimerkkiVastaus() + ")");
             }
-
             System.out.print("\n    ");
             String kayttajanVastaus = lukija.lueMerkkijono();
             System.out.println();
+
             kysymys.lisaaVastaus(kayttajanVastaus);
         }
 
-        luoTiedosto(kysymykset);
-        
-//        for (Kysymys kysymys : kysymykset) {
-//            String tulostettavaKysymys = kysymys.getKysymys();
-//            if (examples) {
-//                tulostettavaKysymys.concat("\n    (esim. " + kysymys.getEsimerkkiVastaus() + ")");
-//            }
-//            System.out.println(tulostettavaKysymys + "\n    ");
-//            String kayttajanVastaus = lukija.lueMerkkijono();
-//            System.out.println();
-//            kysymys.lisaaVastaus(kayttajanVastaus);
-//        }
-//
-//        luoTiedosto(kysymykset);
-    }
-
-    public void luoTiedosto(ArrayList<Kysymys> kysymykset) {
-        PrintWriter writer = null;
-
-        try {
-            String ekanKysymyksenEkaVastaus = kysymykset.get(0).getVastaukset().get(0);
-            writer = new PrintWriter(ekanKysymyksenEkaVastaus + ".txt", "UTF-8");
-        } catch (FileNotFoundException | UnsupportedEncodingException ex) {
-            Logger.getLogger(KyseleOletusKysely.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        kirjoitaKysymyksetVastauksineenLuotuunTiedostoon(writer, kysymykset);
-    }
-
-    public void kirjoitaKysymyksetVastauksineenLuotuunTiedostoon(PrintWriter writer, ArrayList<Kysymys> kysymykset) {
-        for (Kysymys kysymys : kysymykset) {
-            writer.println(kysymys.getKysymys());
-            writer.println("");
-            writer.println("    " + kysymys.getVastaukset().get(0));
-            writer.println("");
-            writer.println("");
-        }
-
-        writer.close();
+        new TiedostonKirjoittaja().luoTiedosto(kysymykset);
     }
 }

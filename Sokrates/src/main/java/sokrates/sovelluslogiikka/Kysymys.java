@@ -39,7 +39,7 @@ public class Kysymys {
         return this.kysymysKaikillaKielilla;
     }
 
-    public String getKysymys() {
+    public String getKysymysNykyisellaKielella() {
         Kieli nykyinenKieli = Asetukset.getKieli();
         String kysymysNykyisellaKielella = this.kysymysKaikillaKielilla.get(nykyinenKieli);
 

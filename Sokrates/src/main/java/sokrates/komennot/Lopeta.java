@@ -11,6 +11,6 @@ public class Lopeta extends Komento {
 
     @Override
     public boolean suorita() {
-        return false;
+        return false; // lopettaa siis ohjelman
     }
 }

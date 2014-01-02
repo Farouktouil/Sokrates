@@ -4,11 +4,7 @@ import java.util.Scanner;
 
 public class Lukija {
 
-    private Scanner lukija;
-
-    public Lukija() {
-        lukija = new Scanner(System.in);
-    }
+    private Scanner lukija = new Scanner(System.in);
 
     public String lueMerkkijono() {
         return lukija.nextLine();

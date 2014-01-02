@@ -1,6 +1,5 @@
 package sokrates.kayttoliittyma;
 
-import java.util.Map;
 import java.util.TreeMap;
 import sokrates.komennot.*;
 import sokrates.sovelluslogiikka.*;
@@ -9,32 +8,37 @@ import sokrates.util.Lukija;
 public class Sovellus {
 
     private Lukija lukija;
-    private Map<String, Komento> komennot;
+    private TreeMap<String, Komento> komennot;
     private Komento ohje;
     private KyselyHallinta hallinta;
 
     public Sovellus() {
         this.lukija = new Lukija();
         this.komennot = new TreeMap<>();
-        this.hallinta = new KyselyHallinta();
-        luoKomennot(hallinta);
         this.ohje = new Ohje(lukija, hallinta, null, null, komennot.values());
-        hallinta.setOletusKysely(luoOletusKysely());
+        this.hallinta = new KyselyHallinta();
+
+        luoKomennot(this.hallinta);
+        this.hallinta.setOletusKysely(luoOletusKysely());
         luoPaivaKirjaKysely();
     }
 
     public void suorita() {
         System.out.print("Tervetuloa kyselyohjelmaan. ");
         ohje.suorita();
+
         boolean jatketaan = true;
 
         while (jatketaan) {
             String syote = lukija.lueMerkkijono("komento: ");
             System.out.println("");
+
             Komento komento = komennot.get(syote);
+
             if (komento == null) {
                 komento = ohje;
             }
+
             jatketaan = komento.suorita();
         }
     }
@@ -65,9 +69,9 @@ public class Sovellus {
         tunnetkoOngelmattomia.lisaaKysymysEriKielella(Kieli.ENGLANTI, "Who've solved or don't have the problem?");
         tunnetkoOngelmattomia.setEsimerkkiVastaus("Varmaankin vastaavaa koodanneet");
 
-        Kysymys negaationKuvittelu = new Kysymys(Kieli.SUOMI, "Kuvaile maailmaa tai tilannetta, jossa ongelmaa ei ole tai se on ratkaistu:");
-        negaationKuvittelu.lisaaKysymysEriKielella(Kieli.ENGLANTI, "Describe a world or situation where the problem has been solved or doesn't exist:");
-        negaationKuvittelu.setEsimerkkiVastaus("Ratkaisun jälkeen tämä ohjelma generoi kyselyt vastauksineen PDF-muodossa =)");
+        Kysymys negaationKuvailu = new Kysymys(Kieli.SUOMI, "Kuvaile maailmaa tai tilannetta, jossa ongelmaa ei ole tai se on ratkaistu:");
+        negaationKuvailu.lisaaKysymysEriKielella(Kieli.ENGLANTI, "Describe a world or situation where the problem has been solved or doesn't exist:");
+        negaationKuvailu.setEsimerkkiVastaus("Ratkaisun jälkeen tämä ohjelma generoi kyselyt vastauksineen PDF-muodossa =)");
 
         Kysymys tietoLahteita = new Kysymys(Kieli.SUOMI, "Kenelle voisi tai kannattaisi puhua? Mistä voisi löytää tietoa?");
         tietoLahteita.lisaaKysymysEriKielella(Kieli.ENGLANTI, "Who could or should you talk to? Where could you find information?");
@@ -95,7 +99,7 @@ public class Sovellus {
 
         oletuskysely.lisaaKysymys(nimeaOngelma);
         oletuskysely.lisaaKysymys(tunnetkoOngelmattomia);
-        oletuskysely.lisaaKysymys(negaationKuvittelu);
+        oletuskysely.lisaaKysymys(negaationKuvailu);
         oletuskysely.lisaaKysymys(tietoLahteita);
         oletuskysely.lisaaKysymys(hakuTaitoja);
         oletuskysely.lisaaKysymys(muuttujiaVaihtokauppoja);

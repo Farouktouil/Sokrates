@@ -62,17 +62,17 @@ public class KysymysTest {
     }
 
     @Test
-    public void getKysymysPalauttaaKysymyksenEnglanniksiKunKieliOnEnglanti() {
+    public void getKysymysNykyisellaKielellaPalauttaaKysymyksenEnglanniksiKunKieliOnEnglanti() {
         Asetukset.kieli = Kieli.ENGLANTI;
 
-        assertEquals("Hello, world?", this.kysymys.getKysymys());
+        assertEquals("Hello, world?", this.kysymys.getKysymysNykyisellaKielella());
     }
 
     @Test
-    public void getKysymysPalauttaaKysymyksenSuomeksiKunKieliOnSuomi() {
+    public void getKysymysNykyisellaKielellaPalauttaaKysymyksenSuomeksiKunKieliOnSuomi() {
         Kysymys kysymys = new Kysymys(Kieli.SUOMI, "Hei, maailma?");
         Asetukset.kieli = Kieli.SUOMI;
 
-        assertEquals("Hei, maailma?", kysymys.getKysymys());
+        assertEquals("Hei, maailma?", kysymys.getKysymysNykyisellaKielella());
     }
 }

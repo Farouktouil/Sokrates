@@ -19,23 +19,21 @@ public abstract class Komento {
     }
 
     public String getNimi() {
-        return nimi;
+        return this.nimi;
     }
 
     public String getSelite() {
-        return selite;
+        return this.selite;
     }
 
     public Kysely kayttajanOsoittamaKysely() {
         Kysely kysely = null;
-
         System.out.println("Valitse kysely:");
         tulostaKyselyVaihtoehdot();
         System.out.println();
 
         while (true) {
             int syote = lukija.lueKokonaisluku("kysely: ");
-
             if (this.hallinta.getNimiTaulukko().containsKey(syote)) {
                 String valitunKyselynNimi = this.hallinta.getNimiTaulukko().get(syote);
                 kysely = this.hallinta.haeKyselyNimenPerusteella(valitunKyselynNimi);

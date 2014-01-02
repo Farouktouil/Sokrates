@@ -13,6 +13,7 @@ public class VaihdaKieli extends Komento {
 
     @Override
     public boolean suorita() {
+
         if (Asetukset.getKieli() == Kieli.SUOMI) {
             Asetukset.kieli = Kieli.ENGLANTI;
             System.out.println("    Kieli on nyt englanti.\n");
