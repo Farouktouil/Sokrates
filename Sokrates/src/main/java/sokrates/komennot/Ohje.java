@@ -4,6 +4,12 @@ import java.util.Collection;
 import sokrates.sovelluslogiikka.KyselyHallinta;
 import sokrates.util.Lukija;
 
+/**
+ * Ohje muistaa kokoelman komentoja ja tulostaa käyttäjälle ymmärrettävän listan
+ * käytettävissä olevista komennoista.
+ *
+ * @author Teo
+ */
 public class Ohje extends Komento {
 
     private Collection<Komento> komennot;
@@ -13,6 +19,12 @@ public class Ohje extends Komento {
         this.komennot = komennot;
     }
 
+    /**
+     * Ohjeen suorittaminen tulostuttaa kehotuksen valita komento followed by
+     * mahdolliset komennot kivasti numeroituina.
+     *
+     * @return true jotta Sovelluksen komentolooppi jatkuu.
+     */
     @Override
     public boolean suorita() {
         System.out.println("Valitse komento");
@@ -20,7 +32,7 @@ public class Ohje extends Komento {
             System.out.println("  " + komento.getNimi() + " " + komento.getSelite());
         }
         System.out.println();
-        
+
         return true;
     }
 }

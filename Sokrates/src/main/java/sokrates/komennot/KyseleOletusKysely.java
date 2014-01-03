@@ -6,12 +6,34 @@ import sokrates.sovelluslogiikka.Kysymys;
 import sokrates.tiedostonkasittely.TiedostonKirjoittaja;
 import sokrates.util.Lukija;
 
+/**
+ * Komento KyseleOletusKysely tulostaa käyttäjälle KyselyHallinnassa
+ * oletuskyselynä olevan kyselyn sisältämät kysymykset yksi kerrallaan, ja
+ * välissä jokaiseen kysymykseen liitetään käyttäjän antama vastaus.
+ *
+ * Lopuksi käsketään komennon (konstruktorikutsun yhteydessään luomaa ja)
+ * muistamaa TiedostonKirjoittajaa luomaan tekstitiedosto äsken kysytyistä
+ * kysymyksistä.
+ *
+ * @author Teo
+ */
 public class KyseleOletusKysely extends Komento {
+
+    private TiedostonKirjoittaja tk;
 
     public KyseleOletusKysely(Lukija lukija, KyselyHallinta hallinta, String nimi, String selite) {
         super(lukija, hallinta, nimi, selite);
+        this.tk = new TiedostonKirjoittaja();
     }
 
+    /**
+     * Kun KyseleOletusKysely suoritetaan, poimitaan hallinnasta nykyisen
+     * oletuskyselyn kysymykset ArrayListiksi. Jos lista on epätyhjä,
+     * kysellään() kysymykset nykyisen esimerkkiasetuksen kanssa.
+     *
+     * @return false Joka tapauksessa, eli kyselytyksen jälkeen ohjelma päättyy
+     * oli kyselyssä kysymyksiä tai ei.
+     */
     @Override
     public boolean suorita() {
         ArrayList<Kysymys> kysymykset = hallinta.getOletusKysely().getKysymykset();
@@ -40,6 +62,6 @@ public class KyseleOletusKysely extends Komento {
             kysymys.lisaaVastaus(kayttajanVastaus);
         }
 
-        new TiedostonKirjoittaja().luoTiedosto(kysymykset);
+        this.tk.luoTiedosto(kysymykset);
     }
 }

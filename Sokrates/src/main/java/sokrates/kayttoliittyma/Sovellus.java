@@ -5,6 +5,18 @@ import sokrates.komennot.*;
 import sokrates.sovelluslogiikka.*;
 import sokrates.util.Lukija;
 
+/**
+ * Sovellus toimii ohjelman käyttöliittymänä ja rakennuspaikkana.
+ *
+ * Sovellus luo ja muistaa Lukijan, komennot, ohjeen ja KyselyHallinnan sekä luo
+ * oletuskysely(n/t).
+ *
+ * Sovellus myös lukee käyttäjän syötettä ja suorituttaa komentoja tämän
+ * pohjalta. Ohjelma päättyy kun Sovelluksen suorita()-metodin
+ * jatketaan-muuttuja saa arvon false.
+ *
+ * @author Teo
+ */
 public class Sovellus {
 
     private Lukija lukija;
@@ -12,6 +24,17 @@ public class Sovellus {
     private Komento ohje;
     private KyselyHallinta hallinta;
 
+    /**
+     * Konstruktori luo uuden Sovelluksen, jolloin tälle luodaan Lukija, TreeMap
+     * komennoilla nimineen, Ohje sekä KyselyHallinta.
+     *
+     * Sovellus myös luo kaikki komennot ja lisää ne muistamaansa
+     * komennot-TreeMapiin.
+     *
+     * Lisäksi Sovellus luo kyselyn joka asetetaan KyselyHallinnan
+     * oletuskyselyksi (ongelmanratkaisu) ja (ainakin toistaiseksi) toisenkin
+     * kyselyn (päiväkirja).
+     */
     public Sovellus() {
         this.lukija = new Lukija();
         this.komennot = new TreeMap<>();
@@ -23,6 +46,18 @@ public class Sovellus {
         luoPaivaKirjaKysely();
     }
 
+    /**
+     * Metodi tulostaa käyttäjälle ohjelman käyttöohjeet eli valittavissa olevat
+     * komennot ja kuuntelee käyttäjän syötettä kunnes syöte vastaa jotakin
+     * tunnettua komentoa, jolloin poiketaan suorittamaan kyseinen komento.
+     * Komennon ollessa tyhjä (eli kai pakostikin pelkkä enterin painallus)
+     * tulostetaan uudelleen sallitut komennot.
+     *
+     * Kuuntelulooppi jatkuu jos ja vain jos komento palauttaa true. Koska
+     * ainoastaan komennot KyseleOletusKysely ja Lopeta palauttavat false,
+     * loppuu ohjelma vain joko Lopeta-komentoon tai vaihtoehtoisesti aina
+     * kyselyn päätteeksi.
+     */
     public void suorita() {
         System.out.print("Tervetuloa kyselyohjelmaan. ");
         ohje.suorita();

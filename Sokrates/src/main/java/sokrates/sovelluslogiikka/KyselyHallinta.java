@@ -30,10 +30,10 @@ public class KyselyHallinta {
     }
 
     /**
-     * Joss nimiTaulukosta ei löydy parametrina annettua nimeä,
-     * niin kyselyihin luodaan uusi kysely sillä nimellä ja
-     * nimiTaulukkoon lisätään kyseinen nimi avaimenaan kyselyiden
-     * koko (eli lukumäärä). Avain on siis järjestysnumero.
+     * Joss nimiTaulukosta ei löydy parametrina annettua nimeä, niin kyselyihin
+     * luodaan uusi kysely sillä nimellä ja nimiTaulukkoon lisätään kyseinen
+     * nimi avaimenaan kyselyiden koko (eli lukumäärä). Avain on siis
+     * järjestysnumero.
      *
      * @param nimi Kyselylle annettava nimi.
      */
@@ -53,15 +53,15 @@ public class KyselyHallinta {
     }
 
     /**
-     * Jos nimiTaulukko tuntee nimen, käydään läpi kyselyt ja palautetaan
-     * kysely jolla on sama nimi.
-     * 
+     * Jos nimiTaulukko tuntee nimen, käydään läpi kyselyt ja palautetaan kysely
+     * jolla on sama nimi.
+     *
      * Jos nimiTaulukko ei tunne nimeä, palautetaan null.
      *
      * @param nimi Nimi jota vastaavaa kyselyä kaivataan.
-     * 
+     *
      * @return kysely jonka nimi on sama kuin annettu hakusana.
-     * 
+     *
      * @return null jos nimiTaulukko ei tunne nimeä.
      */
     public Kysely haeKyselyNimenPerusteella(String nimi) {
@@ -92,8 +92,8 @@ public class KyselyHallinta {
     }
 
     /**
-     * @return kaikkien KyselyHallinnan tuntemien kyselyiden nimet
-     * avaiminaan kyselyiden kulloisestakin lkm:stä saatu (järjestys)numero
+     * @return kaikkien KyselyHallinnan tuntemien kyselyiden nimet avaiminaan
+     * kyselyiden kulloisestakin lkm:stä saatu (järjestys)numero
      */
     public TreeMap<Integer, String> getNimiTaulukko() {
         return this.nimiTaulukko;

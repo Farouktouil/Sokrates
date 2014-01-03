@@ -1,4 +1,3 @@
-
 package sokrates.tiedostonkasittely;
 
 import java.io.FileNotFoundException;
@@ -17,16 +16,17 @@ import sokrates.sovelluslogiikka.Kysymys;
  * @author Teo
  */
 public class TiedostonKirjoittaja {
-    
+
     /**
-     * Metodi antaa tekstitiedoston nimeksi aina käyttäjän ensimmäisen vastauksen
-     * ensimmäiseen kysymykseen, mikä selvennetään myös kysymys käyttäjälle
-     * esitettäessä.
-     * 
+     * Metodi antaa tekstitiedoston nimeksi aina käyttäjän ensimmäisen
+     * vastauksen ensimmäiseen kysymykseen, mikä selvennetään myös kysymys
+     * käyttäjälle esitettäessä.
+     *
      * Tiedoston luotuaan metodi kirjoituttaa sinne kysymykset vastauksineen
      * kutsumalla alempaa toista metodia.
      *
-     * @param kysymykset Lista kysymyksistä joiden pohjalta tekstitiedosto luodaan
+     * @param kysymykset Lista kysymyksistä joiden pohjalta tekstitiedosto
+     * luodaan
      */
     public void luoTiedosto(ArrayList<Kysymys> kysymykset) {
         PrintWriter writer = null;

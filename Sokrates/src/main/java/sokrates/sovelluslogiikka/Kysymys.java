@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * Luokka Kysymys edustaa kysymyksiä. Kysymys on olemassa aina vähintään
- * yhdellä kielellä. Kysymys muistaa listan kysymyksestä kaikilla kielillä,
- * ja listaan voidaan lisätä kysymyksen erikielisiä muotoiluja.
- * Kysymys muistaa esimerkkivastauksensa (ainakin toistaiseksi vain yhdellä
- * kielellä) ja listan vastauksista joita se on saanut (toistaiseksi 1 per kysymys,
- * mutta pidetään avoimena mahdollisuus vastata useasti samaan kysymykseen).
+ * Luokka Kysymys edustaa kysymyksiä. Kysymys on olemassa aina vähintään yhdellä
+ * kielellä. Kysymys muistaa listan kysymyksestä kaikilla kielillä, ja listaan
+ * voidaan lisätä kysymyksen erikielisiä muotoiluja. Kysymys muistaa
+ * esimerkkivastauksensa (ainakin toistaiseksi vain yhdellä kielellä) ja listan
+ * vastauksista joita se on saanut (toistaiseksi 1 per kysymys, mutta pidetään
+ * avoimena mahdollisuus vastata useasti samaan kysymykseen).
  *
  * @author Teo
  */
@@ -21,11 +21,11 @@ public class Kysymys {
 
     /**
      * Metodi luo uuden kysymyksen joka on olemassa vähintään parametrina
-     * annetulla kielellä, jolla sen muotoilu on parametrina annettu
-     * merkkijono. Kysymykseen luodaan HashMap<Kieli, String>, johon voidaan
-     * lisätä sama kysymys mahdollisesti muillakin kielillä, ja asetetaan
-     * sinne aluksi parametrina annettu kysymys parametrina annetulla kielellä.
-     * 
+     * annetulla kielellä, jolla sen muotoilu on parametrina annettu merkkijono.
+     * Kysymykseen luodaan HashMap<Kieli, String>, johon voidaan lisätä sama
+     * kysymys mahdollisesti muillakin kielillä, ja asetetaan sinne aluksi
+     * parametrina annettu kysymys parametrina annetulla kielellä.
+     *
      * Luodaan myös ArrayList<String> kysymykseen saatuja vastauksia varten.
      *
      * @param kieli
@@ -38,9 +38,9 @@ public class Kysymys {
     }
 
     /**
-     * Metodi lisää kysymyksen myös parametrina annetulla kielellä
-     * parametrina annetussa muodossa (nimittäin kysymyksen muistamaan
-     * HashMapiin kysymysKaikillaKielillä).
+     * Metodi lisää kysymyksen myös parametrina annetulla kielellä parametrina
+     * annetussa muodossa (nimittäin kysymyksen muistamaan HashMapiin
+     * kysymysKaikillaKielillä).
      *
      * @param kieli
      * @param kysymys

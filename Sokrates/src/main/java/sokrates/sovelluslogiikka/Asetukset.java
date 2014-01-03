@@ -9,6 +9,10 @@ package sokrates.sovelluslogiikka;
  */
 public class Asetukset {
 
+    /**
+     * Ohjelman tämänhetkinen kieli, joka vaikuttaa siihen missä muodossa
+     * esitetään kysymys, joka on olemassa esim. sekä suomeksi että englanniksi.
+     */
     public static Kieli kieli = Kieli.SUOMI;
 
     public static Kieli getKieli() {
