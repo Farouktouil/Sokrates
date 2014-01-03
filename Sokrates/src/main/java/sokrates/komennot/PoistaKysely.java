@@ -5,7 +5,7 @@ import sokrates.sovelluslogiikka.KyselyHallinta;
 import sokrates.util.Lukija;
 
 /**
- * Komennon PoistaKysely laittaa käyttäjän valitsemaan poistettavan kyselyn ja
+ * Komento PoistaKysely laittaa käyttäjän valitsemaan poistettavan kyselyn ja
  * poistaa sitten valitun kyselyn KyselyHallinnan muistista.
  *
  * @author Teo
