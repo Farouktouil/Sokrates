@@ -6,3 +6,4 @@
 21.12.    5h   oliosuunnittelusuota, komentotulkin rakentamista, toimimaton tiedostonk‰sittelij‰
 22.12.  8-9h   ohjelman saattaminen perustoimintakuntoon; siistimist‰; lis‰‰ testej‰; kaikkikaavio
 01.01.    7h   lis‰‰ komentoja; siistimist‰; indeksipohjainen kyselyvalinta (eik‰ siis String nimi-)
+02.01.    6h   Clean Code -sweeppaus, p‰ivitetty aiheenKuvausJaRakenne.pdf, ekoja javadoc-kuvauksia
