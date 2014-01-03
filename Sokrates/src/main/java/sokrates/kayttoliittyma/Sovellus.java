@@ -21,8 +21,8 @@ public class Sovellus {
 
     private Lukija lukija;
     private TreeMap<String, Komento> komennot;
-    private Komento ohje;
     private KyselyHallinta hallinta;
+    private Komento ohje;
 
     /**
      * Konstruktori luo uuden Sovelluksen, jolloin tälle luodaan Lukija, TreeMap
@@ -38,8 +38,8 @@ public class Sovellus {
     public Sovellus() {
         this.lukija = new Lukija();
         this.komennot = new TreeMap<>();
-        this.ohje = new Ohje(lukija, hallinta, null, null, komennot.values());
         this.hallinta = new KyselyHallinta();
+        this.ohje = new Ohje(lukija, hallinta, null, null, komennot.values());
 
         luoKomennot(this.hallinta);
         this.hallinta.setOletusKysely(luoOletusKysely());
@@ -89,12 +89,12 @@ public class Sovellus {
     }
 
     private void luoKomento(Komento komento) {
-        komennot.put(komento.getNimi(), komento);
+        this.komennot.put(komento.getNimi(), komento);
     }
 
     private Kysely luoOletusKysely() {
-        hallinta.lisaaKysely("ongelmanratkaisu");
-        Kysely oletuskysely = hallinta.haeKyselyNimenPerusteella("ongelmanratkaisu");
+        this.hallinta.lisaaKysely("ongelmanratkaisu");
+        Kysely oletuskysely = this.hallinta.haeKyselyNimenPerusteella("ongelmanratkaisu");
 
         Kysymys nimeaOngelma = new Kysymys(Kieli.SUOMI, "Anna nimi ongelmalle (tämä tulee tekstitiedoston nimeksi):");
         nimeaOngelma.lisaaKysymysEriKielella(Kieli.ENGLANTI, "Name a problem (this will be the name of the file):");
