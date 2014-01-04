@@ -7,3 +7,4 @@
 22.12.  8-9h   ohjelman saattaminen perustoimintakuntoon; siistimist‰; lis‰‰ testej‰; kaikkikaavio
 01.01.    7h   lis‰‰ komentoja; siistimist‰; indeksipohjainen kyselyvalinta (eik‰ siis String nimi-)
 02.01.    6h   Clean Code -sweeppaus, p‰ivitetty aiheenKuvausJaRakenne.pdf, ekoja javadoc-kuvauksia
+03.01.    9h   public javadoc loppuun, sekvenssikaaviot, katselmoinnin katselua, muutos-/laajennosideoita kaverin kanssa
