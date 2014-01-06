@@ -27,7 +27,7 @@ public class Ohje extends Komento {
      */
     @Override
     public boolean suorita() {
-        System.out.println("Valitse komento");
+        System.out.println("Valitse komento:");
         for (Komento komento : komennot) {
             System.out.println("  " + komento.getNimi() + " " + komento.getSelite());
         }

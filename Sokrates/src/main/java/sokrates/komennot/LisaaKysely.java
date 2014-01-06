@@ -28,6 +28,12 @@ public class LisaaKysely extends Komento {
     public boolean suorita() {
         while (true) {
             String lisattavanKyselynNimi = lukija.lueMerkkijono("Anna kyselylle nimi: ");
+            
+            // tämä olisi kiva voida tehdä lyhyemminkin
+            if (this.hallinta.tamanNiminenKyselyOnOlemassa(lisattavanKyselynNimi)) {
+                System.out.println("\n    Kysely nimeltä " + lisattavanKyselynNimi + " on jo olemassa.\n");
+                return true;
+            }
 
             if (!lisattavanKyselynNimi.isEmpty()) {
                 this.hallinta.lisaaKysely(lisattavanKyselynNimi);

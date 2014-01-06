@@ -26,13 +26,24 @@ public class PoistaKysely extends Komento {
      */
     @Override
     public boolean suorita() {
+        System.out.println("Valitse poistettava kysely:");
         Kysely poistettavaKysely = super.kayttajanOsoittamaKysely();
-        String poistettavanKyselynNimi = poistettavaKysely.toString();
 
-        this.hallinta.poistaKysely(poistettavaKysely, poistettavanKyselynNimi);
-        System.out.println("\n    Poistettu kysely nimeltä "
-                + poistettavanKyselynNimi + ".\n");
+        if (poistettavaKysely == null) {
+            return true;
+        } else {
+            String poistettavanKyselynNimi = poistettavaKysely.toString();
+            this.hallinta.poistaKysely(poistettavaKysely, poistettavanKyselynNimi);
+            System.out.println("\n    Poistettu kysely nimeltä "
+                    + poistettavanKyselynNimi + ".");
 
-        return true;
+            if (poistettavaKysely.equals(this.hallinta.getOletusKysely())) {
+                this.hallinta.setOletusKysely(null);
+                System.out.println("    Oletuskyselyä ei ole nyt valittu. Voit valita oletuskyselyn komennolla 2.");
+            }
+
+            System.out.println();
+            return true;
+        }
     }
 }

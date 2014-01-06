@@ -53,10 +53,8 @@ public class Sovellus {
      * Komennon ollessa tyhjä (eli kai pakostikin pelkkä enterin painallus)
      * tulostetaan uudelleen sallitut komennot.
      *
-     * Kuuntelulooppi jatkuu jos ja vain jos komento palauttaa true. Koska
-     * ainoastaan komennot KyseleOletusKysely ja Lopeta palauttavat false,
-     * loppuu ohjelma vain joko Lopeta-komentoon tai vaihtoehtoisesti aina
-     * kyselyn päätteeksi.
+     * Kuuntelulooppi jatkuu jos ja vain jos komento palauttaa true. false
+     * palautuu vain kun on suoritettu komento Lopeta.
      */
     public void suorita() {
         System.out.print("Tervetuloa kyselyohjelmaan. ");

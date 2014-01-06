@@ -31,21 +31,28 @@ public class KyseleOletusKysely extends Komento {
      * oletuskyselyn kysymykset ArrayListiksi. Jos lista on epätyhjä,
      * kysellään() kysymykset nykyisen esimerkkiasetuksen kanssa.
      *
-     * @return false Joka tapauksessa, eli kyselytyksen jälkeen ohjelma päättyy
-     * oli kyselyssä kysymyksiä tai ei.
+     * @return true Jotta Sovelluksen komentolooppi voisi jatkua
      */
     @Override
     public boolean suorita() {
+        if (hallinta.getOletusKysely() == null) {
+            System.out.println("    Oletuskyselyä ei ole valittu. Voit valita oletuskyselyn komennolla 2.\n");
+            return true;
+        }
+
         ArrayList<Kysymys> kysymykset = hallinta.getOletusKysely().getKysymykset();
 
         if (kysymykset.isEmpty()) {
-            System.out.println("Kyselyssä ei ole yhtään kysymystä.");
+            System.out.println("Kyselyssä ei ole yhtään kysymystä.\n");
+            return true;
         } else {
             boolean examples = hallinta.getExamples();
             kysele(lukija, examples, kysymykset);
         }
 
-        return false; // lopettaa siis ohjelman joka tapauksessa
+        // sori
+        System.out.println("Kysely on valmis. Tekstitiedosto '" + kysymykset.get(0).getVastaukset().get(0) + "' löytyy juurikansiosta.\n");
+        return true;
     }
 
     private void kysele(Lukija lukija, boolean examples, ArrayList<Kysymys> kysymykset) {

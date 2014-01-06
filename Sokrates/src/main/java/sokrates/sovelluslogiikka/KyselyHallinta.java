@@ -45,11 +45,17 @@ public class KyselyHallinta {
     }
 
     public void poistaKysely(Kysely poistettavaKysely, String poistettavanKyselynNimi) {
-//        ei toiminut:        
-//        this.kyselyt.remove(poistettavaKysely);
-//        if (this.nimiTaulukko.containsValue(poistettavanKyselynNimi)) {
-//            this.nimiTaulukko.remove(poistettavanKyselynNimi);
-//        }
+        this.kyselyt.remove(poistettavaKysely);
+
+        int poistettavanKyselynNimenAvainNumero = -1;
+
+        for (int avainNumero : this.nimiTaulukko.keySet()) {
+            if (this.nimiTaulukko.get(avainNumero).equals(poistettavanKyselynNimi)) {
+                poistettavanKyselynNimenAvainNumero = avainNumero;
+            }
+        }
+
+        this.nimiTaulukko.remove(poistettavanKyselynNimenAvainNumero);
     }
 
     /**
@@ -89,6 +95,14 @@ public class KyselyHallinta {
      */
     public ArrayList<Kysely> getKyselyt() {
         return this.kyselyt;
+    }
+
+    public boolean tamanNiminenKyselyOnOlemassa(String nimi) {
+        if (this.nimiTaulukko.containsValue(nimi)) {
+            return true;
+        }
+
+        return false;
     }
 
     /**

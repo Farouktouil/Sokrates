@@ -77,12 +77,18 @@ public abstract class Komento {
      */
     public Kysely kayttajanOsoittamaKysely() {
         Kysely kysely = null;
-        System.out.println("Valitse kysely:");
+
+        if (this.hallinta.getKyselyt().isEmpty()) {
+            System.out.println("    Kyselyitä ei ole. Voit lisätä uuden kyselyn komennolla 3.\n");
+            return kysely;
+        }
+
         tulostaKyselyVaihtoehdot();
         System.out.println();
 
         while (true) {
             int syote = lukija.lueKokonaisluku("kysely: ");
+
             if (this.hallinta.getNimiTaulukko().containsKey(syote)) {
                 String valitunKyselynNimi = this.hallinta.getNimiTaulukko().get(syote);
                 kysely = this.hallinta.haeKyselyNimenPerusteella(valitunKyselynNimi);
