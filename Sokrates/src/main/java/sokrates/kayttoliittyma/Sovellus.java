@@ -9,7 +9,7 @@ import sokrates.util.Lukija;
  * Sovellus toimii ohjelman käyttöliittymänä ja rakennuspaikkana.
  *
  * Sovellus luo ja muistaa Lukijan, komennot, ohjeen ja KyselyHallinnan sekä luo
- * oletuskysely(n/t).
+ * ongelmanratkaisu(n/t).
  *
  * Sovellus myös lukee käyttäjän syötettä ja suorituttaa komentoja tämän
  * pohjalta. Ohjelma päättyy kun Sovelluksen suorita()-metodin
@@ -55,6 +55,7 @@ public class Sovellus {
         this.ohje = new Ohje(lukija, hallinta, null, "Valitse komento:", "Pick a command:", komennot.values());
 
         luoKomennot(this.hallinta);
+        luoOngelmanRatkaisuKysely();
         luoPaivaKirjaKysely();
     }
 
@@ -116,9 +117,9 @@ public class Sovellus {
         this.komennot.put(komento.getNimi(), komento);
     }
 
-    private Kysely luoOletusKysely() {
+    private Kysely luoOngelmanRatkaisuKysely() {
         this.hallinta.lisaaKysely("ongelmanratkaisu");
-        Kysely oletuskysely = this.hallinta.haeKyselyNimenPerusteella("ongelmanratkaisu");
+        Kysely ongelmanratkaisu = this.hallinta.haeKyselyNimenPerusteella("ongelmanratkaisu");
 
         Kysymys nimeaOngelma = new Kysymys(Kieli.SUOMI, "Anna nimi ongelmalle (tämä tulee tekstitiedoston nimeksi):");
         nimeaOngelma.lisaaKysymysEriKielella(Kieli.ENGLANTI, "Name a problem (this will be the name of the file):");
@@ -156,21 +157,21 @@ public class Sovellus {
         toimintaSuunnitelmaa.lisaaKysymysEriKielella(Kieli.ENGLANTI, "What are some first small steps that could be taken?");
         toimintaSuunnitelmaa.setEsimerkkiVastaus("Googlettelua, lukemista, iText-kirjaston installaamista ja esimerkin kopiointia.");
 
-        oletuskysely.lisaaKysymys(nimeaOngelma);
-        oletuskysely.lisaaKysymys(tunnetkoOngelmattomia);
-        oletuskysely.lisaaKysymys(negaationKuvailu);
-        oletuskysely.lisaaKysymys(tietoLahteita);
-        oletuskysely.lisaaKysymys(hakuTaitoja);
-        oletuskysely.lisaaKysymys(muuttujiaVaihtokauppoja);
-        oletuskysely.lisaaKysymys(relevanttejaAloja);
-        oletuskysely.lisaaKysymys(heikkojaOletuksia);
-        oletuskysely.lisaaKysymys(toimintaSuunnitelmaa);
+        ongelmanratkaisu.lisaaKysymys(nimeaOngelma);
+        ongelmanratkaisu.lisaaKysymys(tunnetkoOngelmattomia);
+        ongelmanratkaisu.lisaaKysymys(negaationKuvailu);
+        ongelmanratkaisu.lisaaKysymys(tietoLahteita);
+        ongelmanratkaisu.lisaaKysymys(hakuTaitoja);
+        ongelmanratkaisu.lisaaKysymys(muuttujiaVaihtokauppoja);
+        ongelmanratkaisu.lisaaKysymys(relevanttejaAloja);
+        ongelmanratkaisu.lisaaKysymys(heikkojaOletuksia);
+        ongelmanratkaisu.lisaaKysymys(toimintaSuunnitelmaa);
 
-        return oletuskysely;
+        return ongelmanratkaisu;
     }
 
     private void luoPaivaKirjaKysely() {
-        hallinta.lisaaKysely("päiväkirja");
+        this.hallinta.lisaaKysely("päiväkirja");
         Kysely paivakirja = hallinta.haeKyselyNimenPerusteella("päiväkirja");
 
         Kysymys nimeaPaiva = new Kysymys(Kieli.SUOMI, "Anna nimi päivälle (tämä tulee tekstitiedoston nimeksi):");

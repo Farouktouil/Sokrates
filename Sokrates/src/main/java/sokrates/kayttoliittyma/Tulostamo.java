@@ -39,9 +39,9 @@ public class Tulostamo {
 
     public static String annaKyselylleNimi() {
         if (Asetukset.getKieli() == Kieli.SUOMI) {
-            return "Anna kyselylle nimi: ";
+            return "Anna uudelle kyselylle nimi: ";
         }
-        return "Give the inquiry a name: ";
+        return "Give new inquiry a name: ";
     }
 
     public static String valitsePoistettavaKysely() {
