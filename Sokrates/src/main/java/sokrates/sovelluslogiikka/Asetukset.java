@@ -18,11 +18,7 @@ public class Asetukset {
     public static Kieli getKieli() {
         return kieli;
     }
-<<<<<<< HEAD
     
-=======
-
->>>>>>> kaksikielistettiin tekstikäyttiskin
     public static void setKieli(Kieli k) {
         kieli = k;
     }

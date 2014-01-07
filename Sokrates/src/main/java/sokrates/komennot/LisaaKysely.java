@@ -32,11 +32,7 @@ public class LisaaKysely extends Komento {
 
             // tämä olisi kiva voida tehdä lyhyemminkin
             if (this.hallinta.onkoTamanNiminenKyselyOlemassa(lisattavanKyselynNimi)) {
-<<<<<<< HEAD
-                System.out.println("\n    Kysely nimeltä " + lisattavanKyselynNimi + " on jo olemassa.\n");
-=======
                 System.out.println(Tulostamo.tamanNiminenKyselyOnJoOlemassa(lisattavanKyselynNimi));
->>>>>>> kaksikielistettiin tekstikäyttiskin
                 return true;
             }
 

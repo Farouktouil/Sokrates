@@ -60,7 +60,6 @@ public class Lukija {
      * tulkittuna kokonaisluvuksi.
      */
     public int lueKokonaisluku(String kysymys) {
-<<<<<<< HEAD
         System.out.print(kysymys);
 
         try {
@@ -68,14 +67,13 @@ public class Lukija {
         } catch (NumberFormatException ex) {
             
         }
-=======
+        
         System.out.println(kysymys);
 //        try {
 //            Integer.parseInt(lukija.nextLine());
 //        } catch (NumberFormatException ex) {
 //            
 //        }
->>>>>>> kaksikielistettiin tekstikäyttiskin
 
         return Integer.parseInt(lukija.nextLine());
     }

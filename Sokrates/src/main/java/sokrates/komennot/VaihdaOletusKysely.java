@@ -34,11 +34,8 @@ public class VaihdaOletusKysely extends Komento {
             return true;
         } else {
             this.hallinta.setOletusKysely(uusiOletusKysely);
-<<<<<<< HEAD
             System.out.println("\n    Oletuskysely on nyt " + uusiOletusKysely.getNimi() + ".\n");
-=======
             System.out.println(Tulostamo.uusiOletusKyselyOnNyt(uusiOletusKysely.getNimi()));
->>>>>>> kaksikielistettiin tekstikäyttiskin
             return true;
         }
     }

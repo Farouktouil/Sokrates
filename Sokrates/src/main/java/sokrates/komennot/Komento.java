@@ -93,11 +93,7 @@ public abstract class Komento {
         System.out.println();
 
         while (true) {
-<<<<<<< HEAD
-            int syote = lukija.lueKokonaisluku("kysely: ");
-=======
             int syote = lukija.lueKokonaisluku(Tulostamo.kysely());
->>>>>>> kaksikielistettiin tekstikäyttiskin
 
             if (!(this.hallinta.getKyselyt().get(syote) == null)) {
                 String valitunKyselynNimi = this.hallinta.getKyselyt().get(syote).getNimi();
@@ -111,12 +107,7 @@ public abstract class Komento {
 
     private void tulostaKyselyVaihtoehdot() {
         for (int i = 0; i < this.hallinta.getKyselyt().size(); i++) {
-<<<<<<< HEAD
-            System.out.println("  " + i + " "
-                    + this.hallinta.getKyselyt().get(i).getNimi());
-=======
             System.out.println("  " + i + " " + this.hallinta.getKyselyt().get(i).getNimi());
->>>>>>> kaksikielistettiin tekstikäyttiskin
         }
     }
 

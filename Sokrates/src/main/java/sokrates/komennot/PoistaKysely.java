@@ -21,8 +21,6 @@ public class PoistaKysely extends Komento {
      * Poistettavan kyselyn valitseminen tapahtuu kutsumalla Komento-luokan
      * kayttajanOsoittamaKysely()-metodia.
      *
-     * TÄMÄ EI VIELÄ TOIMI NIIN KUIN PITÄISI
-     *
      * @return true jotta Sovelluksen komentolooppi voi jatkua.
      */
     @Override
@@ -35,12 +33,7 @@ public class PoistaKysely extends Komento {
         } else {
             String poistettavanKyselynNimi = poistettavaKysely.getNimi();
             this.hallinta.poistaKysely(poistettavaKysely);
-<<<<<<< HEAD
-            System.out.println("\n    Poistettu kysely nimeltä "
-                    + poistettavanKyselynNimi + ".");
-=======
             System.out.println(Tulostamo.poistettuKyselyNimelta(poistettavanKyselynNimi));
->>>>>>> kaksikielistettiin tekstikäyttiskin
 
             if (poistettavaKysely.equals(this.hallinta.getOletusKysely())) {
                 this.hallinta.setOletusKysely(null);
