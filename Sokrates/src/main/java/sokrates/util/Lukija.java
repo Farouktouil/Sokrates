@@ -61,6 +61,9 @@ public class Lukija {
      */
     public int lueKokonaisluku(String kysymys) {
         System.out.print(kysymys);
+
+      //  if
+
         return Integer.parseInt(lukija.nextLine());
     }
 }
