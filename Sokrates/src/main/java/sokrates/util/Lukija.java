@@ -62,7 +62,11 @@ public class Lukija {
     public int lueKokonaisluku(String kysymys) {
         System.out.print(kysymys);
 
-      //  if
+        try {
+            Integer.parseInt(lukija.nextLine());
+        } catch (NumberFormatException ex) {
+            
+        }
 
         return Integer.parseInt(lukija.nextLine());
     }
