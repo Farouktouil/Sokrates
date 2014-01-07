@@ -1,5 +1,6 @@
 package sokrates.komennot;
 
+import sokrates.kayttoliittyma.Tulostamo;
 import sokrates.sovelluslogiikka.Kysely;
 import sokrates.sovelluslogiikka.KyselyHallinta;
 import sokrates.util.Lukija;
@@ -12,8 +13,8 @@ import sokrates.util.Lukija;
  */
 public class VaihdaOletusKysely extends Komento {
 
-    public VaihdaOletusKysely(Lukija lukija, KyselyHallinta hallinta, String nimi, String selite) {
-        super(lukija, hallinta, nimi, selite);
+    public VaihdaOletusKysely(Lukija lukija, KyselyHallinta hallinta, String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
+        super(lukija, hallinta, nimi, seliteSuomeksi, seliteEnglanniksi);
     }
 
     /**
@@ -26,14 +27,18 @@ public class VaihdaOletusKysely extends Komento {
      */
     @Override
     public boolean suorita() {
-        System.out.println("Valitse uusi oletuskysely:");
+        System.out.println(Tulostamo.valitseOletusKysely());
         Kysely uusiOletusKysely = super.kayttajanOsoittamaKysely();
 
         if (uusiOletusKysely == null) {
             return true;
         } else {
             this.hallinta.setOletusKysely(uusiOletusKysely);
+<<<<<<< HEAD
             System.out.println("\n    Oletuskysely on nyt " + uusiOletusKysely.getNimi() + ".\n");
+=======
+            System.out.println(Tulostamo.uusiOletusKyselyOnNyt(uusiOletusKysely.getNimi()));
+>>>>>>> kaksikielistettiin tekstikäyttiskin
             return true;
         }
     }

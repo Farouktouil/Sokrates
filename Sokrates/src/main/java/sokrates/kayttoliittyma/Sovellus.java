@@ -52,7 +52,7 @@ public class Sovellus {
         this.lukija = new Lukija();
         this.komennot = new TreeMap<>();
         this.hallinta = new KyselyHallinta();
-        this.ohje = new Ohje(lukija, hallinta, null, null, komennot.values());
+        this.ohje = new Ohje(lukija, hallinta, null, "Valitse komento:", "Pick a command:", komennot.values());
 
         luoKomennot(this.hallinta);
         this.hallinta.setOletusKysely(luoOletusKysely());
@@ -76,7 +76,7 @@ public class Sovellus {
         boolean jatketaan = true;
 
         while (jatketaan) {
-            String syote = lukija.lueMerkkijono("komento: ");
+            String syote = lukija.lueMerkkijono(Tulostamo.komento());
             System.out.println("");
 
             Komento komento = komennot.get(syote);
@@ -97,6 +97,7 @@ public class Sovellus {
      * jokaiselle komennolle tiedoksi
      */
     private void luoKomennot(KyselyHallinta hallinta) {
+<<<<<<< HEAD
         luoKomento(new KyseleOletusKysely(lukija, hallinta, "1", "kysele oletuskysely"));
         luoKomento(new VaihdaOletusKysely(lukija, hallinta, "2", "vaihda oletuskysely"));
         luoKomento(new LisaaKysely(lukija, hallinta, "3", "lisää uusi kysely"));
@@ -104,6 +105,15 @@ public class Sovellus {
         luoKomento(new VaihdaKieli(lukija, hallinta, "5", "vaihda kieleksi englanti/suomi"));
         luoKomento(new EsimerkkiToggle(lukija, hallinta, "6", "esimerkkivastaukset off/on"));
         luoKomento(new Lopeta(lukija, hallinta, "x", "lopeta"));
+=======
+        luoKomento(new KyseleOletusKysely(lukija, hallinta, "1", "kysele oletuskysely", "perform default inquiry"));
+        luoKomento(new VaihdaOletusKysely(lukija, hallinta, "2", "vaihda oletuskysely", "change default inquiry"));
+        luoKomento(new LisaaKysely(lukija, hallinta, "3", "lisää uusi kysely", "add new inquiry"));
+        luoKomento(new PoistaKysely(lukija, hallinta, "4", "poista kysely", "remove inquiry"));
+        luoKomento(new VaihdaKieli(lukija, hallinta, "5", "vaihda kieleksi englanti", "change language to Finnish"));
+        luoKomento(new EsimerkkiToggle(lukija, hallinta, "6", "aseta esimerkkivastaukset off/on", "toggle examples off/on"));
+        luoKomento(new Lopeta(lukija, hallinta, "x", "lopeta", "quit"));
+>>>>>>> kaksikielistettiin tekstikäyttiskin
     }
 
     /**

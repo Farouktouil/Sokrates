@@ -1,6 +1,7 @@
 package sokrates.komennot;
 
 import java.util.ArrayList;
+import sokrates.kayttoliittyma.Tulostamo;
 import sokrates.sovelluslogiikka.KyselyHallinta;
 import sokrates.sovelluslogiikka.Kysymys;
 import sokrates.tiedostonkasittely.TiedostonKirjoittaja;
@@ -21,8 +22,8 @@ public class KyseleOletusKysely extends Komento {
 
     private TiedostonKirjoittaja tk;
 
-    public KyseleOletusKysely(Lukija lukija, KyselyHallinta hallinta, String nimi, String selite) {
-        super(lukija, hallinta, nimi, selite);
+    public KyseleOletusKysely(Lukija lukija, KyselyHallinta hallinta, String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
+        super(lukija, hallinta, nimi, seliteSuomeksi, seliteEnglanniksi);
         this.tk = new TiedostonKirjoittaja();
     }
 
@@ -36,22 +37,22 @@ public class KyseleOletusKysely extends Komento {
     @Override
     public boolean suorita() {
         if (hallinta.getOletusKysely() == null) {
-            System.out.println("    Oletuskyselyä ei ole valittu. Voit valita oletuskyselyn komennolla 2.\n");
+            System.out.println(Tulostamo.oletusKyselyaEiOleValittu());
             return true;
         }
 
         ArrayList<Kysymys> kysymykset = hallinta.getOletusKysely().getKysymykset();
 
         if (kysymykset.isEmpty()) {
-            System.out.println("Kyselyssä ei ole yhtään kysymystä.\n");
+            System.out.println(Tulostamo.kyselyssaEiOleYhtaanKysymysta());
             return true;
         } else {
             boolean examples = hallinta.getExamples();
             kysele(lukija, examples, kysymykset);
         }
 
-        // sori
-        System.out.println("Kysely on valmis. Tekstitiedosto '" + kysymykset.get(0).getVastaukset().get(0) + "' löytyy juurikansiosta.\n");
+        String tekstitiedostonNimi = kysymykset.get(0).getVastaukset().get(0);
+        System.out.println(Tulostamo.kyselyOnValmis(tekstitiedostonNimi));
         return true;
     }
 
@@ -60,7 +61,8 @@ public class KyseleOletusKysely extends Komento {
         for (Kysymys kysymys : kysymykset) {
             System.out.println(kysymys.getKysymysNykyisellaKielella());
             if (examples) {
-                System.out.println("    (esim. " + kysymys.getEsimerkkiVastaus() + ")");
+                String esimerkkiVastaus = kysymys.getEsimerkkiVastaus();
+                System.out.println(Tulostamo.esimerkkiVastaus(esimerkkiVastaus));
             }
             System.out.print("\n    ");
             String kayttajanVastaus = lukija.lueMerkkijono();

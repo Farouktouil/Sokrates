@@ -1,5 +1,9 @@
 package sokrates.komennot;
 
+import java.util.HashMap;
+import sokrates.kayttoliittyma.Tulostamo;
+import sokrates.sovelluslogiikka.Asetukset;
+import sokrates.sovelluslogiikka.Kieli;
 import sokrates.sovelluslogiikka.Kysely;
 import sokrates.sovelluslogiikka.KyselyHallinta;
 import sokrates.util.Lukija;
@@ -25,7 +29,7 @@ public abstract class Komento {
 
     protected Lukija lukija;
     private String nimi;
-    private String selite;
+    private HashMap<Kieli, String> seliteKaikillaKielilla;
     protected KyselyHallinta hallinta;
 
     /**
@@ -41,11 +45,13 @@ public abstract class Komento {
      * @param nimi Komennolle luotaessa annettu nimi (käytännössä yksi numero)
      * @param selite Käyttäjälle tulostettava kuvaus siitä, mitä komento tekee
      */
-    public Komento(Lukija lukija, KyselyHallinta hallinta, String nimi, String selite) {
+    public Komento(Lukija lukija, KyselyHallinta hallinta, String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
         this.lukija = lukija;
-        this.nimi = nimi;
-        this.selite = selite;
         this.hallinta = hallinta;
+        this.nimi = nimi;
+        this.seliteKaikillaKielilla = new HashMap<>();
+        this.seliteKaikillaKielilla.put(Kieli.SUOMI, seliteSuomeksi);
+        this.seliteKaikillaKielilla.put(Kieli.ENGLANTI, seliteEnglanniksi);
     }
 
     public String getNimi() {
@@ -53,7 +59,7 @@ public abstract class Komento {
     }
 
     public String getSelite() {
-        return this.selite;
+        return this.seliteKaikillaKielilla.get(Asetukset.getKieli());
     }
 
     /**
@@ -79,7 +85,7 @@ public abstract class Komento {
         Kysely kysely = null;
 
         if (this.hallinta.getKyselyt().isEmpty()) {
-            System.out.println("    Kyselyitä ei ole. Voit lisätä uuden kyselyn komennolla 3.\n");
+            System.out.println(Tulostamo.kyselyitaEiOle());
             return kysely;
         }
 
@@ -87,7 +93,11 @@ public abstract class Komento {
         System.out.println();
 
         while (true) {
+<<<<<<< HEAD
             int syote = lukija.lueKokonaisluku("kysely: ");
+=======
+            int syote = lukija.lueKokonaisluku(Tulostamo.kysely());
+>>>>>>> kaksikielistettiin tekstikäyttiskin
 
             if (!(this.hallinta.getKyselyt().get(syote) == null)) {
                 String valitunKyselynNimi = this.hallinta.getKyselyt().get(syote).getNimi();
@@ -101,8 +111,12 @@ public abstract class Komento {
 
     private void tulostaKyselyVaihtoehdot() {
         for (int i = 0; i < this.hallinta.getKyselyt().size(); i++) {
+<<<<<<< HEAD
             System.out.println("  " + i + " "
                     + this.hallinta.getKyselyt().get(i).getNimi());
+=======
+            System.out.println("  " + i + " " + this.hallinta.getKyselyt().get(i).getNimi());
+>>>>>>> kaksikielistettiin tekstikäyttiskin
         }
     }
 

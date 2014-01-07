@@ -13,8 +13,8 @@ import sokrates.util.Lukija;
  */
 public class VaihdaKieli extends Komento {
 
-    public VaihdaKieli(Lukija lukija, KyselyHallinta hallinta, String nimi, String selite) {
-        super(lukija, hallinta, nimi, selite);
+    public VaihdaKieli(Lukija lukija, KyselyHallinta hallinta, String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
+        super(lukija, hallinta, nimi, seliteSuomeksi, seliteEnglanniksi);
     }
 
     /**
@@ -26,7 +26,6 @@ public class VaihdaKieli extends Komento {
      */
     @Override
     public boolean suorita() {
-
         if (Asetukset.getKieli() == Kieli.SUOMI) {
             Asetukset.setKieli(Kieli.ENGLANTI);
             System.out.println("    The language is now English.\n");

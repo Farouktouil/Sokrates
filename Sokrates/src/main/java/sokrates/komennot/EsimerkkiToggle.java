@@ -1,5 +1,6 @@
 package sokrates.komennot;
 
+import sokrates.kayttoliittyma.Tulostamo;
 import sokrates.sovelluslogiikka.KyselyHallinta;
 import sokrates.util.Lukija;
 
@@ -12,8 +13,8 @@ import sokrates.util.Lukija;
  */
 public class EsimerkkiToggle extends Komento {
 
-    public EsimerkkiToggle(Lukija lukija, KyselyHallinta hallinta, String nimi, String selite) {
-        super(lukija, hallinta, nimi, selite);
+    public EsimerkkiToggle(Lukija lukija, KyselyHallinta hallinta, String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
+        super(lukija, hallinta, nimi, seliteSuomeksi, seliteEnglanniksi);
     }
 
     /**
@@ -28,10 +29,10 @@ public class EsimerkkiToggle extends Komento {
     public boolean suorita() {
         if (this.hallinta.getExamples() == true) {
             this.hallinta.setExamples(false);
-            System.out.println("    Esimerkkivastaukset ovat nyt pois päältä.\n");
+            System.out.println(Tulostamo.examplesOff());
         } else if (this.hallinta.getExamples() == false) {
             this.hallinta.setExamples(true);
-            System.out.println("    Esimerkkivastaukset ovat nyt päällä.\n");
+            System.out.println(Tulostamo.examplesOn());
         }
         return true;
     }

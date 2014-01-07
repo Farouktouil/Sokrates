@@ -1,0 +1,45 @@
+Name a problem (this will be the name of the file):
+
+    asdasdasdasdasd
+
+
+Who've solved or don't have the problem?
+
+    asd
+
+
+Describe a world or situation where the problem has been solved or doesn't exist:
+
+    asd
+
+
+Who could or should you talk to? Where could you find information?
+
+    asd
+
+
+What questions or keywords are relevant to the problem?
+
+    a
+
+
+What variables are there? Are there trade-offs, can it be described as an optimization or balancing problem?
+
+    sda
+
+
+What fields of expertise are relevant to the problem?
+
+    sdasd
+
+
+What is the problem based on? What assumptions could be questioned?
+
+    asd
+
+
+What are some first small steps that could be taken?
+
+    asdasd
+
+

@@ -14,8 +14,8 @@ public class Ohje extends Komento {
 
     private Collection<Komento> komennot;
 
-    public Ohje(Lukija lukija, KyselyHallinta hallinta, String nimi, String selite, Collection<Komento> komennot) {
-        super(lukija, hallinta, nimi, selite);
+    public Ohje(Lukija lukija, KyselyHallinta hallinta, String nimi, String seliteSuomeksi, String seliteEnglanniksi, Collection<Komento> komennot) {
+        super(lukija, hallinta, nimi, seliteSuomeksi, seliteEnglanniksi);
         this.komennot = komennot;
     }
 
@@ -27,7 +27,7 @@ public class Ohje extends Komento {
      */
     @Override
     public boolean suorita() {
-        System.out.println("Valitse komento:");
+        System.out.println(this.getSelite());
         for (Komento komento : komennot) {
             System.out.println("  " + komento.getNimi() + " " + komento.getSelite());
         }

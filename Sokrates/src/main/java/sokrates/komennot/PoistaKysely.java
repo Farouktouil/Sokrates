@@ -1,5 +1,6 @@
 package sokrates.komennot;
 
+import sokrates.kayttoliittyma.Tulostamo;
 import sokrates.sovelluslogiikka.Kysely;
 import sokrates.sovelluslogiikka.KyselyHallinta;
 import sokrates.util.Lukija;
@@ -12,8 +13,8 @@ import sokrates.util.Lukija;
  */
 public class PoistaKysely extends Komento {
 
-    public PoistaKysely(Lukija lukija, KyselyHallinta hallinta, String nimi, String selite) {
-        super(lukija, hallinta, nimi, selite);
+    public PoistaKysely(Lukija lukija, KyselyHallinta hallinta, String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
+        super(lukija, hallinta, nimi, seliteSuomeksi, seliteEnglanniksi);
     }
 
     /**
@@ -26,7 +27,7 @@ public class PoistaKysely extends Komento {
      */
     @Override
     public boolean suorita() {
-        System.out.println("Valitse poistettava kysely:");
+        System.out.println(Tulostamo.valitsePoistettavaKysely());
         Kysely poistettavaKysely = super.kayttajanOsoittamaKysely();
 
         if (poistettavaKysely == null) {
@@ -34,12 +35,16 @@ public class PoistaKysely extends Komento {
         } else {
             String poistettavanKyselynNimi = poistettavaKysely.getNimi();
             this.hallinta.poistaKysely(poistettavaKysely);
+<<<<<<< HEAD
             System.out.println("\n    Poistettu kysely nimeltä "
                     + poistettavanKyselynNimi + ".");
+=======
+            System.out.println(Tulostamo.poistettuKyselyNimelta(poistettavanKyselynNimi));
+>>>>>>> kaksikielistettiin tekstikäyttiskin
 
             if (poistettavaKysely.equals(this.hallinta.getOletusKysely())) {
                 this.hallinta.setOletusKysely(null);
-                System.out.println("    Oletuskyselyä ei ole nyt valittu. Voit valita oletuskyselyn komennolla 2.");
+                System.out.println(Tulostamo.oletusKyselyaEiOleValittu());
             }
 
             System.out.println();

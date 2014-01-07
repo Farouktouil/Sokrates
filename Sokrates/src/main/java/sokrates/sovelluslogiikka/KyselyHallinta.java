@@ -3,8 +3,14 @@ package sokrates.sovelluslogiikka;
 import java.util.ArrayList;
 
 /**
+<<<<<<< HEAD
  * Luokka KyselyHallinta pitää sisällään listan kyselyistä, oletuskyselyn sekä esimerkkiasetuksen. KyselyHallinta
  * vastaa sovelluslogiikan ja muiden pakkausten yhteistyöstä.
+=======
+ * Luokka KyselyHallinta pitää sisällään listan kyselyistä, oletuskyselyn sekä
+ * esimerkkiasetuksen. KyselyHallinta vastaa sovelluslogiikan ja muiden
+ * pakkausten yhteistyöstä.
+>>>>>>> kaksikielistettiin tekstikäyttiskin
  *
  * @author Teo
  */
@@ -80,7 +86,11 @@ public class KyselyHallinta {
      */
     public Kysely haeKyselyNimenPerusteella(String nimi) {
         Kysely loydettyKysely = null;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> kaksikielistettiin tekstikäyttiskin
         for (Kysely kysely : this.kyselyt) {
             if (kysely.getNimi().equals(nimi)) {
                 loydettyKysely = kysely;
@@ -118,7 +128,11 @@ public class KyselyHallinta {
                 return true;
             }
         }
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> kaksikielistettiin tekstikäyttiskin
         return false;
     }
 

@@ -1,5 +1,6 @@
 package sokrates.komennot;
 
+import sokrates.kayttoliittyma.Tulostamo;
 import sokrates.sovelluslogiikka.KyselyHallinta;
 import sokrates.util.Lukija;
 
@@ -10,8 +11,8 @@ import sokrates.util.Lukija;
  */
 public class LisaaKysely extends Komento {
 
-    public LisaaKysely(Lukija lukija, KyselyHallinta hallinta, String nimi, String selite) {
-        super(lukija, hallinta, nimi, selite);
+    public LisaaKysely(Lukija lukija, KyselyHallinta hallinta, String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
+        super(lukija, hallinta, nimi, seliteSuomeksi, seliteEnglanniksi);
     }
 
     /**
@@ -27,17 +28,21 @@ public class LisaaKysely extends Komento {
     @Override
     public boolean suorita() {
         while (true) {
-            String lisattavanKyselynNimi = lukija.lueMerkkijono("Anna kyselylle nimi: ");
-            
+            String lisattavanKyselynNimi = lukija.lueMerkkijono(Tulostamo.annaKyselylleNimi());
+
             // tämä olisi kiva voida tehdä lyhyemminkin
             if (this.hallinta.onkoTamanNiminenKyselyOlemassa(lisattavanKyselynNimi)) {
+<<<<<<< HEAD
                 System.out.println("\n    Kysely nimeltä " + lisattavanKyselynNimi + " on jo olemassa.\n");
+=======
+                System.out.println(Tulostamo.tamanNiminenKyselyOnJoOlemassa(lisattavanKyselynNimi));
+>>>>>>> kaksikielistettiin tekstikäyttiskin
                 return true;
             }
 
             if (!lisattavanKyselynNimi.isEmpty()) {
                 this.hallinta.lisaaKysely(lisattavanKyselynNimi);
-                System.out.println("\n    Lisätty kysely nimeltä " + lisattavanKyselynNimi + ".\n");
+                System.out.println(Tulostamo.lisattyKyselyNimelta(lisattavanKyselynNimi));
                 break;
             }
         }
