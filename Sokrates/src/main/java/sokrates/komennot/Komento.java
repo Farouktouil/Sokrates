@@ -90,13 +90,19 @@ public abstract class Komento {
         }
 
         tulostaKyselyVaihtoehdot();
-        System.out.println();
 
         while (true) {
-            int syote = lukija.lueKokonaisluku(Tulostamo.kysely());
+            String syoteTeksti = lukija.lueMerkkijono(Tulostamo.kysely());
+            System.out.println();
 
-            if (!(this.hallinta.getKyselyt().get(syote) == null)) {
-                String valitunKyselynNimi = this.hallinta.getKyselyt().get(syote).getNimi();
+            if (syoteTeksti.equals("x")) {
+                break;
+            }
+
+            int syoteLuku = lukija.tulkitseKokonaisluvuksi(syoteTeksti);
+
+            if (!(this.hallinta.getKyselyt().get(syoteLuku) == null)) {
+                String valitunKyselynNimi = this.hallinta.getKyselyt().get(syoteLuku).getNimi();
                 kysely = this.hallinta.haeKyselyNimenPerusteella(valitunKyselynNimi);
                 break;
             }
@@ -109,6 +115,7 @@ public abstract class Komento {
         for (int i = 0; i < this.hallinta.getKyselyt().size(); i++) {
             System.out.println("  " + i + " " + this.hallinta.getKyselyt().get(i).getNimi());
         }
+        System.out.println("  x " + Tulostamo.peruuta() + "\n");
     }
 
     /**

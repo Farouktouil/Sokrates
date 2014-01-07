@@ -70,4 +70,8 @@ public class Lukija {
 
         return Integer.parseInt(lukija.nextLine());
     }
+
+    public int tulkitseKokonaisluvuksi(String syote) {
+        return Integer.parseInt(syote);
+    }
 }

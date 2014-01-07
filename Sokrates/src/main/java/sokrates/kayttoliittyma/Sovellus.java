@@ -97,11 +97,11 @@ public class Sovellus {
      * jokaiselle komennolle tiedoksi
      */
     private void luoKomennot(KyselyHallinta hallinta) {
-        luoKomento(new KyseleKysely(lukija, hallinta, "1", "kysele kysely", "perform an inquiry"));
-        luoKomento(new LisaaKysely(lukija, hallinta, "2", "lisää uusi kysely", "add new inquiry"));
-        luoKomento(new PoistaKysely(lukija, hallinta, "3", "poista kysely", "remove inquiry"));
-        luoKomento(new VaihdaKieli(lukija, hallinta, ohje, "4", "vaihda kieleksi englanti", "change language to Finnish"));
-        luoKomento(new EsimerkkiToggle(lukija, hallinta, "5", "aseta esimerkkivastaukset off/on", "toggle examples off/on"));
+        luoKomento(new KyseleKysely(lukija, hallinta, "0", "kysele kysely", "perform an inquiry"));
+        luoKomento(new LisaaKysely(lukija, hallinta, "1", "lisää uusi kysely", "add new inquiry"));
+        luoKomento(new PoistaKysely(lukija, hallinta, "2", "poista kysely", "remove inquiry"));
+        luoKomento(new VaihdaKieli(lukija, hallinta, ohje, "3", "vaihda kieleksi englanti", "change language to Finnish"));
+        luoKomento(new EsimerkkiToggle(lukija, hallinta, "4", "aseta esimerkkivastaukset off/on", "toggle examples off/on"));
         luoKomento(new Lopeta(lukija, hallinta, "x", "lopeta", "quit"));
     }
 

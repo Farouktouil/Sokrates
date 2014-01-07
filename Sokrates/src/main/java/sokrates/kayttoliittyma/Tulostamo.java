@@ -37,6 +37,13 @@ public class Tulostamo {
         return "inquiry: ";
     }
 
+    public static String peruuta() {
+        if (Asetukset.getKieli() == Kieli.SUOMI) {
+            return "peruuta: ";
+        }
+        return "cancel: ";
+    }
+
     public static String annaKyselylleNimi() {
         if (Asetukset.getKieli() == Kieli.SUOMI) {
             return "Anna uudelle kyselylle nimi: ";

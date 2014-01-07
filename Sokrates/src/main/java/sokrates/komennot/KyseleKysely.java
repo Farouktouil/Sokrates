@@ -2,6 +2,7 @@ package sokrates.komennot;
 
 import java.util.ArrayList;
 import sokrates.kayttoliittyma.Tulostamo;
+import sokrates.sovelluslogiikka.Kysely;
 import sokrates.sovelluslogiikka.KyselyHallinta;
 import sokrates.sovelluslogiikka.Kysymys;
 import sokrates.tiedostonkasittely.TiedostonKirjoittaja;
@@ -37,7 +38,14 @@ public class KyseleKysely extends Komento {
     @Override
     public boolean suorita() {
         System.out.println(Tulostamo.valitseKyseltavaKysely());
-        ArrayList<Kysymys> kysymykset = super.kayttajanOsoittamaKysely().getKysymykset();
+        Kysely kyseltavaKysely = super.kayttajanOsoittamaKysely();
+
+        if (kyseltavaKysely == null) {
+            return true;
+        }
+
+        ArrayList<Kysymys> kysymykset = kyseltavaKysely.getKysymykset();
+
         if (kysymykset.isEmpty()) {
             System.out.println(Tulostamo.kyselyssaEiOleYhtaanKysymysta());
             return true;
