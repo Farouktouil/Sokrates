@@ -12,9 +12,26 @@ import java.util.TreeMap;
  */
 public class KyselyHallinta {
 
+    /**
+     * KyselyHallintaan kapseloitu lista kyselyistä
+     */
     private ArrayList<Kysely> kyselyt;
+    /**
+     * KyselyHallintaan kapseloitu taulukko kyselyiden nimistä, joista
+     * jokaisella on avaimenaan merkkijono (käytännössä luku).
+     */
     private TreeMap<String, String> nimiTaulukko;
+    /**
+     * KyselyHallintaan on kulloinkin kapseloitu yksi erityinen oletuskysely,
+     * joka on tavallaan kyselytysvuorossa. Oletuskysely voi olla myös null.
+     */
     private Kysely oletuskysely;
+    /**
+     * KyselyHallintaan kapseloitu esimerkkiasetus, jonka mukaan joko näytetään
+     * tai jätetään näyttämättä kysymykseen liittyvä esimerkkivastaus, kun
+     * kysymyksiä tulostetaan käyttäjälle.
+     *
+     */
     private boolean examples;
 
     /**
@@ -44,6 +61,16 @@ public class KyselyHallinta {
         }
     }
 
+    /**
+     * Metodi poistaa kyselylistasta parametrina saadun kyselyn.
+     *
+     * Metodi käy sitten läpi nimiTaulukon avaimet ja poistaa nimiTaulukosta
+     * sellaisen avaimen, jota vastaava kyselyn nimi on sama kuin parametrina
+     * saatu poistettavan kyselyn nimi.
+     *
+     * @param poistettavaKysely Kysely joka halutaan poistaa
+     * @param poistettavanKyselynNimi Nimi kyselyn joka halutaan poistaa
+     */
     public void poistaKysely(Kysely poistettavaKysely, String poistettavanKyselynNimi) {
         this.kyselyt.remove(poistettavaKysely);
 
@@ -97,7 +124,14 @@ public class KyselyHallinta {
         return this.kyselyt;
     }
 
-    public boolean tamanNiminenKyselyOnOlemassa(String nimi) {
+    /**
+     * Metodi palauttaa true jos parametrina saadun merkkijonon niminen kysely
+     * on olemassa (nimiTaulukon arvona), false jos ei.
+     *
+     * @param nimi jolla kyselyn olemassaoloa tiedustellaan
+     * @return
+     */
+    public boolean onkoTamanNiminenKyselyOlemassa(String nimi) {
         if (this.nimiTaulukko.containsValue(nimi)) {
             return true;
         }

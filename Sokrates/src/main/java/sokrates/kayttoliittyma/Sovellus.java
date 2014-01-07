@@ -19,9 +19,22 @@ import sokrates.util.Lukija;
  */
 public class Sovellus {
 
+    /**
+     * Sovellukseen kapseloitu lukija, joka lukee käyttäjän syötettä
+     */
     private Lukija lukija;
+    /**
+     * Sovellukseen kapseloitu taulukko komennoista, joista kullakin on
+     * avaimenaan merkkijono (käytännössä komennon nimi)
+     */
     private TreeMap<String, Komento> komennot;
+    /**
+     * Sovellukseen kapseloitu KyselyHallinta
+     */
     private KyselyHallinta hallinta;
+    /**
+     * Sovellukseen kapseloitu Ohje-komento
+     */
     private Komento ohje;
 
     /**
@@ -76,6 +89,13 @@ public class Sovellus {
         }
     }
 
+    /**
+     * Metodi luo(duttaa) yksitellen jokaisen ohjelman käyttämän komennon
+     * lukuunottamatta Ohjetta, joka luodaan Sovelluksen konstruktorissa.
+     *
+     * @param hallinta Parametrina saatu KyselyHallinta annetaan edelleen
+     * jokaiselle komennolle tiedoksi
+     */
     private void luoKomennot(KyselyHallinta hallinta) {
         luoKomento(new Lopeta(lukija, hallinta, "0", "lopeta"));
         luoKomento(new KyseleOletusKysely(lukija, hallinta, "1", "kysele oletuskysely"));
@@ -86,6 +106,14 @@ public class Sovellus {
         luoKomento(new EsimerkkiToggle(lukija, hallinta, "6", "esimerkkivastaukset off/on"));
     }
 
+    /**
+     * Metodi laittaa Sovelluksen komentotaulukkoon kunkin luodun komennon,
+     * avaimenaan kyseisen komennon muistama nimi (käytännössä usein tai aina
+     * yksittäinen numero).
+     *
+     * @param komento Parametrina saatu komento joka taulukkoon nimineen
+     * lisätään.
+     */
     private void luoKomento(Komento komento) {
         this.komennot.put(komento.getNimi(), komento);
     }

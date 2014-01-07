@@ -30,7 +30,7 @@ public class LisaaKysely extends Komento {
             String lisattavanKyselynNimi = lukija.lueMerkkijono("Anna kyselylle nimi: ");
             
             // tämä olisi kiva voida tehdä lyhyemminkin
-            if (this.hallinta.tamanNiminenKyselyOnOlemassa(lisattavanKyselynNimi)) {
+            if (this.hallinta.onkoTamanNiminenKyselyOlemassa(lisattavanKyselynNimi)) {
                 System.out.println("\n    Kysely nimeltä " + lisattavanKyselynNimi + " on jo olemassa.\n");
                 return true;
             }
