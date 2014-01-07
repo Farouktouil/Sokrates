@@ -55,7 +55,6 @@ public class Sovellus {
         this.ohje = new Ohje(lukija, hallinta, null, "Valitse komento:", "Pick a command:", komennot.values());
 
         luoKomennot(this.hallinta);
-        this.hallinta.setOletusKysely(luoOletusKysely());
         luoPaivaKirjaKysely();
     }
 
@@ -97,12 +96,11 @@ public class Sovellus {
      * jokaiselle komennolle tiedoksi
      */
     private void luoKomennot(KyselyHallinta hallinta) {
-        luoKomento(new KyseleOletusKysely(lukija, hallinta, "1", "kysele oletuskysely", "perform default inquiry"));
-        luoKomento(new VaihdaOletusKysely(lukija, hallinta, "2", "vaihda oletuskysely", "change default inquiry"));
-        luoKomento(new LisaaKysely(lukija, hallinta, "3", "lisää uusi kysely", "add new inquiry"));
-        luoKomento(new PoistaKysely(lukija, hallinta, "4", "poista kysely", "remove inquiry"));
-        luoKomento(new VaihdaKieli(lukija, hallinta, "5", "vaihda kieleksi englanti", "change language to Finnish"));
-        luoKomento(new EsimerkkiToggle(lukija, hallinta, "6", "aseta esimerkkivastaukset off/on", "toggle examples off/on"));
+        luoKomento(new KyseleKysely(lukija, hallinta, "1", "kysele kysely", "perform an inquiry"));
+        luoKomento(new LisaaKysely(lukija, hallinta, "2", "lisää uusi kysely", "add new inquiry"));
+        luoKomento(new PoistaKysely(lukija, hallinta, "3", "poista kysely", "remove inquiry"));
+        luoKomento(new VaihdaKieli(lukija, hallinta, ohje, "4", "vaihda kieleksi englanti", "change language to Finnish"));
+        luoKomento(new EsimerkkiToggle(lukija, hallinta, "5", "aseta esimerkkivastaukset off/on", "toggle examples off/on"));
         luoKomento(new Lopeta(lukija, hallinta, "x", "lopeta", "quit"));
     }
 

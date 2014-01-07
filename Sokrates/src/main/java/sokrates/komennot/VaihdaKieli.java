@@ -13,8 +13,11 @@ import sokrates.util.Lukija;
  */
 public class VaihdaKieli extends Komento {
 
-    public VaihdaKieli(Lukija lukija, KyselyHallinta hallinta, String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
+    private Komento ohje;
+
+    public VaihdaKieli(Lukija lukija, KyselyHallinta hallinta, Komento ohje, String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
         super(lukija, hallinta, nimi, seliteSuomeksi, seliteEnglanniksi);
+        this.ohje = ohje;
     }
 
     /**
@@ -34,6 +37,6 @@ public class VaihdaKieli extends Komento {
             System.out.println("    Kieli on nyt suomi.\n");
         }
 
-        return true;
+        return this.ohje.suorita();
     }
 }

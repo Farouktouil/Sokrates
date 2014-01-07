@@ -47,23 +47,6 @@ public class KyselyHallintaTest {
     }
 
     @Test
-    public void getOletusKyselyPalauttaaOletusKyselyksiAsetetunKyselyn() {
-        hallinta.lisaaKysely("paivakirja");
-        Kysely paivakirja = hallinta.haeKyselyNimenPerusteella("paivakirja");
-        hallinta.setOletusKysely(paivakirja);
-
-        assertEquals(paivakirja, hallinta.getOletusKysely());
-    }
-
-    @Test
-    public void getOletusKyselyEiPalautaKyselyaJotaEiOllaAsetettuOletusKyselyksi() {
-        hallinta.lisaaKysely("paivakirja");
-        Kysely paivakirja = hallinta.haeKyselyNimenPerusteella("paivakirja");
-
-        assertTrue(!(hallinta.getOletusKysely() == paivakirja));
-    }
-
-    @Test
     public void getExamplesPalauttaaAluksiTrue() {
         assertTrue(hallinta.getExamples());
     }

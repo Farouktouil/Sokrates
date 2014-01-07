@@ -35,11 +35,6 @@ public class PoistaKysely extends Komento {
             this.hallinta.poistaKysely(poistettavaKysely);
             System.out.println(Tulostamo.poistettuKyselyNimelta(poistettavanKyselynNimi));
 
-            if (poistettavaKysely.equals(this.hallinta.getOletusKysely())) {
-                this.hallinta.setOletusKysely(null);
-                System.out.println(Tulostamo.oletusKyselyaEiOleValittu());
-            }
-
             System.out.println();
             return true;
         }

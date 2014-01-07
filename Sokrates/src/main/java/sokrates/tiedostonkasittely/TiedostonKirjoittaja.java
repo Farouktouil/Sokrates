@@ -6,7 +6,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import sokrates.komennot.KyseleOletusKysely;
+import sokrates.komennot.KyseleKysely;
 import sokrates.sovelluslogiikka.Kysymys;
 
 /**
@@ -36,7 +36,7 @@ public class TiedostonKirjoittaja {
             String tekstiTiedostonNimi = ekanKysymyksenEkaVastaus;
             writer = new PrintWriter(tekstiTiedostonNimi + ".txt", "UTF-8");
         } catch (FileNotFoundException | UnsupportedEncodingException ex) {
-            Logger.getLogger(KyseleOletusKysely.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(KyseleKysely.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         kirjoitaKysymyksetVastauksineenLuotuunTiedostoon(writer, kysymykset);

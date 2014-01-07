@@ -51,11 +51,11 @@ public class Tulostamo {
         return "Pick inquiry to be removed:";
     }
 
-    public static String valitseOletusKysely() {
+    public static String valitseKyseltavaKysely() {
         if (Asetukset.getKieli() == Kieli.SUOMI) {
-            return "Valitse oletuskysely:";
+            return "Valitse kyseltävä kysely:";
         }
-        return "Pick default inquiry:";
+        return "Pick inquiry to be performed:";
     }
 
     public static String uusiOletusKyselyOnNyt(String nimi) {

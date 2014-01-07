@@ -3,12 +3,11 @@ package sokrates.sovelluslogiikka;
 import java.util.ArrayList;
 
 /**
- * Luokka KyselyHallinta pitää sisällään listan kyselyistä, oletuskyselyn sekä esimerkkiasetuksen. KyselyHallinta
- * vastaa sovelluslogiikan ja muiden pakkausten yhteistyöstä.
-=======
  * Luokka KyselyHallinta pitää sisällään listan kyselyistä, oletuskyselyn sekä
  * esimerkkiasetuksen. KyselyHallinta vastaa sovelluslogiikan ja muiden
- * pakkausten yhteistyöstä.
+ * pakkausten yhteistyöstä. ======= Luokka KyselyHallinta pitää sisällään listan
+ * kyselyistä, oletuskyselyn sekä esimerkkiasetuksen. KyselyHallinta vastaa
+ * sovelluslogiikan ja muiden pakkausten yhteistyöstä.
  *
  * @author Teo
  */
@@ -18,11 +17,6 @@ public class KyselyHallinta {
      * KyselyHallintaan kapseloitu lista kyselyistä
      */
     private ArrayList<Kysely> kyselyt;
-    /**
-     * KyselyHallintaan on kulloinkin kapseloitu yksi erityinen oletuskysely,
-     * joka on tavallaan kyselytysvuorossa. Oletuskysely voi olla myös null.
-     */
-    private Kysely oletuskysely;
     /**
      * KyselyHallintaan kapseloitu esimerkkiasetus, jonka mukaan joko näytetään
      * tai jätetään näyttämättä kysymykseen liittyvä esimerkkivastaus, kun
@@ -38,7 +32,6 @@ public class KyselyHallinta {
      */
     public KyselyHallinta() {
         this.kyselyt = new ArrayList<>();
-        this.oletuskysely = null;
         this.examples = true;
     }
 
@@ -91,14 +84,6 @@ public class KyselyHallinta {
         }
 
         return loydettyKysely;
-    }
-
-    public Kysely getOletusKysely() {
-        return this.oletuskysely;
-    }
-
-    public void setOletusKysely(Kysely kysely) {
-        this.oletuskysely = kysely;
     }
 
     /**
