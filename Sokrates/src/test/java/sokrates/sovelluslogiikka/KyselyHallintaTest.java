@@ -33,29 +33,6 @@ public class KyselyHallintaTest {
 
         assertEquals(1, hallinta.getKyselyt().size());
     }
-    
-    @Test
-    public void KyselynLisaamisenJalkeenNimiTaulukossaOnYksiKysely() {
-        hallinta.lisaaKysely("ongelmanratkaisu");
-
-        assertEquals(1, hallinta.getNimiTaulukko().size());
-    }
-
-    @Test
-    public void KahdenKyselynLisaamisenJalkeenNimiTaulukossaOnKaksiKyselya() {
-        hallinta.lisaaKysely("ongelmanratkaisu");
-        hallinta.lisaaKysely("paivakirja");
-
-        assertEquals(2, hallinta.getNimiTaulukko().size());
-    }
-
-    @Test
-    public void SamanKyselynLisaaminenUudestaanEiVaikutaNimiTaulukonKyselyjenMaaraan() {
-        hallinta.lisaaKysely("ongelmanratkaisu");
-        hallinta.lisaaKysely("ongelmanratkaisu");
-
-        assertEquals(1, hallinta.getNimiTaulukko().size());
-    }
 
     @Test
     public void LisatynKyselynNimenPerusteellaHaettaessaPalautetaanEpaTyhjaa() {

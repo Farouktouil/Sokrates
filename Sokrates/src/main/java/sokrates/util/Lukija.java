@@ -47,20 +47,20 @@ public class Lukija {
      *
      * @return Käyttäjän kirjoittamasta rivistä tulkittu kokonaisluku.
      */
-//    public int lueKokonaisluku() {
-//        return Integer.parseInt(lukija.nextLine());
-//    }
-//
-//    /**
-//     * Metodi tulostaa kysymyksen, johon käyttäjän antama vastaus tulkitaan
-//     * merkkijonosta kokonaisluvuksi ja palautetaan kokonaisluku.
-//     *
-//     * @param kysymys Käyttäjälle tulostettava kysymys.
-//     * @return Käyttäjän (tulostetun kysymyksen perään) kirjoittama rivi
-//     * tulkittuna kokonaisluvuksi.
-//     */
-//    public int lueKokonaisluku(String kysymys) {
-//        System.out.print(kysymys);
-//        return Integer.parseInt(lukija.nextLine());
-//    }
+    public int lueKokonaisluku() {
+        return Integer.parseInt(lukija.nextLine());
+    }
+
+    /**
+     * Metodi tulostaa kysymyksen, johon käyttäjän antama vastaus tulkitaan
+     * merkkijonosta kokonaisluvuksi ja palautetaan kokonaisluku.
+     *
+     * @param kysymys Käyttäjälle tulostettava kysymys.
+     * @return Käyttäjän (tulostetun kysymyksen perään) kirjoittama rivi
+     * tulkittuna kokonaisluvuksi.
+     */
+    public int lueKokonaisluku(String kysymys) {
+        System.out.print(kysymys);
+        return Integer.parseInt(lukija.nextLine());
+    }
 }

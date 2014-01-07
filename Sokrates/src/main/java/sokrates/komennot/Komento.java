@@ -87,10 +87,10 @@ public abstract class Komento {
         System.out.println();
 
         while (true) {
-            String syote = lukija.lueMerkkijono("kysely: ");
+            int syote = lukija.lueKokonaisluku("kysely: ");
 
-            if (this.hallinta.getNimiTaulukko().containsKey(syote)) {
-                String valitunKyselynNimi = this.hallinta.getNimiTaulukko().get(syote);
+            if (!(this.hallinta.getKyselyt().get(syote) == null)) {
+                String valitunKyselynNimi = this.hallinta.getKyselyt().get(syote).getNimi();
                 kysely = this.hallinta.haeKyselyNimenPerusteella(valitunKyselynNimi);
                 break;
             }
@@ -100,9 +100,9 @@ public abstract class Komento {
     }
 
     private void tulostaKyselyVaihtoehdot() {
-        for (String avainluku : this.hallinta.getNimiTaulukko().keySet()) {
-            System.out.println("  " + avainluku + " "
-                    + this.hallinta.getNimiTaulukko().get(avainluku));
+        for (int i = 0; i < this.hallinta.getKyselyt().size(); i++) {
+            System.out.println("  " + i + " "
+                    + this.hallinta.getKyselyt().get(i).getNimi());
         }
     }
 

@@ -33,7 +33,7 @@ public class VaihdaOletusKysely extends Komento {
             return true;
         } else {
             this.hallinta.setOletusKysely(uusiOletusKysely);
-            System.out.println("\n    Oletuskysely on nyt " + uusiOletusKysely + ".\n");
+            System.out.println("\n    Oletuskysely on nyt " + uusiOletusKysely.getNimi() + ".\n");
             return true;
         }
     }

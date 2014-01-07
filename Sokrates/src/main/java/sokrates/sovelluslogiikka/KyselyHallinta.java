@@ -1,11 +1,9 @@
 package sokrates.sovelluslogiikka;
 
 import java.util.ArrayList;
-import java.util.TreeMap;
 
 /**
- * Luokka KyselyHallinta pitää sisällään listan kyselyistä, TreeMapin kyselyiden
- * järjestetyistä nimistä, oletuskyselyn sekä esimerkkiasetuksen. KyselyHallinta
+ * Luokka KyselyHallinta pitää sisällään listan kyselyistä, oletuskyselyn sekä esimerkkiasetuksen. KyselyHallinta
  * vastaa sovelluslogiikan ja muiden pakkausten yhteistyöstä.
  *
  * @author Teo
@@ -16,11 +14,6 @@ public class KyselyHallinta {
      * KyselyHallintaan kapseloitu lista kyselyistä
      */
     private ArrayList<Kysely> kyselyt;
-    /**
-     * KyselyHallintaan kapseloitu taulukko kyselyiden nimistä, joista
-     * jokaisella on avaimenaan merkkijono (käytännössä luku).
-     */
-    private TreeMap<String, String> nimiTaulukko;
     /**
      * KyselyHallintaan on kulloinkin kapseloitu yksi erityinen oletuskysely,
      * joka on tavallaan kyselytysvuorossa. Oletuskysely voi olla myös null.
@@ -41,7 +34,6 @@ public class KyselyHallinta {
      */
     public KyselyHallinta() {
         this.kyselyt = new ArrayList<>();
-        this.nimiTaulukko = new TreeMap<>();
         this.oletuskysely = null;
         this.examples = true;
     }
@@ -55,9 +47,8 @@ public class KyselyHallinta {
      * @param nimi Kyselylle annettava nimi.
      */
     public void lisaaKysely(String nimi) {
-        if (!this.nimiTaulukko.containsValue(nimi)) {
+        if (!onkoTamanNiminenKyselyOlemassa(nimi)) {
             this.kyselyt.add(new Kysely(nimi));
-            this.nimiTaulukko.put("" + this.kyselyt.size(), nimi);
         }
     }
 
@@ -71,18 +62,8 @@ public class KyselyHallinta {
      * @param poistettavaKysely Kysely joka halutaan poistaa
      * @param poistettavanKyselynNimi Nimi kyselyn joka halutaan poistaa
      */
-    public void poistaKysely(Kysely poistettavaKysely, String poistettavanKyselynNimi) {
+    public void poistaKysely(Kysely poistettavaKysely) {
         this.kyselyt.remove(poistettavaKysely);
-
-        String poistettavanKyselynNimenAvainNumero = "" + -1;
-
-        for (String avainNumero : this.nimiTaulukko.keySet()) {
-            if (this.nimiTaulukko.get(avainNumero).equals(poistettavanKyselynNimi)) {
-                poistettavanKyselynNimenAvainNumero = avainNumero;
-            }
-        }
-
-        this.nimiTaulukko.remove(poistettavanKyselynNimenAvainNumero);
     }
 
     /**
@@ -98,15 +79,15 @@ public class KyselyHallinta {
      * @return null jos nimiTaulukko ei tunne nimeä.
      */
     public Kysely haeKyselyNimenPerusteella(String nimi) {
-        if (this.nimiTaulukko.containsValue(nimi)) {
-            for (Kysely kysely : this.kyselyt) {
-                if (kysely.toString().equals(nimi)) {
-                    return kysely;
-                }
+        Kysely loydettyKysely = null;
+        
+        for (Kysely kysely : this.kyselyt) {
+            if (kysely.getNimi().equals(nimi)) {
+                loydettyKysely = kysely;
             }
         }
 
-        return null;
+        return loydettyKysely;
     }
 
     public Kysely getOletusKysely() {
@@ -126,25 +107,19 @@ public class KyselyHallinta {
 
     /**
      * Metodi palauttaa true jos parametrina saadun merkkijonon niminen kysely
-     * on olemassa (nimiTaulukon arvona), false jos ei.
+     * on olemassa, false jos ei.
      *
-     * @param nimi jolla kyselyn olemassaoloa tiedustellaan
+     * @param nimi jota vastaavan kyselyn olemassaoloa tutkitaan
      * @return
      */
     public boolean onkoTamanNiminenKyselyOlemassa(String nimi) {
-        if (this.nimiTaulukko.containsValue(nimi)) {
-            return true;
+        for (Kysely kysely : this.kyselyt) {
+            if (kysely.getNimi().equals(nimi)) {
+                return true;
+            }
         }
-
+        
         return false;
-    }
-
-    /**
-     * @return kaikkien KyselyHallinnan tuntemien kyselyiden nimet avaiminaan
-     * kyselyiden kulloisestakin lkm:stä saatu (järjestys)numero
-     */
-    public TreeMap<String, String> getNimiTaulukko() {
-        return this.nimiTaulukko;
     }
 
     public boolean getExamples() {

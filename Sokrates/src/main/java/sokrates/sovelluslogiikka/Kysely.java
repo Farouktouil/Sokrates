@@ -26,6 +26,15 @@ public class Kysely {
     }
 
     /**
+     * Metodi palauttaa nimen joka kyselylle tätä luodessa annettiin
+     *
+     * @return Kyselylle annettu nimi
+     */
+    public String getNimi() {
+        return this.nimi;
+    }
+
+    /**
      * Metodi lisää parametrina saadun kysymyksen kysymyksiin jos ja vain jos
      * kysymystä ei löydy listasta jo ennestään
      *
@@ -39,15 +48,5 @@ public class Kysely {
 
     public ArrayList<Kysymys> getKysymykset() {
         return this.kysymykset;
-    }
-
-    /**
-     * Metodi palauttaa nimen joka kyselylle tätä luodessa annettiin
-     *
-     * @return Kyselylle annettu nimi
-     */
-    @Override
-    public String toString() {
-        return this.nimi;
     }
 }

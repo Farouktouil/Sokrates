@@ -32,8 +32,8 @@ public class PoistaKysely extends Komento {
         if (poistettavaKysely == null) {
             return true;
         } else {
-            String poistettavanKyselynNimi = poistettavaKysely.toString();
-            this.hallinta.poistaKysely(poistettavaKysely, poistettavanKyselynNimi);
+            String poistettavanKyselynNimi = poistettavaKysely.getNimi();
+            this.hallinta.poistaKysely(poistettavaKysely);
             System.out.println("\n    Poistettu kysely nimeltä "
                     + poistettavanKyselynNimi + ".");
 
