@@ -13,7 +13,7 @@ import java.util.TreeMap;
 public class KyselyHallinta {
 
     private ArrayList<Kysely> kyselyt;
-    private TreeMap<Integer, String> nimiTaulukko;
+    private TreeMap<String, String> nimiTaulukko;
     private Kysely oletuskysely;
     private boolean examples;
 
@@ -40,16 +40,16 @@ public class KyselyHallinta {
     public void lisaaKysely(String nimi) {
         if (!this.nimiTaulukko.containsValue(nimi)) {
             this.kyselyt.add(new Kysely(nimi));
-            this.nimiTaulukko.put(this.kyselyt.size(), nimi);
+            this.nimiTaulukko.put("" + this.kyselyt.size(), nimi);
         }
     }
 
     public void poistaKysely(Kysely poistettavaKysely, String poistettavanKyselynNimi) {
         this.kyselyt.remove(poistettavaKysely);
 
-        int poistettavanKyselynNimenAvainNumero = -1;
+        String poistettavanKyselynNimenAvainNumero = "" + -1;
 
-        for (int avainNumero : this.nimiTaulukko.keySet()) {
+        for (String avainNumero : this.nimiTaulukko.keySet()) {
             if (this.nimiTaulukko.get(avainNumero).equals(poistettavanKyselynNimi)) {
                 poistettavanKyselynNimenAvainNumero = avainNumero;
             }
@@ -109,7 +109,7 @@ public class KyselyHallinta {
      * @return kaikkien KyselyHallinnan tuntemien kyselyiden nimet avaiminaan
      * kyselyiden kulloisestakin lkm:stä saatu (järjestys)numero
      */
-    public TreeMap<Integer, String> getNimiTaulukko() {
+    public TreeMap<String, String> getNimiTaulukko() {
         return this.nimiTaulukko;
     }
 

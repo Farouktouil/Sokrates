@@ -10,3 +10,4 @@
 03.01.     9h    public javadoc loppuun, sekvenssikaaviot, katselmoinnin katselua, muutos-/laajennosideoita kaverin kanssa
 04.01.     2h    oman ja toisen koodin puolisilmäistä katselmointia
 05.01.   4-5h    koodikatselmointi; oman käyttöliittymän aukkojen korjaamista
+06.01.     1h    yhden bugin korjaus

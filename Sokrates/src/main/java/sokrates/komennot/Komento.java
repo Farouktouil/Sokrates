@@ -87,7 +87,7 @@ public abstract class Komento {
         System.out.println();
 
         while (true) {
-            int syote = lukija.lueKokonaisluku("kysely: ");
+            String syote = lukija.lueMerkkijono("kysely: ");
 
             if (this.hallinta.getNimiTaulukko().containsKey(syote)) {
                 String valitunKyselynNimi = this.hallinta.getNimiTaulukko().get(syote);
@@ -100,7 +100,7 @@ public abstract class Komento {
     }
 
     private void tulostaKyselyVaihtoehdot() {
-        for (Integer avainluku : this.hallinta.getNimiTaulukko().keySet()) {
+        for (String avainluku : this.hallinta.getNimiTaulukko().keySet()) {
             System.out.println("  " + avainluku + " "
                     + this.hallinta.getNimiTaulukko().get(avainluku));
         }
