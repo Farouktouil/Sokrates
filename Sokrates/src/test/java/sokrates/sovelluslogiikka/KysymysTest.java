@@ -27,6 +27,13 @@ public class KysymysTest {
 
         assertTrue(!kysymys.getEsimerkkiVastaus().isEmpty());
     }
+    
+    @Test
+    public void VastauksenLisaamisenJalkeenKysymyksellaOnVastaus() {
+        this.kysymys.setVastaus("Roger!");
+
+        assertTrue(!kysymys.getVastaus().isEmpty());
+    }
 
     @Test
     public void VastauksettomanKysymyksenVastausOnTyhja() {

@@ -26,6 +26,14 @@ public class KyselyTest {
 
         assertEquals(1, kysely.getKysymykset().size());
     }
+    
+    @Test
+    public void KysymyksenLisaamisenJaPoistamisenJalkeenKyselyssaEiOleKysymyksia() {
+        kysely.lisaaKysymys(kysymys);
+        kysely.poistaKysymys(kysymys);
+
+        assertEquals(0, kysely.getKysymykset().size());
+    }
 
     @Test
     public void SamanKysymyksenLisaaminenUudestaanEiKasvataKysymystenMaaraa() {

@@ -70,13 +70,6 @@ public class Kysymys {
     }
 
     /**
-     * @return Kysymyksen muistama taulukko muotoilustaan kaikilla kielillä.
-     */
-    public HashMap<Kieli, String> getKysymysKaikillaKielilla() {
-        return this.kysymysKaikillaKielilla;
-    }
-
-    /**
      * Metodi kysyy Asetukset-luokalta nykyisen kielen ja palauttaa sitten
      * kysymyksen muistamasta taulukosta kysymysKaikillaKielillä sen muotoilun,
      * joka vastaa nykyistä kieltä.
