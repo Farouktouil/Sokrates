@@ -22,13 +22,6 @@ public class KysymysTest {
     }
 
     @Test
-    public void EsimVastauksenLisaamisenJalkeenKysymyksellaOnEsimVastaus() {
-        this.kysymys.setEsimerkkiVastaus("Roger!");
-
-        assertTrue(!kysymys.getEsimerkkiVastaus().isEmpty());
-    }
-    
-    @Test
     public void VastauksenLisaamisenJalkeenKysymyksellaOnVastaus() {
         this.kysymys.setVastaus("Roger!");
 

@@ -143,9 +143,9 @@ public class Tulostamo {
      */
     public static String kyselyitaEiOle() {
         if (Asetukset.getKieli() == Kieli.SUOMI) {
-            return "    Kyselyitä ei ole. Voit lisätä uuden kyselyn komennolla #1.\n";
+            return "    Kyselyitä ei ole. Voit lisätä uuden kyselyn komennolla 1.\n";
         }
-        return "    There are no inquiries. You can add an inquiry with command #1.\n";
+        return "    There are no inquiries. You can add an inquiry with command 1.\n";
     }
     
     /**
@@ -154,9 +154,9 @@ public class Tulostamo {
      */
     public static String kysymyksiaEiOle() {
         if (Asetukset.getKieli() == Kieli.SUOMI) {
-            return "    Kyselyssä ei ole kysymyksiä. Voit lisätä kysymyksiä komennolla #3.\n";
+            return "    Kyselyssä ei ole kysymyksiä. Voit lisätä kysymyksiä komennolla 3.\n";
         }
-        return "    The inquiry has no questions in it. You can add questions with command #3.\n";
+        return "    The inquiry has no questions in it. You can add questions with command 3.\n";
     }
 
     /**
@@ -165,9 +165,9 @@ public class Tulostamo {
      */
     public static String kyselyssaEiOleYhtaanKysymysta() {
         if (Asetukset.getKieli() == Kieli.SUOMI) {
-            return "Kyselyssä ei ole yhtään kysymystä.\n";
+            return "Kyselyssä ei ole yhtään kysymystä. Voit lisätä kysymyksiä komennolla 3\n";
         }
-        return "The inquiry has no questions in it.\n";
+        return "The inquiry has no questions in it. You can add questions with command 3\n";
     }
 
     /**

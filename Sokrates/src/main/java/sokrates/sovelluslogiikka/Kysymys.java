@@ -38,14 +38,10 @@ public class Kysymys {
      * @param kysymysEnglanniksi Kysymyksen muotoilu englanniksi
      * @param esimerkkiVastaus Kysymykseen liitettävä esimerkkivastaus
      */
-    public Kysymys(String kysymysSuomeksi, String kysymysEnglanniksi, String esimerkkiVastaus) {
+    public Kysymys(String kysymysSuomeksi, String kysymysEnglanniksi, String esimerkkivastaus) {
         this.kysymysKaikillaKielilla = new HashMap();
         this.kysymysKaikillaKielilla.put(Kieli.SUOMI, kysymysSuomeksi);
         this.kysymysKaikillaKielilla.put(Kieli.ENGLANTI, kysymysEnglanniksi);
-        this.setEsimerkkiVastaus(esimerkkiVastaus);
-    }
-
-    public void setEsimerkkiVastaus(String esimerkkivastaus) {
         this.esimerkkivastaus = esimerkkivastaus;
     }
 
