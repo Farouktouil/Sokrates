@@ -23,15 +23,13 @@ public class KyselyTest {
     @Test
     public void KysymyksenLisaamisenJalkeenKyselyssaOnYksiKysymys() {
         kysely.lisaaKysymys(kysymys);
-
         assertEquals(1, kysely.getKysymykset().size());
     }
-    
+
     @Test
     public void KysymyksenLisaamisenJaPoistamisenJalkeenKyselyssaEiOleKysymyksia() {
         kysely.lisaaKysymys(kysymys);
         kysely.poistaKysymys(kysymys);
-
         assertEquals(0, kysely.getKysymykset().size());
     }
 
@@ -39,7 +37,6 @@ public class KyselyTest {
     public void SamanKysymyksenLisaaminenUudestaanEiKasvataKysymystenMaaraa() {
         kysely.lisaaKysymys(kysymys);
         kysely.lisaaKysymys(kysymys);
-
         assertEquals(1, kysely.getKysymykset().size());
     }
 }

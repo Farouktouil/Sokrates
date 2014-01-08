@@ -7,6 +7,7 @@ import sokrates.sovelluslogiikka.Kysymys;
 import sokrates.util.Lukija;
 
 /**
+ * Antaa käyttäjän poistaa kysymyksiä valitsemastaan kyselystä.
  *
  * @author Teo
  */
@@ -20,20 +21,24 @@ public class PoistaKysymyksiaKyselysta extends Komento {
     public boolean suorita() {
         System.out.println(Tulostamo.valitseKohdeKysely());
         Kysely kohdeKysely = super.kayttajanOsoittamaKysely();
-        
+
         if (kohdeKysely == null) {
             System.out.println(Tulostamo.kysymyksiaEiOle());
         } else {
             poistaKysymyksia(kohdeKysely);
         }
-        
         return true;
     }
 
+    /**
+     * Looppaa käyttäjältä valintoja poistettavista kysymyksistä. Poistaa.
+     *
+     * @param kohdeKysely
+     */
     public void poistaKysymyksia(Kysely kohdeKysely) {
         while (true) {
             System.out.println(Tulostamo.valitsePoistettavaKysymys());
-            
+
             tulostaKysymysVaihtoehdot(kohdeKysely);
 
             String syoteTeksti = lukija.lueMerkkijono(Tulostamo.kysymys());
@@ -44,7 +49,7 @@ public class PoistaKysymyksiaKyselysta extends Komento {
             }
 
             int syoteLuku = lukija.tulkitseKokonaisluvuksi(syoteTeksti);
-            
+
             Kysymys poistettavaKysymys = kohdeKysely.getKysymykset().get(syoteLuku);
             String kohdeKyselynNimi = kohdeKysely.getNimi();
 
@@ -54,7 +59,13 @@ public class PoistaKysymyksiaKyselysta extends Komento {
             }
         }
     }
-    
+
+    /**
+     * Tulostaa käyttäjälle kohdekyselyn sisältämät kysymykset sekä
+     * peruutusvaihtoehdon joista tulee valita yksi.
+     *
+     * @param kohdeKysely Kysely josta poistetaan kysymyksiä.
+     */
     public void tulostaKysymysVaihtoehdot(Kysely kohdeKysely) {
         for (int i = 0; i < kohdeKysely.getKysymykset().size(); i++) {
             System.out.println("  " + i + " = " + kohdeKysely.getKysymykset().get(i).getKysymysNykyisellaKielella());

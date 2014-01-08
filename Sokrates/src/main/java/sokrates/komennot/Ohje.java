@@ -35,7 +35,6 @@ public class Ohje extends Komento {
             System.out.println("  " + komento.getNimi() + " = " + komento.getSelite());
         }
         System.out.println();
-
         return true;
     }
 }

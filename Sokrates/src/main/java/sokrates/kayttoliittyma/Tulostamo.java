@@ -54,7 +54,7 @@ public class Tulostamo {
         }
         return "inquiry: ";
     }
-    
+
     /**
      * @return Teksti 'kysymys: ' ennen käyttäjän valitsemaa kysymystä.
      */
@@ -94,7 +94,7 @@ public class Tulostamo {
         }
         return "Pick an inquiry to be removed:";
     }
-    
+
     /**
      * @return Teksti joka pyytää käyttäjää valitsemaan poistettavan kysymyksen.
      */
@@ -114,7 +114,7 @@ public class Tulostamo {
         }
         return "Pick an inquiry to be performed:";
     }
-    
+
     /**
      * @return Teksti joka pyytää käyttäjää valitsemaan kyseltävän kyselyn.
      */
@@ -147,7 +147,7 @@ public class Tulostamo {
         }
         return "    There are no inquiries. You can add an inquiry with command 1.\n";
     }
-    
+
     /**
      * @return Teksti joka kertoo käyttäjälle että kyselyitä ei ole ja millä
      * komennolla kyselyn voi lisätä (hardcoded, tyhmää!).
@@ -217,48 +217,48 @@ public class Tulostamo {
         }
         return "\n    Added an inquiry named '" + nimi + "'.\n";
     }
-    
+
     public static String muotoileKysymysSuomeksi() {
         if (Asetukset.getKieli() == Kieli.SUOMI) {
             return "\nMuotoile kysymys suomeksi: ";
         }
         return "\nFormulate the question in Finnish: ";
     }
-    
+
     public static String muotoileKysymysEnglanniksi() {
         if (Asetukset.getKieli() == Kieli.SUOMI) {
             return "Muotoile kysymys englanniksi: ";
         }
         return "Formulate the question in English: ";
     }
-    
+
     public static String muotoileEsimerkkiVastaus() {
         if (Asetukset.getKieli() == Kieli.SUOMI) {
             return "Muotoile esimerkkivastaus: ";
         }
         return "Formulate an example answer: ";
     }
-    
+
     public static String lisattyKysymys(String kohdeKyselynNimi) {
         if (Asetukset.getKieli() == Kieli.SUOMI) {
             return "\n    Lisätty kysymys kyselyyn '" + kohdeKyselynNimi + "'.\n";
         }
         return "\n    A question was added to the inquiry '" + kohdeKyselynNimi + "'.\n";
     }
-    
+
     public static String poistettuKysymys(String kohdeKyselynNimi) {
         if (Asetukset.getKieli() == Kieli.SUOMI) {
             return "\n    Poistettu kysymys kyselystä '" + kohdeKyselynNimi + "'.\n";
         }
         return "\n    A question was removed from the inquiry '" + kohdeKyselynNimi + "'.\n";
     }
-    
+
     public static String vaihtoehdotKysymyksiaLisatessa(String kohdeKyselynNimi) {
         if (Asetukset.getKieli() == Kieli.SUOMI) {
             return "enter = lisää uusi kysymys kyselyyn '" + kohdeKyselynNimi + "'\n"
                     + "x = peruuta\n\n" + komento();
         }
         return "enter = add a new question to the inquiry '" + kohdeKyselynNimi + "'\n"
-                    + "x = cancel\n\n" + komento();
+                + "x = cancel\n\n" + komento();
     }
 }

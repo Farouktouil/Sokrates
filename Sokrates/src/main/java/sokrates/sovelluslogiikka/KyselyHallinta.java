@@ -66,7 +66,6 @@ public class KyselyHallinta {
                 loydettyKysely = kysely;
             }
         }
-
         return loydettyKysely;
     }
 

@@ -22,7 +22,6 @@ public class KyselyHallintaTest {
     public void KahdenKyselynLisaamisenJalkeenHallinnassaOnKaksiKyselya() {
         hallinta.lisaaKysely("ongelmanratkaisu");
         hallinta.lisaaKysely("paivakirja");
-
         assertEquals(2, hallinta.getKyselyt().size());
     }
 
@@ -30,14 +29,12 @@ public class KyselyHallintaTest {
     public void SamanKyselynLisaaminenUudestaanEiVaikutaKyselyjenMaaraan() {
         hallinta.lisaaKysely("ongelmanratkaisu");
         hallinta.lisaaKysely("ongelmanratkaisu");
-
         assertEquals(1, hallinta.getKyselyt().size());
     }
 
     @Test
     public void LisatynKyselynNimenPerusteellaHaettaessaPalautetaanEpaTyhjaa() {
         hallinta.lisaaKysely("ongelmanratkaisu");
-
         assertTrue(!(hallinta.haeKyselyNimenPerusteella("ongelmanratkaisu") == null));
     }
 
@@ -51,7 +48,6 @@ public class KyselyHallintaTest {
         hallinta.lisaaKysely("ongelmanratkaisu");
         Kysely ongelmanratkaisu = hallinta.haeKyselyNimenPerusteella("ongelmanratkaisu");
         hallinta.poistaKysely(ongelmanratkaisu);
-
         assertEquals(0, hallinta.getKyselyt().size());
     }
 
@@ -63,14 +59,12 @@ public class KyselyHallintaTest {
     @Test
     public void setExamplesTrueToimii() {
         hallinta.setExamples(true);
-
         assertTrue(hallinta.getExamples());
     }
 
     @Test
     public void setExamplesFalseToimii() {
         hallinta.setExamples(false);
-
         assertTrue(!hallinta.getExamples());
     }
 }

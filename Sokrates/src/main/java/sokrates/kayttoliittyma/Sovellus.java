@@ -51,7 +51,6 @@ public class Sovellus {
         this.komennot = new TreeMap<>();
         this.hallinta = new KyselyHallinta();
         this.ohje = new Ohje(lukija, hallinta, null, "Valitse komento:", "Pick a command:", komennot.values());
-
         luoKomennot(this.hallinta);
         luoOngelmanRatkaisuKysely();
         luoPaivaKirjaKysely();

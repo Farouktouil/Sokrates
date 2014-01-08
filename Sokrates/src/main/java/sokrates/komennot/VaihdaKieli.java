@@ -43,7 +43,6 @@ public class VaihdaKieli extends Komento {
             Asetukset.setKieli(Kieli.SUOMI);
             System.out.println("    Kieli on nyt suomi.\n");
         }
-
         return this.ohje.suorita();
     }
 }

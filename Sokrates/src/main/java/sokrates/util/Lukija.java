@@ -75,6 +75,12 @@ public class Lukija {
         return Integer.parseInt(lukija.nextLine());
     }
 
+    /**
+     * Metodi tulkitsee kokonaisluvuksi parametrinaan saaman merkkijonon
+     *
+     * @param merkkiJono Kokonaisluvuksi tulkittava merkkijono
+     * @return Kokonaisluvuksi tulkittu merkkijono
+     */
     public int tulkitseKokonaisluvuksi(String merkkiJono) {
         return Integer.parseInt(merkkiJono);
     }

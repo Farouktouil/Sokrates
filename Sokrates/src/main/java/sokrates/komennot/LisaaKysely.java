@@ -34,14 +34,12 @@ public class LisaaKysely extends Komento {
                 System.out.println(Tulostamo.tamanNiminenKyselyOnJoOlemassa(lisattavanKyselynNimi));
                 return true;
             }
-
             if (!lisattavanKyselynNimi.isEmpty()) {
                 this.hallinta.lisaaKysely(lisattavanKyselynNimi);
                 System.out.println(Tulostamo.lisattyKyselyNimelta(lisattavanKyselynNimi));
                 break;
             }
         }
-
         return true;
     }
 }

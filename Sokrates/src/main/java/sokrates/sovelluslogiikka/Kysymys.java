@@ -75,7 +75,6 @@ public class Kysymys {
     public String getKysymysNykyisellaKielella() {
         Kieli nykyinenKieli = Asetukset.getKieli();
         String kysymysNykyisellaKielella = this.kysymysKaikillaKielilla.get(nykyinenKieli);
-
         return kysymysNykyisellaKielella;
     }
 }

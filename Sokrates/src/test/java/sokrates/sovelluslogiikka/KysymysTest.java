@@ -24,7 +24,6 @@ public class KysymysTest {
     @Test
     public void VastauksenLisaamisenJalkeenKysymyksellaOnVastaus() {
         this.kysymys.setVastaus("Roger!");
-
         assertTrue(!kysymys.getVastaus().isEmpty());
     }
 
@@ -36,15 +35,13 @@ public class KysymysTest {
     @Test
     public void getKysymysNykyisellaKielellaPalauttaaKysymyksenEnglanniksiKunKieliOnEnglanti() {
         Asetukset.kieli = Kieli.ENGLANTI;
-
         assertEquals("Hello, world?", this.kysymys.getKysymysNykyisellaKielella());
     }
 
     @Test
     public void getKysymysNykyisellaKielellaPalauttaaKysymyksenSuomeksiKunKieliOnSuomi() {
         Kysymys kysymys = new Kysymys("Hei, maailma?", null, null);
-        Asetukset.kieli = Kieli.SUOMI;
-
+        Asetukset.setKieli(Kieli.SUOMI);
         assertEquals("Hei, maailma?", kysymys.getKysymysNykyisellaKielella());
     }
 }
