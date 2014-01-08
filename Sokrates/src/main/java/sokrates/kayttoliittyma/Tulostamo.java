@@ -82,7 +82,7 @@ public class Tulostamo {
         if (Asetukset.getKieli() == Kieli.SUOMI) {
             return "Valitse poistettava kysely:";
         }
-        return "Pick inquiry to be removed:";
+        return "Pick an inquiry to be removed:";
     }
 
     /**
@@ -92,7 +92,17 @@ public class Tulostamo {
         if (Asetukset.getKieli() == Kieli.SUOMI) {
             return "Valitse kyseltävä kysely:";
         }
-        return "Pick inquiry to be performed:";
+        return "Pick an inquiry to be performed:";
+    }
+    
+    /**
+     * @return Teksti joka pyytää käyttäjää valitsemaan kyseltävän kyselyn.
+     */
+    public static String valitseKohdeKysely() {
+        if (Asetukset.getKieli() == Kieli.SUOMI) {
+            return "Valitse kysely johon kysymyksiä lisätään:";
+        }
+        return "Pick an inquiry to which questions will be added:";
     }
 
     /**
@@ -104,7 +114,7 @@ public class Tulostamo {
         if (Asetukset.getKieli() == Kieli.SUOMI) {
             return "    Poistettu kysely nimeltä '" + nimi + "'.";
         }
-        return "    Removed inquiry '" + nimi + "'.";
+        return "    Removed the inquiry named '" + nimi + "'.";
     }
 
     /**
@@ -136,9 +146,9 @@ public class Tulostamo {
      */
     public static String kyselyOnValmis(String nimi) {
         if (Asetukset.getKieli() == Kieli.SUOMI) {
-            return "Kysely on valmis. Tekstitiedosto '" + nimi + "' löytyy juurikansiosta.\n";
+            return "Kysely on valmis. Tekstitiedosto nimeltä '" + nimi + "' löytyy juurikansiosta.\n";
         }
-        return "The inquiry is completed. Text file '" + nimi + "' is found in the root folder.\n";
+        return "The inquiry is completed. Text file named '" + nimi + "' is found in the root folder.\n";
     }
 
     /**
@@ -175,5 +185,40 @@ public class Tulostamo {
             return "\n    Lisätty kysely nimeltä '" + nimi + "'.\n";
         }
         return "\n    Added an inquiry named '" + nimi + "'.\n";
+    }
+    
+    public static String muotoileKysymysSuomeksi() {
+        if (Asetukset.getKieli() == Kieli.SUOMI) {
+            return "\nMuotoile kysymys suomeksi: ";
+        }
+        return "\nFormulate the question in Finnish: ";
+    }
+    
+    public static String muotoileKysymysEnglanniksi() {
+        if (Asetukset.getKieli() == Kieli.SUOMI) {
+            return "Muotoile kysymys englanniksi: ";
+        }
+        return "Formulate the question in English: ";
+    }
+    
+    public static String muotoileEsimerkkiVastaus() {
+        if (Asetukset.getKieli() == Kieli.SUOMI) {
+            return "Muotoile esimerkkivastaus: ";
+        }
+        return "Formulate an example answer: ";
+    }
+    
+    public static String lisattyKysymys(String kohdeKyselynNimi) {
+        if (Asetukset.getKieli() == Kieli.SUOMI) {
+            return "\n    Lisätty kysymys kyselyyn '" + kohdeKyselynNimi + "'.\n";
+        }
+        return "\n    A question was added to the inquiry '" + kohdeKyselynNimi + "'.\n";
+    }
+    
+    public static String xPalaaTakaisinKysymyksiaLisatessa(String kohdeKyselynNimi) {
+        if (Asetukset.getKieli() == Kieli.SUOMI) {
+            return "x palaa takaisin, muuten paina enter lisätäksesi uuden kysymyksen kyselyyn '" + kohdeKyselynNimi + "': ";
+        }
+        return "x returns back, otherwise press enter to add new question to the inquiry '" + kohdeKyselynNimi + "': ";
     }
 }
