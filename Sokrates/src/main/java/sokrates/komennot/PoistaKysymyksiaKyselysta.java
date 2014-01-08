@@ -35,7 +35,7 @@ public class PoistaKysymyksiaKyselysta extends Komento {
      *
      * @param kohdeKysely
      */
-    public void poistaKysymyksia(Kysely kohdeKysely) {
+    private void poistaKysymyksia(Kysely kohdeKysely) {
         while (true) {
             System.out.println(Tulostamo.valitsePoistettavaKysymys());
 
@@ -66,7 +66,7 @@ public class PoistaKysymyksiaKyselysta extends Komento {
      *
      * @param kohdeKysely Kysely josta poistetaan kysymyksiä.
      */
-    public void tulostaKysymysVaihtoehdot(Kysely kohdeKysely) {
+    private void tulostaKysymysVaihtoehdot(Kysely kohdeKysely) {
         for (int i = 0; i < kohdeKysely.getKysymykset().size(); i++) {
             System.out.println("  " + i + " = " + kohdeKysely.getKysymykset().get(i).getKysymysNykyisellaKielella());
         }
