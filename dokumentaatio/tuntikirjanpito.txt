@@ -11,3 +11,4 @@
 04.01.     2h    oman ja toisen koodin puolisilmäistä katselmointia
 05.01.   4-5h    koodikatselmointi; oman käyttöliittymän aukkojen korjaamista
 06.01.     1h    yhden bugin korjaus
+07.01.     7h    obsoletisoitiin nimiTaulukko ja oletuskysely; kaksikielistettiin teksti-UI; +peruutusmahd. kyselyvalikkoon
