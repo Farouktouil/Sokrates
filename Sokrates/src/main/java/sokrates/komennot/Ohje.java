@@ -32,7 +32,7 @@ public class Ohje extends Komento {
     public boolean suorita() {
         System.out.println(this.getSelite());
         for (Komento komento : komennot) {
-            System.out.println("  " + komento.getNimi() + " " + komento.getSelite());
+            System.out.println("  " + komento.getNimi() + " = " + komento.getSelite());
         }
         System.out.println();
 

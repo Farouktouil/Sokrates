@@ -20,15 +20,19 @@ public class LisaaKysymyksiaKyselyyn extends Komento {
     public boolean suorita() {
         System.out.println(Tulostamo.valitseKohdeKysely());
         Kysely kohdeKysely = super.kayttajanOsoittamaKysely();
-
         lisaaKysymyksia(kohdeKysely);
-
         return true;
     }
 
     public void lisaaKysymyksia(Kysely kohdeKysely) {
         while (true) {
-            if (lukija.lueMerkkijono(Tulostamo.xPalaaTakaisinKysymyksiaLisatessa(kohdeKysely.getNimi())).equals("x")) {
+            String syote = lukija.lueMerkkijono(Tulostamo.vaihtoehdotKysymyksiaLisatessa(kohdeKysely.getNimi()));
+            
+            if (syote.equals(null)) {
+                continue;
+            }
+            
+            if (syote.equals("x")) {
                 System.out.println();
                 break;
             }

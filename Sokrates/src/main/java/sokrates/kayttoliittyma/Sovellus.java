@@ -99,8 +99,9 @@ public class Sovellus {
         luoKomento(new LisaaKysely(lukija, hallinta, "1", "lisää uusi kysely", "add a new inquiry"));
         luoKomento(new PoistaKysely(lukija, hallinta, "2", "poista kysely", "remove an inquiry"));
         luoKomento(new LisaaKysymyksiaKyselyyn(lukija, hallinta, "3", "lisää kysymyksiä kyselyyn", "add questions to an inquiry"));
-        luoKomento(new VaihdaKieli(lukija, hallinta, ohje, "4", "vaihda kieleksi englanti", "change language to Finnish"));
-        luoKomento(new EsimerkkiToggle(lukija, hallinta, "5", "aseta esimerkkivastaukset off/on", "toggle examples off/on"));
+        luoKomento(new PoistaKysymyksiaKyselysta(lukija, hallinta, "4", "poista kysymyksiä kyselystä", "remove questions from an inquiry"));
+        luoKomento(new VaihdaKieli(lukija, hallinta, ohje, "5", "vaihda kieleksi englanti", "change language to Finnish"));
+        luoKomento(new EsimerkkiToggle(lukija, hallinta, "6", "aseta esimerkkivastaukset off/on", "toggle examples off/on"));
         luoKomento(new Lopeta(lukija, hallinta, "x", "lopeta", "quit"));
     }
 

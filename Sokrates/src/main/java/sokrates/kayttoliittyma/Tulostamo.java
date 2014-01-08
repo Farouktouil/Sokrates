@@ -36,7 +36,7 @@ public class Tulostamo {
     }
 
     /**
-     * @return Teksti 'komento: ' ennen käyttäjän syöttämää komentoa.
+     * @return Teksti 'komento: ' ennen käyttäjän valitsemaa komentoa.
      */
     public static String komento() {
         if (Asetukset.getKieli() == Kieli.SUOMI) {
@@ -46,13 +46,23 @@ public class Tulostamo {
     }
 
     /**
-     * @return Teksti 'kysely: ' ennen käyttäjän syöttämää kyselyä.
+     * @return Teksti 'kysely: ' ennen käyttäjän valitsemaa kyselyä.
      */
     public static String kysely() {
         if (Asetukset.getKieli() == Kieli.SUOMI) {
             return "kysely: ";
         }
         return "inquiry: ";
+    }
+    
+    /**
+     * @return Teksti 'kysymys: ' ennen käyttäjän valitsemaa kysymystä.
+     */
+    public static String kysymys() {
+        if (Asetukset.getKieli() == Kieli.SUOMI) {
+            return "kysymys: ";
+        }
+        return "question: ";
     }
 
     /**
@@ -62,7 +72,7 @@ public class Tulostamo {
         if (Asetukset.getKieli() == Kieli.SUOMI) {
             return "peruuta";
         }
-        return "cancel";
+        return "back";
     }
 
     /**
@@ -84,6 +94,16 @@ public class Tulostamo {
         }
         return "Pick an inquiry to be removed:";
     }
+    
+    /**
+     * @return Teksti joka pyytää käyttäjää valitsemaan poistettavan kysymyksen.
+     */
+    public static String valitsePoistettavaKysymys() {
+        if (Asetukset.getKieli() == Kieli.SUOMI) {
+            return "Valitse poistettava kysymys:";
+        }
+        return "Pick a question to be removed:";
+    }
 
     /**
      * @return Teksti joka pyytää käyttäjää valitsemaan kyseltävän kyselyn.
@@ -100,9 +120,9 @@ public class Tulostamo {
      */
     public static String valitseKohdeKysely() {
         if (Asetukset.getKieli() == Kieli.SUOMI) {
-            return "Valitse kysely johon kysymyksiä lisätään:";
+            return "Valitse muokattava kysely:";
         }
-        return "Pick an inquiry to which questions will be added:";
+        return "Pick an inquiry to be modified:";
     }
 
     /**
@@ -123,9 +143,20 @@ public class Tulostamo {
      */
     public static String kyselyitaEiOle() {
         if (Asetukset.getKieli() == Kieli.SUOMI) {
-            return "    Kyselyitä ei ole. Voit lisätä uuden kyselyn komennolla 1.\n";
+            return "    Kyselyitä ei ole. Voit lisätä uuden kyselyn komennolla #1.\n";
         }
-        return "    There are no inquiries. You can add an inquiry with command 1.\n";
+        return "    There are no inquiries. You can add an inquiry with command #1.\n";
+    }
+    
+    /**
+     * @return Teksti joka kertoo käyttäjälle että kyselyitä ei ole ja millä
+     * komennolla kyselyn voi lisätä (hardcoded, tyhmää!).
+     */
+    public static String kysymyksiaEiOle() {
+        if (Asetukset.getKieli() == Kieli.SUOMI) {
+            return "    Kyselyssä ei ole kysymyksiä. Voit lisätä kysymyksiä komennolla #3.\n";
+        }
+        return "    The inquiry has no questions in it. You can add questions with command #3.\n";
     }
 
     /**
@@ -215,10 +246,19 @@ public class Tulostamo {
         return "\n    A question was added to the inquiry '" + kohdeKyselynNimi + "'.\n";
     }
     
-    public static String xPalaaTakaisinKysymyksiaLisatessa(String kohdeKyselynNimi) {
+    public static String poistettuKysymys(String kohdeKyselynNimi) {
         if (Asetukset.getKieli() == Kieli.SUOMI) {
-            return "x palaa takaisin, muuten paina enter lisätäksesi uuden kysymyksen kyselyyn '" + kohdeKyselynNimi + "': ";
+            return "\n    Poistettu kysymys kyselystä '" + kohdeKyselynNimi + "'.\n";
         }
-        return "x returns back, otherwise press enter to add new question to the inquiry '" + kohdeKyselynNimi + "': ";
+        return "\n    A question was removed from the inquiry '" + kohdeKyselynNimi + "'.\n";
+    }
+    
+    public static String vaihtoehdotKysymyksiaLisatessa(String kohdeKyselynNimi) {
+        if (Asetukset.getKieli() == Kieli.SUOMI) {
+            return "enter = lisää uusi kysymys kyselyyn '" + kohdeKyselynNimi + "'\n"
+                    + "x = peruuta\n\n" + komento();
+        }
+        return "enter = add a new question to the inquiry '" + kohdeKyselynNimi + "'\n"
+                    + "x = cancel\n\n" + komento();
     }
 }

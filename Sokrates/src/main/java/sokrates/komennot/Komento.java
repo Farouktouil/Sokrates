@@ -133,9 +133,9 @@ public abstract class Komento {
      */
     private void tulostaKyselyVaihtoehdot() {
         for (int i = 0; i < this.hallinta.getKyselyt().size(); i++) {
-            System.out.println("  " + i + " " + this.hallinta.getKyselyt().get(i).getNimi());
+            System.out.println("  " + i + " = " + this.hallinta.getKyselyt().get(i).getNimi());
         }
-        System.out.println("  x " + Tulostamo.peruuta() + "\n");
+        System.out.println("(x = " + Tulostamo.peruuta() + ")\n");
     }
 
     /**

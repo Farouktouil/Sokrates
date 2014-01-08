@@ -51,6 +51,15 @@ public class Kysely {
             this.kysymykset.add(kysymys);
         }
     }
+    
+    /**
+     * Metodi poistaa parametrina saadun kysymyksen kyselystä.
+     *
+     * @param kysymys Kyselyyn lisättävä kysymys
+     */
+    public void poistaKysymys(Kysymys kysymys) {
+            this.kysymykset.remove(kysymys);
+    }
 
     public ArrayList<Kysymys> getKysymykset() {
         return this.kysymykset;
