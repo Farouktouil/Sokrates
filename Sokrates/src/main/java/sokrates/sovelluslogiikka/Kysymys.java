@@ -7,9 +7,8 @@ import java.util.HashMap;
  * Luokka Kysymys edustaa kysymyksiä. Kysymys on olemassa aina vähintään yhdellä
  * kielellä. Kysymys muistaa listan kysymyksestä kaikilla eri kielillä, ja
  * listaan voidaan lisätä kysymyksen erikielisiä muotoiluja. Kysymys muistaa
- * esimerkkivastauksensa (ainakin toistaiseksi vain yhdellä kielellä) ja listan
- * vastauksista joita se on saanut (toistaiseksi 1 per kysymys, mutta pidetään
- * avoimena mahdollisuus vastata useasti samaan kysymykseen).
+ * esimerkkivastauksensa (ainakin toistaiseksi vain yhdellä kielellä)
+ * kysymykseen liitetyn vastauksen (String).
  *
  * @author Teo
  */
@@ -21,9 +20,9 @@ public class Kysymys {
      */
     private HashMap<Kieli, String> kysymysKaikillaKielilla;
     /**
-     * Lista kysymykseen saaduista vastauksista merkkijonoina.
+     * Kysymykseen liitetty vastaus merkkijonona
      */
-    private ArrayList<String> vastaukset;
+    private String vastaus;
     /**
      * Kysymyksen esimerkkivastaus (tällä hetkellä riippumaton kielistä; vain
      * yksi per kysymys).
@@ -35,8 +34,6 @@ public class Kysymys {
      * ja englanniksi. Esimerkkivastaus voidaan myös ottaa jo konstruktorissa
      * tai sitten vasta erikseen myöhemmin.
      *
-     * Luodaan myös ArrayList<String> kysymykseen saatuja vastauksia varten.
-     *
      * @param kysymysSuomeksi Kysymyksen muotoilu suomeksi
      * @param kysymysEnglanniksi Kysymyksen muotoilu englanniksi
      * @param esimerkkiVastaus Kysymykseen liitettävä esimerkkivastaus
@@ -46,7 +43,6 @@ public class Kysymys {
         this.kysymysKaikillaKielilla.put(Kieli.SUOMI, kysymysSuomeksi);
         this.kysymysKaikillaKielilla.put(Kieli.ENGLANTI, kysymysEnglanniksi);
         this.setEsimerkkiVastaus(esimerkkiVastaus);
-        this.vastaukset = new ArrayList();
     }
 
     public void setEsimerkkiVastaus(String esimerkkivastaus) {
@@ -62,17 +58,15 @@ public class Kysymys {
      *
      * @param vastaus Lisättävä vastaus
      */
-    public void lisaaVastaus(String vastaus) {
-        this.vastaukset.add(vastaus);
+    public void setVastaus(String vastaus) {
+        this.vastaus = vastaus;
     }
 
     /**
-     * Metodi palauttaa merkkijonolistan kysymyksen vastauksista.
-     *
-     * @return Kysymykseen lisätyt vastaukset merkkijonolistana.
+     * @return Kysymykseen liitetty vastaus
      */
-    public ArrayList<String> getVastaukset() {
-        return this.vastaukset;
+    public String getVastaus() {
+        return this.vastaus;
     }
 
     /**

@@ -30,14 +30,7 @@ public class KysymysTest {
 
     @Test
     public void VastauksettomanKysymyksenVastausOnTyhja() {
-        assertTrue(kysymys.getVastaukset().isEmpty());
-    }
-
-    @Test
-    public void VastauksenLisaamisenJalkeenKysymyksellaOnYksiVastaus() {
-        this.kysymys.lisaaVastaus(vastaus);
-
-        assertEquals(1, kysymys.getVastaukset().size());
+        assertTrue(kysymys.getVastaus() == null);
     }
 
     @Test

@@ -32,8 +32,8 @@ public class TiedostonKirjoittaja {
         PrintWriter writer = null;
 
         try {
-            String ekanKysymyksenEkaVastaus = kysymykset.get(0).getVastaukset().get(0);
-            String tekstiTiedostonNimi = ekanKysymyksenEkaVastaus;
+            String ekanKysymyksenVastaus = kysymykset.get(0).getVastaus();
+            String tekstiTiedostonNimi = ekanKysymyksenVastaus;
             writer = new PrintWriter(tekstiTiedostonNimi + ".txt", "UTF-8");
         } catch (FileNotFoundException | UnsupportedEncodingException ex) {
             Logger.getLogger(KyseleKysely.class.getName()).log(Level.SEVERE, null, ex);
@@ -54,7 +54,7 @@ public class TiedostonKirjoittaja {
         for (Kysymys kysymys : kysymykset) {
             writer.println(kysymys.getKysymysNykyisellaKielella());
             writer.println();
-            writer.println("    " + kysymys.getVastaukset().get(0));
+            writer.println("    " + kysymys.getVastaus());
             writer.println();
             writer.println();
         }
