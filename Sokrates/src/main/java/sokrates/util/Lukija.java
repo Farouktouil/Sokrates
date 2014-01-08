@@ -3,12 +3,16 @@ package sokrates.util;
 import java.util.Scanner;
 
 /**
- * Lukija vastaa käyttäjän syötteen lukemista.
+ * Lukija vastaa käyttäjän syötteen lukemista ja tulkitsemisesta haluttuun
+ * muotoon.
  *
  * @author Teo
  */
 public class Lukija {
 
+    /**
+     * Lukijaan kapseloitu Scanner-olio.
+     */
     private Scanner lukija;
 
     /**
@@ -30,8 +34,8 @@ public class Lukija {
     }
 
     /**
-     * Metodi tulostaa kysymyksen (tai lauseen), johon käyttäjän antama vastaus
-     * toimii edellisen metodin tapaan palautettavana merkkijonona.
+     * Metodi tulostaa merkkijonon (kysymys tai lause), johon käyttäjän antama
+     * vastaus toimii edellisen metodin tapaan palautettavana merkkijonona.
      *
      * @param kysymys Tulostettava kysymys
      * @return Käyttäjän (tulostetun kysymyksen perään) kirjoittama rivi.
@@ -53,7 +57,7 @@ public class Lukija {
 
     /**
      * Metodi tulostaa kysymyksen, johon käyttäjän antama vastaus tulkitaan
-     * merkkijonosta kokonaisluvuksi ja palautetaan kokonaisluku.
+     * kokonaisluvuksi ja palautetaan kokonaisluku.
      *
      * @param kysymys Käyttäjälle tulostettava kysymys.
      * @return Käyttäjän (tulostetun kysymyksen perään) kirjoittama rivi
@@ -69,9 +73,5 @@ public class Lukija {
 //        }
 
         return Integer.parseInt(lukija.nextLine());
-    }
-
-    public int tulkitseKokonaisluvuksi(String syote) {
-        return Integer.parseInt(syote);
     }
 }

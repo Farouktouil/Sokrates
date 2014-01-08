@@ -19,7 +19,7 @@ public class LisaaKysely extends Komento {
      * Komento suoritettaessa käyttäjä laitetaan valitsemaan lisättävälle
      * kyselylle epätyhjä nimi tai tivataan uudestaan.
      *
-     * Epätyhjä nimi (vihdoin jos onnekkaasti on saatu niin) käytetään nimenä
+     * Epätyhjää nimeä (vihdoin jos onnekkaasti on saatu niin) käytetään nimenä
      * KyselyHallintaan lisättävälle kyselylle, ja ilmoitetaan käyttäjälle että
      * hänen antamansa niminen kysely on lisätty.
      *
@@ -30,8 +30,7 @@ public class LisaaKysely extends Komento {
         while (true) {
             String lisattavanKyselynNimi = lukija.lueMerkkijono(Tulostamo.annaKyselylleNimi());
 
-            // tämä olisi kiva voida tehdä lyhyemminkin
-            if (this.hallinta.onkoTamanNiminenKyselyOlemassa(lisattavanKyselynNimi)) {
+            if (!(this.hallinta.haeKyselyNimenPerusteella(lisattavanKyselynNimi) == null)) {
                 System.out.println(Tulostamo.tamanNiminenKyselyOnJoOlemassa(lisattavanKyselynNimi));
                 return true;
             }

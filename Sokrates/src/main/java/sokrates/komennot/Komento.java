@@ -15,7 +15,7 @@ import sokrates.util.Lukija;
  * selitteelle.
  *
  * Lisäksi jotkin Komennon aliluokat kutsuvat Komennon metodia
- * kayttajanValitsemaKysely(), joka on sekin täällä copypasten välttämiseksi,
+ * kayttajanOsoittamaKysely(), joka on sekin täällä copypasten välttämiseksi,
  * sillä moni komento vaatii käyttäjää valitsemaan yhden KyselyHallinnan
  * muistamista kyselyistä.
  *
@@ -27,23 +27,40 @@ import sokrates.util.Lukija;
  */
 public abstract class Komento {
 
+    /**
+     * Jokainen komento muistaa lukijan, vaikka ihan jokainen ei sitä
+     * tarvitsisikaan.
+     */
     protected Lukija lukija;
+    /**
+     * Jokaisella komennolla on nimi, jonka hyödyntämistapa näkyy Sovelluksen
+     * puolella.
+     */
     private String nimi;
+    /**
+     * Jokainen komento muistaa selitteensä kaikilla kielillä.
+     */
     private HashMap<Kieli, String> seliteKaikillaKielilla;
+    /**
+     * Jokainen komento muistaa KyselyHallinnan, vaikka ihan jokainen ei sitä
+     * tarvitsisikaan.
+     */
     protected KyselyHallinta hallinta;
 
     /**
      * Selkeyden vuoksi _jokainen_ komento muistaa Lukijan ja KyselyHallinnan,
      * vaikka joka ikinen komento ei niitä tarvitsisikaan.
      *
-     * Jokaisella komennolla on nimi ja selite. Sovelluksen puolelta nähdään,
-     * että nimi on oikeastaan numero, mutta koodin puolesta myös esimerkiksi
-     * kirjaimella käynnistettäviä komentoja voisi helposti lisätä.
+     * Jokaisella komennolla on nimi ja selite.
      *
      * @param lukija Lukija
      * @param hallinta KyselyHallinta
-     * @param nimi Komennolle luotaessa annettu nimi (käytännössä yksi numero)
-     * @param selite Käyttäjälle tulostettava kuvaus siitä, mitä komento tekee
+     * @param nimi Komennolle luotaessa annettu nimi (käytännössä yksi numero
+     * tai kirjain)
+     * @param seliteSuomeksi Käyttäjälle tulostettava kuvaus siitä, mitä komento
+     * tekee, suomeksi
+     * @param seliteEnglanniksi Käyttäjälle tulostettava kuvaus siitä, mitä
+     * komento tekee, englanniksi
      */
     public Komento(Lukija lukija, KyselyHallinta hallinta, String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
         this.lukija = lukija;
@@ -58,28 +75,28 @@ public abstract class Komento {
         return this.nimi;
     }
 
+    /**
+     * @return Komennon selite nykyisellä kielellä, joka haetaan Asetuksista
+     * kutsumalla metodia getKieli()
+     */
     public String getSelite() {
         return this.seliteKaikillaKielilla.get(Asetukset.getKieli());
     }
 
     /**
      * Metodia hyödyntää useampikin Komennon aliluokka eli käyttäjän kutsuma
-     * erityiskomento. Tässä pääpiirteittäin tulostetaan KyselyHallinnan
-     * nimiTaulukosta saadut KyselyHallinnan muistamien kyselyjen nimet, joista
-     * käyttäjä laitetaan syötteenlukuloopilla valitsemaan yksi.
+     * erityiskomento.
      *
-     * Syötteenlukulooppi muistuttaa Sovelluksen käyttämää looppia, mutta
-     * käyttää Lukijan metodia lueKokonaisLuku(String kysymys). Looppi katkeaa
-     * jos ja vain jos käyttäjän syöte on myös avaimena KyselyHallinnan
-     * nimiTaulukossa (jolloin syötettä vastaa jokin kysely).
+     * Jos hallinnan mukaan kyselyjä on 0, tulostetaan valittelu ja palautetaan
+     * null. Muuten tulostutetaan toisella metodilla kyselyvaihtoehdot.
      *
-     * Syötettä vastaavalla avaimella saadaan nimiTaulukosta kyselyn nimi, jolla
-     * KyselyHallinnasta haetaan itse palautettava kysely.
+     * Syötteenlukuloopilla annetaan käyttäjälle mahdollisuus peruuttaa
+     * valinnasta tai valita jokin listatuista kyselyistä. Jos käyttäjän syöte
+     * (kokonaislukuna) vastaa hallinnan kyselyissä jotain sellaista indeksiä,
+     * jota vastaa epätyhjä arvo (kysely), niin getataan tuo kysely tämän
+     * metodin palauttamaksi kyselyksi, eli käyttäjän valitsemaksi kyselyksi.
      *
-     * Näin siis käyttäjältä kokonaislukua tivaamalla saadaan lopulta käyttäjä
-     * valitsemaan jokin kysely.
-     *
-     * @return Valittu kysely
+     * @return Valittu kysely (tai null)
      */
     public Kysely kayttajanOsoittamaKysely() {
         Kysely kysely = null;
@@ -99,11 +116,10 @@ public abstract class Komento {
                 break;
             }
 
-            int syoteLuku = lukija.tulkitseKokonaisluvuksi(syoteTeksti);
+            int syoteLuku = lukija.lueKokonaisluku(syoteTeksti);
 
             if (!(this.hallinta.getKyselyt().get(syoteLuku) == null)) {
-                String valitunKyselynNimi = this.hallinta.getKyselyt().get(syoteLuku).getNimi();
-                kysely = this.hallinta.haeKyselyNimenPerusteella(valitunKyselynNimi);
+                kysely = this.hallinta.getKyselyt().get(syoteLuku);
                 break;
             }
         }
@@ -111,6 +127,10 @@ public abstract class Komento {
         return kysely;
     }
 
+    /**
+     * Metodi tulostaa jokaisen hallinnan muistaman kyselyn indekseineen sekä
+     * peruutusvaihtoehdon.
+     */
     private void tulostaKyselyVaihtoehdot() {
         for (int i = 0; i < this.hallinta.getKyselyt().size(); i++) {
             System.out.println("  " + i + " " + this.hallinta.getKyselyt().get(i).getNimi());

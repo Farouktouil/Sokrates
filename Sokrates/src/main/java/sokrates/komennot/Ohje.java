@@ -12,6 +12,9 @@ import sokrates.util.Lukija;
  */
 public class Ohje extends Komento {
 
+    /**
+     * Sovelluksen luomat komennot
+     */
     private Collection<Komento> komennot;
 
     public Ohje(Lukija lukija, KyselyHallinta hallinta, String nimi, String seliteSuomeksi, String seliteEnglanniksi, Collection<Komento> komennot) {

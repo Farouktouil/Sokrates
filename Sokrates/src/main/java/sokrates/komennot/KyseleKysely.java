@@ -9,9 +9,9 @@ import sokrates.tiedostonkasittely.TiedostonKirjoittaja;
 import sokrates.util.Lukija;
 
 /**
- * Komento KyseleKysely tulostaa käyttäjälle KyselyHallinnassa oletuskyselynä
- * olevan kyselyn sisältämät kysymykset yksi kerrallaan, ja välissä jokaiseen
- * kysymykseen liitetään käyttäjän antama vastaus.
+ * Komento KyseleKysely tulostaa käyttäjälle tämän valitseman kyselyn kysymykset
+ * yksi kerrallaan, niin että välissä jokaiseen kysymykseen liitetään käyttäjän
+ * antama vastaus.
  *
  * Lopuksi käsketään komennon (konstruktorikutsun yhteydessään luomaa ja)
  * muistamaa TiedostonKirjoittajaa luomaan tekstitiedosto äsken kysytyistä
@@ -21,17 +21,24 @@ import sokrates.util.Lukija;
  */
 public class KyseleKysely extends Komento {
 
+    /**
+     * Luokkaan KyseleKysely kapseloitu tiedostonkirjoittaja
+     */
     private TiedostonKirjoittaja tk;
 
+    /**
+     * Konstruktori luo tiedostonkirjoittajan
+     */
     public KyseleKysely(Lukija lukija, KyselyHallinta hallinta, String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
         super(lukija, hallinta, nimi, seliteSuomeksi, seliteEnglanniksi);
         this.tk = new TiedostonKirjoittaja();
     }
 
     /**
-     * Kun KyseleKysely suoritetaan, poimitaan hallinnasta nykyisen
-     * oletuskyselyn kysymykset ArrayListiksi. Jos lista on epätyhjä,
-     * kysellään() kysymykset nykyisen esimerkkiasetuksen kanssa.
+     * Kun KyseleKysely suoritetaan, poimitaan käyttäjän valitseman kyselyn
+     * kysymykset ArrayListiksi, joka jos epätyhjä niin kysellään toisen metodin
+     * avulla. Lopuksi tulostetaan ilmoitus siitä, että kysely on valmis ja
+     * mistä tekstitiedosto löytyy.
      *
      * @return true Jotta Sovelluksen komentolooppi voisi jatkua
      */
@@ -58,6 +65,19 @@ public class KyseleKysely extends Komento {
         return true;
     }
 
+    /**
+     * Metodi tulostaa kunkin kysymyksen Asetusten nykyisellä kielellä.
+     * Esimerkkivastaus tulostetaan joss examples = true.
+     *
+     * Jokaiseen kysymykseen liitetään käyttäjän vastaus.
+     *
+     * Lopuksi kutstutaan TiedostonKirjoittajan metodia luoTiedosto parametrina
+     * käytetty kysymyslista.
+     *
+     * @param lukija Lukija
+     * @param examples Tulostetaanko esimerkkivastauksia kyllä/ei = true/false
+     * @param kysymykset Lista kyseltävistä kysymyksistä
+     */
     private void kysele(Lukija lukija, boolean examples, ArrayList<Kysymys> kysymykset) {
         for (Kysymys kysymys : kysymykset) {
             System.out.println(kysymys.getKysymysNykyisellaKielella());

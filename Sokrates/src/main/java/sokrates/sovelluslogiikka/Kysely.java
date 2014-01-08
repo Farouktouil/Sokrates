@@ -11,12 +11,18 @@ import java.util.ArrayList;
  */
 public class Kysely {
 
+    /**
+     * Kyselyyn kapseloitu lista kysymyksiä
+     */
     private ArrayList<Kysymys> kysymykset;
+    /**
+     * Kyselyn nimi
+     */
     private String nimi;
 
     /**
-     * Metodi luo kyselyn ja asettaa tämän nimeksi parametrina saadun
-     * merkkijonon
+     * Konstruktori luo kyselyn ja asettaa tämän muistamaksi nimekseen
+     * parametrina saadun merkkijonon.
      *
      * @param nimi Kyselylle annettava nimi
      */
@@ -26,7 +32,7 @@ public class Kysely {
     }
 
     /**
-     * Metodi palauttaa nimen joka kyselylle tätä luodessa annettiin
+     * Metodi palauttaa nimen joka kyselylle tätä luodessa annettiin.
      *
      * @return Kyselylle annettu nimi
      */
@@ -35,8 +41,8 @@ public class Kysely {
     }
 
     /**
-     * Metodi lisää parametrina saadun kysymyksen kysymyksiin jos ja vain jos
-     * kysymystä ei löydy listasta jo ennestään
+     * Metodi lisää parametrina saadun kysymyksen kysymyksiin joss kysymystä ei
+     * löydy listasta jo ennestään
      *
      * @param kysymys Kyselyyn lisättävä kysymys
      */

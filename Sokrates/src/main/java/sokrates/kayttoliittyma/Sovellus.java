@@ -9,7 +9,7 @@ import sokrates.util.Lukija;
  * Sovellus toimii ohjelman käyttöliittymänä ja rakennuspaikkana.
  *
  * Sovellus luo ja muistaa Lukijan, komennot, ohjeen ja KyselyHallinnan sekä luo
- * ongelmanratkaisu(n/t).
+ * kyselyt.
  *
  * Sovellus myös lukee käyttäjän syötettä ja suorituttaa komentoja tämän
  * pohjalta. Ohjelma päättyy kun Sovelluksen suorita()-metodin
@@ -44,9 +44,7 @@ public class Sovellus {
      * Sovellus myös luo kaikki komennot ja lisää ne muistamaansa
      * komennot-TreeMapiin.
      *
-     * Lisäksi Sovellus luo kyselyn joka asetetaan KyselyHallinnan
-     * oletuskyselyksi (ongelmanratkaisu) ja (ainakin toistaiseksi) toisenkin
-     * kyselyn (päiväkirja).
+     * Luo myös kyselyt.
      */
     public Sovellus() {
         this.lukija = new Lukija();
@@ -66,8 +64,8 @@ public class Sovellus {
      * Komennon ollessa tyhjä (eli kai pakostikin pelkkä enterin painallus)
      * tulostetaan uudelleen sallitut komennot.
      *
-     * Kuuntelulooppi jatkuu jos ja vain jos komento palauttaa true. false
-     * palautuu vain kun on suoritettu komento Lopeta.
+     * Kuuntelulooppi jatkuu jos ja vain jos komento palauttaa true eli
+     * käytännössä kunnes suoritetaan komento Lopeta.
      */
     public void suorita() {
         System.out.print("Tervetuloa kyselyohjelmaan. ");
@@ -108,7 +106,7 @@ public class Sovellus {
     /**
      * Metodi laittaa Sovelluksen komentotaulukkoon kunkin luodun komennon,
      * avaimenaan kyseisen komennon muistama nimi (käytännössä usein tai aina
-     * yksittäinen numero).
+     * yksittäinen numero tai kirjain).
      *
      * @param komento Parametrina saatu komento joka taulukkoon nimineen
      * lisätään.
@@ -117,6 +115,13 @@ public class Sovellus {
         this.komennot.put(komento.getNimi(), komento);
     }
 
+    /**
+     * Metodi luo ohjelman mukana tulevan kyselyn nimeltä 'ongelmanratkaisu'
+     * KyselyHallintaan. Ensin luodaan kysely ja sitten kysymykset, jotka sitten
+     * lisätään kyselyyn.
+     *
+     * @return Luotu kysely
+     */
     private Kysely luoOngelmanRatkaisuKysely() {
         this.hallinta.lisaaKysely("ongelmanratkaisu");
         Kysely ongelmanratkaisu = this.hallinta.haeKyselyNimenPerusteella("ongelmanratkaisu");
@@ -170,6 +175,13 @@ public class Sovellus {
         return ongelmanratkaisu;
     }
 
+    /**
+     * Metodi luo ohjelman mukana tulevan kyselyn nimeltä 'päiväkirja'
+     * KyselyHallintaan. Ensin luodaan kysely ja sitten kysymykset, jotka sitten
+     * lisätään kyselyyn.
+     *
+     * @return Luotu kysely
+     */
     private void luoPaivaKirjaKysely() {
         this.hallinta.lisaaKysely("päiväkirja");
         Kysely paivakirja = hallinta.haeKyselyNimenPerusteella("päiväkirja");

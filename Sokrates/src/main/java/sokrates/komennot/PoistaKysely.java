@@ -19,7 +19,9 @@ public class PoistaKysely extends Komento {
 
     /**
      * Poistettavan kyselyn valitseminen tapahtuu kutsumalla Komento-luokan
-     * kayttajanOsoittamaKysely()-metodia.
+     * kayttajanOsoittamaKysely()-metodia. Joss valinta ei ole null, poistetaan
+     * kysely KyselyHallinnasta ja tulostetaan käyttäjälle tieto siitä, minkä
+     * niminen kysely on poistettu.
      *
      * @return true jotta Sovelluksen komentolooppi voi jatkua.
      */
@@ -34,7 +36,6 @@ public class PoistaKysely extends Komento {
             String poistettavanKyselynNimi = poistettavaKysely.getNimi();
             this.hallinta.poistaKysely(poistettavaKysely);
             System.out.println(Tulostamo.poistettuKyselyNimelta(poistettavanKyselynNimi));
-
             System.out.println();
             return true;
         }

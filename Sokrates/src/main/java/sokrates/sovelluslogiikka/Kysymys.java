@@ -5,8 +5,8 @@ import java.util.HashMap;
 
 /**
  * Luokka Kysymys edustaa kysymyksiä. Kysymys on olemassa aina vähintään yhdellä
- * kielellä. Kysymys muistaa listan kysymyksestä kaikilla kielillä, ja listaan
- * voidaan lisätä kysymyksen erikielisiä muotoiluja. Kysymys muistaa
+ * kielellä. Kysymys muistaa listan kysymyksestä kaikilla eri kielillä, ja
+ * listaan voidaan lisätä kysymyksen erikielisiä muotoiluja. Kysymys muistaa
  * esimerkkivastauksensa (ainakin toistaiseksi vain yhdellä kielellä) ja listan
  * vastauksista joita se on saanut (toistaiseksi 1 per kysymys, mutta pidetään
  * avoimena mahdollisuus vastata useasti samaan kysymykseen).
@@ -15,8 +15,19 @@ import java.util.HashMap;
  */
 public class Kysymys {
 
+    /**
+     * Kysymys kaikilla eri kielillä, avaimena kieli ja arvona muotoilu
+     * merkkijonona.
+     */
     private HashMap<Kieli, String> kysymysKaikillaKielilla;
+    /**
+     * Lista kysymykseen saaduista vastauksista merkkijonoina.
+     */
     private ArrayList<String> vastaukset;
+    /**
+     * Kysymyksen esimerkkivastaus (tällä hetkellä riippumaton kielistä; vain
+     * yksi per kysymys).
+     */
     private String esimerkkivastaus;
 
     /**
@@ -40,7 +51,7 @@ public class Kysymys {
     /**
      * Metodi lisää kysymyksen myös parametrina annetulla kielellä parametrina
      * annetussa muodossa (nimittäin kysymyksen muistamaan HashMapiin
-     * kysymysKaikillaKielillä).
+     * kysymysKaikillaKielillä), joss kieli on aiemmin tuntematon.
      *
      * @param kieli
      * @param kysymys
@@ -59,14 +70,27 @@ public class Kysymys {
         return this.esimerkkivastaus;
     }
 
+    /**
+     * Metodi lisää parametrina saadun merkkijonon vastaukseksi kysymykseen.
+     *
+     * @param vastaus Lisättävä vastaus
+     */
     public void lisaaVastaus(String vastaus) {
         this.vastaukset.add(vastaus);
     }
 
+    /**
+     * Metodi palauttaa merkkijonolistan kysymyksen vastauksista.
+     *
+     * @return Kysymykseen lisätyt vastaukset merkkijonolistana.
+     */
     public ArrayList<String> getVastaukset() {
         return this.vastaukset;
     }
 
+    /**
+     * @return Kysymyksen muistama taulukko muotoilustaan kaikilla kielillä.
+     */
     public HashMap<Kieli, String> getKysymysKaikillaKielilla() {
         return this.kysymysKaikillaKielilla;
     }

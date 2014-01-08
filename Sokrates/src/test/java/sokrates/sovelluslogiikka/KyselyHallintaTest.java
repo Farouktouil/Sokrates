@@ -47,6 +47,15 @@ public class KyselyHallintaTest {
     }
 
     @Test
+    public void KyselynLisaamisenJaPoistamisenJalkeenHallinnassaEiOleKyselyita() {
+        hallinta.lisaaKysely("ongelmanratkaisu");
+        Kysely ongelmanratkaisu = hallinta.haeKyselyNimenPerusteella("ongelmanratkaisu");
+        hallinta.poistaKysely(ongelmanratkaisu);
+
+        assertEquals(0, hallinta.getKyselyt().size());
+    }
+
+    @Test
     public void getExamplesPalauttaaAluksiTrue() {
         assertTrue(hallinta.getExamples());
     }

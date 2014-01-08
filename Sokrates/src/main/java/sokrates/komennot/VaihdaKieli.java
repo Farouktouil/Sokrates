@@ -13,6 +13,10 @@ import sokrates.util.Lukija;
  */
 public class VaihdaKieli extends Komento {
 
+    /**
+     * VaihdaKieli muistaa ohjeen, joka suoritetaan heti kielen vaihduttua,
+     * jotta käyttäjä saa heti tietoonsa komennot uudella kielellä.
+     */
     private Komento ohje;
 
     public VaihdaKieli(Lukija lukija, KyselyHallinta hallinta, Komento ohje, String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
@@ -24,6 +28,9 @@ public class VaihdaKieli extends Komento {
      * Komennon suorittaminen asettaa kieleksi ENGLANTI jos se oli SUOMI ja
      * vastaavasti SUOMI jos se oli ENGLANTI. Uusi voimaan tullut asetus
      * tulostetaan käyttäjälle tiedoksi.
+     *
+     * Suoritetaan Ohje jotta käyttäjä saisi tietoonsa komennot uudella
+     * kielellä.
      *
      * @return true jotta Sovelluksen kyselylooppi voi jatkua.
      */

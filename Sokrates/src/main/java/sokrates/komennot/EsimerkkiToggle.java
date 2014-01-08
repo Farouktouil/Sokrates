@@ -20,8 +20,7 @@ public class EsimerkkiToggle extends Komento {
     /**
      * Komennon suorittaminen muuttaa KyselyHallinnan examples-booleanin
      * falseksi jos se oli true ja vastaavasti trueksi jos se oli false.
-     * Asetuksen uusi tila tulostetaan käyttäjälle mieltärauhoittavaksi
-     * tiedoksi.
+     * Asetuksen uusi tila tulostetaan käyttäjälle tiedoksi.
      *
      * @return true jotta Sovelluksen looppi saa jatkua.
      */

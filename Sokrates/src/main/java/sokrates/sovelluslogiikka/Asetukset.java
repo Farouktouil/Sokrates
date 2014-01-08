@@ -11,7 +11,8 @@ public class Asetukset {
 
     /**
      * Ohjelman tämänhetkinen kieli, joka vaikuttaa siihen missä muodossa
-     * esitetään kysymys, joka on olemassa esim. sekä suomeksi että englanniksi.
+     * esitetään kysymys, joka on olemassa esim. sekä suomeksi että englanniksi,
+     * ja missä muodossa esitetään tekstikäyttöliittymän tulosteet.
      */
     public static Kieli kieli = Kieli.SUOMI;
 

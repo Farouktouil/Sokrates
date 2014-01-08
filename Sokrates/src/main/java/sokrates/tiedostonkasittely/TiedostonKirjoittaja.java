@@ -42,6 +42,14 @@ public class TiedostonKirjoittaja {
         kirjoitaKysymyksetVastauksineenLuotuunTiedostoon(writer, kysymykset);
     }
 
+    /**
+     * Metodi kirjoittaa luotuun tekstitiedostoon jokaisen kysymyksen ja sen
+     * ensimmäisen vastauksen sopivin rivinvaihdoin.
+     *
+     * @param writer Kirjoittaja
+     * @param kysymykset Lista kirjoitettavista kysymyksistä, jotka muistavat
+     * vastauksensa.
+     */
     private void kirjoitaKysymyksetVastauksineenLuotuunTiedostoon(PrintWriter writer, ArrayList<Kysymys> kysymykset) {
         for (Kysymys kysymys : kysymykset) {
             writer.println(kysymys.getKysymysNykyisellaKielella());

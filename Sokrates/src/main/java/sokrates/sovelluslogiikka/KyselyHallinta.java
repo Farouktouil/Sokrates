@@ -3,11 +3,9 @@ package sokrates.sovelluslogiikka;
 import java.util.ArrayList;
 
 /**
- * Luokka KyselyHallinta pitää sisällään listan kyselyistä, oletuskyselyn sekä
+ * Luokka KyselyHallinta pitää sisällään listan kyselyistä sekä
  * esimerkkiasetuksen. KyselyHallinta vastaa sovelluslogiikan ja muiden
- * pakkausten yhteistyöstä. ======= Luokka KyselyHallinta pitää sisällään listan
- * kyselyistä, oletuskyselyn sekä esimerkkiasetuksen. KyselyHallinta vastaa
- * sovelluslogiikan ja muiden pakkausten yhteistyöstä.
+ * pakkausten yhteistyöstä.
  *
  * @author Teo
  */
@@ -21,13 +19,11 @@ public class KyselyHallinta {
      * KyselyHallintaan kapseloitu esimerkkiasetus, jonka mukaan joko näytetään
      * tai jätetään näyttämättä kysymykseen liittyvä esimerkkivastaus, kun
      * kysymyksiä tulostetaan käyttäjälle.
-     *
      */
     private boolean examples;
 
     /**
-     * Metodi luo uuden KyselyHallinnan, jolle luodaan ArrayList kyselyistä,
-     * TreeMap kyselyiden nimistä, oletusarvoisesti null oletuskysely sekä
+     * Metodi luo uuden KyselyHallinnan, jolle luodaan ArrayList kyselyistä sekä
      * oletusarvoisesti true esimerkkiennäyttämisasetus.
      */
     public KyselyHallinta() {
@@ -36,15 +32,13 @@ public class KyselyHallinta {
     }
 
     /**
-     * Joss nimiTaulukosta ei löydy parametrina annettua nimeä, niin kyselyihin
-     * luodaan uusi kysely sillä nimellä ja nimiTaulukkoon lisätään kyseinen
-     * nimi avaimenaan kyselyiden koko (eli lukumäärä). Avain on siis
-     * järjestysnumero.
+     * KyselyHallinnan muistamiin kyselyihin lisätään parametrina annetun
+     * niminen uusi kysely, joss sellaista ei löydy sieltä jo ennestään.
      *
      * @param nimi Kyselylle annettava nimi.
      */
     public void lisaaKysely(String nimi) {
-        if (!onkoTamanNiminenKyselyOlemassa(nimi)) {
+        if (haeKyselyNimenPerusteella(nimi) == null) {
             this.kyselyt.add(new Kysely(nimi));
         }
     }
@@ -52,28 +46,18 @@ public class KyselyHallinta {
     /**
      * Metodi poistaa kyselylistasta parametrina saadun kyselyn.
      *
-     * Metodi käy sitten läpi nimiTaulukon avaimet ja poistaa nimiTaulukosta
-     * sellaisen avaimen, jota vastaava kyselyn nimi on sama kuin parametrina
-     * saatu poistettavan kyselyn nimi.
-     *
      * @param poistettavaKysely Kysely joka halutaan poistaa
-     * @param poistettavanKyselynNimi Nimi kyselyn joka halutaan poistaa
      */
     public void poistaKysely(Kysely poistettavaKysely) {
         this.kyselyt.remove(poistettavaKysely);
     }
 
     /**
-     * Jos nimiTaulukko tuntee nimen, käydään läpi kyselyt ja palautetaan kysely
-     * jolla on sama nimi.
+     * Metodi palauttaa null jos parametrina saadun nimistä kyselyä ei löydy, ja
+     * itse kyselyn jos löytyy.
      *
-     * Jos nimiTaulukko ei tunne nimeä, palautetaan null.
-     *
-     * @param nimi Nimi jota vastaavaa kyselyä kaivataan.
-     *
-     * @return kysely jonka nimi on sama kuin annettu hakusana.
-     *
-     * @return null jos nimiTaulukko ei tunne nimeä.
+     * @param nimi Nimi jonka perusteella kyselyä haetaan.
+     * @return
      */
     public Kysely haeKyselyNimenPerusteella(String nimi) {
         Kysely loydettyKysely = null;
@@ -91,22 +75,6 @@ public class KyselyHallinta {
      */
     public ArrayList<Kysely> getKyselyt() {
         return this.kyselyt;
-    }
-
-    /**
-     * Metodi palauttaa true jos parametrina saadun merkkijonon niminen kysely
-     * on olemassa, false jos ei.
-     *
-     * @param nimi jota vastaavan kyselyn olemassaoloa tutkitaan
-     * @return
-     */
-    public boolean onkoTamanNiminenKyselyOlemassa(String nimi) {
-        for (Kysely kysely : this.kyselyt) {
-            if (kysely.getNimi().equals(nimi)) {
-                return true;
-            }
-        }
-        return false;
     }
 
     public boolean getExamples() {
