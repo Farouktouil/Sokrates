@@ -165,9 +165,9 @@ public class Tulostamo {
      */
     public static String kyselyssaEiOleYhtaanKysymysta() {
         if (Asetukset.getKieli() == Kieli.SUOMI) {
-            return "Kyselyssä ei ole yhtään kysymystä. Voit lisätä kysymyksiä komennolla 3\n";
+            return "Kyselyssä ei ole yhtään kysymystä. Voit lisätä kysymyksiä komennolla 3.\n";
         }
-        return "The inquiry has no questions in it. You can add questions with command 3\n";
+        return "The inquiry has no questions in it. You can add questions with command 3.\n";
     }
 
     /**

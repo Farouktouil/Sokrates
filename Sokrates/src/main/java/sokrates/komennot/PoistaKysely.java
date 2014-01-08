@@ -13,8 +13,11 @@ import sokrates.util.Lukija;
  */
 public class PoistaKysely extends Komento {
 
-    public PoistaKysely(Lukija lukija, KyselyHallinta hallinta, String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
+    private Komento ohje;
+
+    public PoistaKysely(Lukija lukija, KyselyHallinta hallinta, Komento ohje, String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
         super(lukija, hallinta, nimi, seliteSuomeksi, seliteEnglanniksi);
+        this.ohje = ohje;
     }
 
     /**
@@ -31,13 +34,13 @@ public class PoistaKysely extends Komento {
         Kysely poistettavaKysely = super.kayttajanOsoittamaKysely();
 
         if (poistettavaKysely == null) {
-            return true;
+            return ohje.suorita();
         } else {
             String poistettavanKyselynNimi = poistettavaKysely.getNimi();
             this.hallinta.poistaKysely(poistettavaKysely);
             System.out.println(Tulostamo.poistettuKyselyNimelta(poistettavanKyselynNimi));
             System.out.println();
-            return true;
+            return ohje.suorita();
         }
     }
 }

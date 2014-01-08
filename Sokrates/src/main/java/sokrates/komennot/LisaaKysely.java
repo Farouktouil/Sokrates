@@ -10,9 +10,12 @@ import sokrates.util.Lukija;
  * @author Teo
  */
 public class LisaaKysely extends Komento {
+    
+        private Komento ohje;
 
-    public LisaaKysely(Lukija lukija, KyselyHallinta hallinta, String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
+    public LisaaKysely(Lukija lukija, KyselyHallinta hallinta, Komento ohje, String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
         super(lukija, hallinta, nimi, seliteSuomeksi, seliteEnglanniksi);
+        this.ohje = ohje;
     }
 
     /**
@@ -32,7 +35,7 @@ public class LisaaKysely extends Komento {
 
             if (!(this.hallinta.haeKyselyNimenPerusteella(lisattavanKyselynNimi) == null)) {
                 System.out.println(Tulostamo.tamanNiminenKyselyOnJoOlemassa(lisattavanKyselynNimi));
-                return true;
+                return ohje.suorita();
             }
             if (!lisattavanKyselynNimi.isEmpty()) {
                 this.hallinta.lisaaKysely(lisattavanKyselynNimi);
@@ -40,6 +43,6 @@ public class LisaaKysely extends Komento {
                 break;
             }
         }
-        return true;
+        return ohje.suorita();
     }
 }

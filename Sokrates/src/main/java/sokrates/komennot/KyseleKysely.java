@@ -25,13 +25,15 @@ public class KyseleKysely extends Komento {
      * Luokkaan KyseleKysely kapseloitu tiedostonkirjoittaja
      */
     private TiedostonKirjoittaja tk;
+    private Komento ohje;
 
     /**
      * Konstruktori luo tiedostonkirjoittajan
      */
-    public KyseleKysely(Lukija lukija, KyselyHallinta hallinta, String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
+    public KyseleKysely(Lukija lukija, KyselyHallinta hallinta, Komento ohje, String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
         super(lukija, hallinta, nimi, seliteSuomeksi, seliteEnglanniksi);
         this.tk = new TiedostonKirjoittaja();
+        this.ohje = ohje;
     }
 
     /**
@@ -48,21 +50,21 @@ public class KyseleKysely extends Komento {
         Kysely kyseltavaKysely = super.kayttajanOsoittamaKysely();
 
         if (kyseltavaKysely == null) {
-            return true;
+            return ohje.suorita();
         }
 
         ArrayList<Kysymys> kysymykset = kyseltavaKysely.getKysymykset();
 
         if (kysymykset.isEmpty()) {
             System.out.println(Tulostamo.kyselyssaEiOleYhtaanKysymysta());
-            return true;
+            return ohje.suorita();
         } else {
             boolean examples = hallinta.getExamples();
             kysele(lukija, examples, kysymykset);
         }
         String tekstitiedostonNimi = kysymykset.get(0).getVastaus();
         System.out.println(Tulostamo.kyselyOnValmis(tekstitiedostonNimi));
-        return true;
+        return ohje.suorita();
     }
 
     /**

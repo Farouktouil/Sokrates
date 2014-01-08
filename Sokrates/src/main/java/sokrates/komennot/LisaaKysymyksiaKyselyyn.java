@@ -14,9 +14,12 @@ import sokrates.util.Lukija;
  * @author Teo
  */
 public class LisaaKysymyksiaKyselyyn extends Komento {
+    
+        private Komento ohje;
 
-    public LisaaKysymyksiaKyselyyn(Lukija lukija, KyselyHallinta hallinta, String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
+    public LisaaKysymyksiaKyselyyn(Lukija lukija, KyselyHallinta hallinta, Komento ohje, String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
         super(lukija, hallinta, nimi, seliteSuomeksi, seliteEnglanniksi);
+        this.ohje = ohje;
     }
 
     @Override
@@ -24,7 +27,7 @@ public class LisaaKysymyksiaKyselyyn extends Komento {
         System.out.println(Tulostamo.valitseKohdeKysely());
         Kysely kohdeKysely = super.kayttajanOsoittamaKysely();
         lisaaKysymyksia(kohdeKysely);
-        return true;
+        return ohje.suorita();
     }
 
     /**
