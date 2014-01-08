@@ -31,35 +31,22 @@ public class Kysymys {
     private String esimerkkivastaus;
 
     /**
-     * Metodi luo uuden kysymyksen joka on olemassa vähintään parametrina
-     * annetulla kielellä, jolla sen muotoilu on parametrina annettu merkkijono.
-     * Kysymykseen luodaan HashMap<Kieli, String>, johon voidaan lisätä sama
-     * kysymys mahdollisesti muillakin kielillä, ja asetetaan sinne aluksi
-     * parametrina annettu kysymys parametrina annetulla kielellä.
+     * Metodi luo uuden kysymyksen parametrina saaduilla muotoiluilla suomeksi
+     * ja englanniksi. Esimerkkivastaus voidaan myös ottaa jo konstruktorissa
+     * tai sitten vasta erikseen myöhemmin.
      *
      * Luodaan myös ArrayList<String> kysymykseen saatuja vastauksia varten.
      *
-     * @param kieli
-     * @param kysymys
+     * @param kysymysSuomeksi Kysymyksen muotoilu suomeksi
+     * @param kysymysEnglanniksi Kysymyksen muotoilu englanniksi
+     * @param esimerkkiVastaus Kysymykseen liitettävä esimerkkivastaus
      */
-    public Kysymys(Kieli kieli, String kysymys) {
+    public Kysymys(String kysymysSuomeksi, String kysymysEnglanniksi, String esimerkkiVastaus) {
         this.kysymysKaikillaKielilla = new HashMap();
-        this.kysymysKaikillaKielilla.put(kieli, kysymys);
+        this.kysymysKaikillaKielilla.put(Kieli.SUOMI, kysymysSuomeksi);
+        this.kysymysKaikillaKielilla.put(Kieli.ENGLANTI, kysymysEnglanniksi);
+        this.setEsimerkkiVastaus(esimerkkiVastaus);
         this.vastaukset = new ArrayList();
-    }
-
-    /**
-     * Metodi lisää kysymyksen myös parametrina annetulla kielellä parametrina
-     * annetussa muodossa (nimittäin kysymyksen muistamaan HashMapiin
-     * kysymysKaikillaKielillä), joss kieli on aiemmin tuntematon.
-     *
-     * @param kieli
-     * @param kysymys
-     */
-    public void lisaaKysymysEriKielella(Kieli kieli, String kysymys) {
-        if (!this.kysymysKaikillaKielilla.containsKey(kieli)) {
-            this.kysymysKaikillaKielilla.put(kieli, kysymys);
-        }
     }
 
     public void setEsimerkkiVastaus(String esimerkkivastaus) {

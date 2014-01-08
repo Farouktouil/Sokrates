@@ -9,13 +9,10 @@ public class KyselyTest {
     private Kysely kysely;
     private Kysymys kysymys;
 
-    public KyselyTest() {
-    }
-
     @Before
     public void setUp() {
         this.kysely = new Kysely("");
-        this.kysymys = new Kysymys(Kieli.ENGLANTI, "Hello, world?");
+        this.kysymys = new Kysymys("Hei maailma?", "Hello, world?", null);
     }
 
     @Test

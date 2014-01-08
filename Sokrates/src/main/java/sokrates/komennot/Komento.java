@@ -116,7 +116,7 @@ public abstract class Komento {
                 break;
             }
 
-            int syoteLuku = lukija.lueKokonaisluku(syoteTeksti);
+            int syoteLuku = lukija.tulkitseKokonaisluvuksi(syoteTeksti);
 
             if (!(this.hallinta.getKyselyt().get(syoteLuku) == null)) {
                 kysely = this.hallinta.getKyselyt().get(syoteLuku);

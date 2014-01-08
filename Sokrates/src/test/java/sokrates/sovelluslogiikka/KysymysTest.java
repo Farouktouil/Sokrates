@@ -12,29 +12,8 @@ public class KysymysTest {
 
     @Before
     public void setUp() {
-        this.kysymys = new Kysymys(Kieli.ENGLANTI, "Hello, world?");
-        this.esimerkkivastaus = "Roger!";
+        this.kysymys = new Kysymys("Hei maailma?", "Hello, world?", null);
         this.vastaus = "Hello! -World";
-    }
-
-    @Test
-    public void YhdellaKielellaEksistoivaaKysymystaOnYksi() {
-        assertEquals(1, kysymys.getKysymysKaikillaKielilla().size());
-    }
-
-    @Test
-    public void KahdellaKielellaEksistoivaaKysymystaOnKaksi() {
-        String samaSuomeksi = "Hei, maailma?";
-        this.kysymys.lisaaKysymysEriKielella(Kieli.SUOMI, samaSuomeksi);
-
-        assertEquals(2, kysymys.getKysymysKaikillaKielilla().size());
-    }
-
-    @Test
-    public void KysymyksenLisaaminenUudestaanSamallaKielellaEiKasvataKysymystenMaaraa() {
-        this.kysymys.lisaaKysymysEriKielella(Kieli.ENGLANTI, "Hello??? WORLD!!!");
-
-        assertEquals(1, kysymys.getKysymysKaikillaKielilla().size());
     }
 
     @Test
@@ -44,7 +23,7 @@ public class KysymysTest {
 
     @Test
     public void EsimVastauksenLisaamisenJalkeenKysymyksellaOnEsimVastaus() {
-        this.kysymys.setEsimerkkiVastaus(esimerkkivastaus);
+        this.kysymys.setEsimerkkiVastaus("Roger!");
 
         assertTrue(!kysymys.getEsimerkkiVastaus().isEmpty());
     }
@@ -70,7 +49,7 @@ public class KysymysTest {
 
     @Test
     public void getKysymysNykyisellaKielellaPalauttaaKysymyksenSuomeksiKunKieliOnSuomi() {
-        Kysymys kysymys = new Kysymys(Kieli.SUOMI, "Hei, maailma?");
+        Kysymys kysymys = new Kysymys("Hei, maailma?", null, null);
         Asetukset.kieli = Kieli.SUOMI;
 
         assertEquals("Hei, maailma?", kysymys.getKysymysNykyisellaKielella());

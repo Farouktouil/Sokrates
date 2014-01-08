@@ -74,4 +74,8 @@ public class Lukija {
 
         return Integer.parseInt(lukija.nextLine());
     }
+    
+    public int tulkitseKokonaisluvuksi(String merkkiJono) {
+        return Integer.parseInt(merkkiJono);
+    }
 }
