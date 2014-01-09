@@ -46,42 +46,19 @@ public class Lukija {
     }
 
     /**
-     * Metodi tulkitsee käyttäjän kirjoittaman rivin kokonaisluvuksi ja
-     * palauttaa tuon kokonaisluvun.
-     *
-     * @return Käyttäjän kirjoittamasta rivistä tulkittu kokonaisluku.
-     */
-    public int lueKokonaisluku() {
-        return Integer.parseInt(lukija.nextLine());
-    }
-
-    /**
-     * Metodi tulostaa kysymyksen, johon käyttäjän antama vastaus tulkitaan
-     * kokonaisluvuksi ja palautetaan kokonaisluku.
-     *
-     * @param kysymys Käyttäjälle tulostettava kysymys.
-     * @return Käyttäjän (tulostetun kysymyksen perään) kirjoittama rivi
-     * tulkittuna kokonaisluvuksi.
-     */
-    public int lueKokonaisluku(String kysymys) {
-        System.out.print(kysymys);
-
-//        try {
-//            Integer.parseInt(lukija.nextLine());
-//        } catch (NumberFormatException ex) {
-//            
-//        }
-
-        return Integer.parseInt(lukija.nextLine());
-    }
-
-    /**
-     * Metodi tulkitsee kokonaisluvuksi parametrinaan saaman merkkijonon
+     * Metodi tulkitsee kokonaisluvuksi parametrina saamansa merkkijonon.
      *
      * @param merkkiJono Kokonaisluvuksi tulkittava merkkijono
      * @return Kokonaisluvuksi tulkittu merkkijono
      */
     public int tulkitseKokonaisluvuksi(String merkkiJono) {
-        return Integer.parseInt(merkkiJono);
+        int kokonaisLuku = -1;
+
+        try {
+            kokonaisLuku = Integer.parseInt(merkkiJono);
+        } catch (Exception eiLukuunnuKivasti) {
+        }
+
+        return kokonaisLuku;
     }
 }

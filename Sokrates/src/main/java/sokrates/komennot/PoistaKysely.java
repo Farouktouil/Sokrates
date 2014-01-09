@@ -33,14 +33,13 @@ public class PoistaKysely extends Komento {
         System.out.println(Tulostamo.valitsePoistettavaKysely());
         Kysely poistettavaKysely = super.kayttajanOsoittamaKysely();
 
-        if (poistettavaKysely == null) {
-            return ohje.suorita();
-        } else {
+        if (poistettavaKysely != null) {
             String poistettavanKyselynNimi = poistettavaKysely.getNimi();
             this.hallinta.poistaKysely(poistettavaKysely);
             System.out.println(Tulostamo.poistettuKyselyNimelta(poistettavanKyselynNimi));
             System.out.println();
-            return ohje.suorita();
         }
+
+        return ohje.suorita();
     }
 }

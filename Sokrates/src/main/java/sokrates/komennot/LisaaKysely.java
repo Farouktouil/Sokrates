@@ -10,8 +10,8 @@ import sokrates.util.Lukija;
  * @author Teo
  */
 public class LisaaKysely extends Komento {
-    
-        private Komento ohje;
+
+    private Komento ohje;
 
     public LisaaKysely(Lukija lukija, KyselyHallinta hallinta, Komento ohje, String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
         super(lukija, hallinta, nimi, seliteSuomeksi, seliteEnglanniksi);
@@ -33,16 +33,18 @@ public class LisaaKysely extends Komento {
         while (true) {
             String lisattavanKyselynNimi = lukija.lueMerkkijono(Tulostamo.annaKyselylleNimi());
 
-            if (!(this.hallinta.haeKyselyNimenPerusteella(lisattavanKyselynNimi) == null)) {
+            if (this.hallinta.haeKyselyNimenPerusteella(lisattavanKyselynNimi) != null) {
                 System.out.println(Tulostamo.tamanNiminenKyselyOnJoOlemassa(lisattavanKyselynNimi));
                 return ohje.suorita();
             }
+
             if (!lisattavanKyselynNimi.isEmpty()) {
                 this.hallinta.lisaaKysely(lisattavanKyselynNimi);
                 System.out.println(Tulostamo.lisattyKyselyNimelta(lisattavanKyselynNimi));
                 break;
             }
         }
+
         return ohje.suorita();
     }
 }

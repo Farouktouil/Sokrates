@@ -30,6 +30,7 @@ public class PoistaKysymyksiaKyselysta extends Komento {
         } else {
             poistaKysymyksia(kohdeKysely);
         }
+
         return ohje.suorita();
     }
 
@@ -41,9 +42,7 @@ public class PoistaKysymyksiaKyselysta extends Komento {
     private void poistaKysymyksia(Kysely kohdeKysely) {
         while (true) {
             System.out.println(Tulostamo.valitsePoistettavaKysymys());
-
             tulostaKysymysVaihtoehdot(kohdeKysely);
-
             String syoteTeksti = lukija.lueMerkkijono(Tulostamo.kysymys());
 
             if (syoteTeksti.equals("x")) {
@@ -53,13 +52,15 @@ public class PoistaKysymyksiaKyselysta extends Komento {
 
             int syoteLuku = lukija.tulkitseKokonaisluvuksi(syoteTeksti);
 
-            Kysymys poistettavaKysymys = kohdeKysely.getKysymykset().get(syoteLuku);
-            String kohdeKyselynNimi = kohdeKysely.getNimi();
+            if (kohdeKysely.getKysymystenIndeksiLista().contains(syoteLuku)) {
+                Kysymys poistettavaKysymys = kohdeKysely.getKysymykset().get(syoteLuku);
+                String kohdeKyselynNimi = kohdeKysely.getNimi();
 
-            if (!(poistettavaKysymys == null)) {
                 kohdeKysely.poistaKysymys(poistettavaKysymys);
                 System.out.println(Tulostamo.poistettuKysymys(kohdeKyselynNimi));
             }
+
+            System.out.println();
         }
     }
 

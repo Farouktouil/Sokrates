@@ -107,28 +107,7 @@ public abstract class Komento {
         }
 
         tulostaKyselyVaihtoehdot();
-
-        while (true) {
-            String syoteTeksti = lukija.lueMerkkijono(Tulostamo.kysely());
-            System.out.println();
-            
-            if (syoteTeksti == "") {
-                continue;
-            }
-
-            if (syoteTeksti.equals("x")) {
-                break;
-            }
-
-            int syoteLuku = lukija.tulkitseKokonaisluvuksi(syoteTeksti);
-
-            if (!(this.hallinta.getKyselyt().get(syoteLuku) == null)) {
-                kysely = this.hallinta.getKyselyt().get(syoteLuku);
-                break;
-            }
-        }
-
-        return kysely;
+        return loopataanKayttajaltaKysely(kysely);
     }
 
     /**
@@ -140,6 +119,27 @@ public abstract class Komento {
             System.out.println("  " + i + " = " + this.hallinta.getKyselyt().get(i).getNimi());
         }
         System.out.println("(x = " + Tulostamo.peruuta() + ")\n");
+    }
+
+    private Kysely loopataanKayttajaltaKysely(Kysely kysely) {
+        while (true) {
+            String syoteTeksti = lukija.lueMerkkijono(Tulostamo.kysely());
+
+            if (syoteTeksti.equals("x")) {
+                System.out.println();
+                break;
+            }
+
+            int syoteLuku = lukija.tulkitseKokonaisluvuksi(syoteTeksti);
+
+            if (this.hallinta.getKyselyidenIndeksiLista().contains(syoteLuku)) {
+                System.out.println();
+                kysely = this.hallinta.getKyselyt().get(syoteLuku);
+                break;
+            }
+        }
+
+        return kysely;
     }
 
     /**

@@ -14,8 +14,8 @@ import sokrates.util.Lukija;
  * @author Teo
  */
 public class LisaaKysymyksiaKyselyyn extends Komento {
-    
-        private Komento ohje;
+
+    private Komento ohje;
 
     public LisaaKysymyksiaKyselyyn(Lukija lukija, KyselyHallinta hallinta, Komento ohje, String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
         super(lukija, hallinta, nimi, seliteSuomeksi, seliteEnglanniksi);
@@ -26,7 +26,11 @@ public class LisaaKysymyksiaKyselyyn extends Komento {
     public boolean suorita() {
         System.out.println(Tulostamo.valitseKohdeKysely());
         Kysely kohdeKysely = super.kayttajanOsoittamaKysely();
-        lisaaKysymyksia(kohdeKysely);
+
+        if (kohdeKysely != null) {
+            lisaaKysymyksia(kohdeKysely);
+        }
+
         return ohje.suorita();
     }
 
@@ -40,13 +44,12 @@ public class LisaaKysymyksiaKyselyyn extends Komento {
     public void lisaaKysymyksia(Kysely kohdeKysely) {
         while (true) {
             String syote = lukija.lueMerkkijono(Tulostamo.vaihtoehdotKysymyksiaLisatessa(kohdeKysely.getNimi()));
-            if (syote.equals(null)) {
-                continue;
-            }
+
             if (syote.equals("x")) {
                 System.out.println();
                 break;
             }
+
             String kysymysSuomeksi = lukija.lueMerkkijono(Tulostamo.muotoileKysymysSuomeksi());
             String kysymysEnglanniksi = lukija.lueMerkkijono(Tulostamo.muotoileKysymysEnglanniksi());
             String esimerkkiVastaus = lukija.lueMerkkijono(Tulostamo.muotoileEsimerkkiVastaus());
