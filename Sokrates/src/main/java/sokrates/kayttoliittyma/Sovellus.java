@@ -125,43 +125,42 @@ public class Sovellus {
         this.hallinta.lisaaKysely("ongelmanratkaisu");
         Kysely ongelmanratkaisu = this.hallinta.haeKyselyNimenPerusteella("ongelmanratkaisu");
 
-        ongelmanratkaisu.lisaaKysymys(new Kysymys("Anna nimi ongelmalle (tämä tulee tekstitiedoston nimeksi):",
-                "Name a problem (this will be the name of the file):",
-                "PDF-tiedoston generointi"));
+//tietolähteitä, hakusanoja, kysymyksiä
+//ihmisiä, ongelmattomia, ratkaisseita, keskustelukumppaneita
+//toimintaa, askelia, mitä tahansa ainakin tehtävää
+//muuta
 
-        ongelmanratkaisu.lisaaKysymys(new Kysymys("Keillä tätä ongelmaa ei ole?",
-                "Who've solved or don't have the problem?",
-                "Varmaankin vastaavaa koodanneet"));
+        ongelmanratkaisu.lisaaKysymys(new Kysymys("nimeä ongelma (tämä tulee tekstitiedoston nimeksi):",
+                "name a problem (this will be the name of the file):",
+                "combining computing and ergonomy, exercise"));
 
-        ongelmanratkaisu.lisaaKysymys(new Kysymys("Kuvaile maailmaa tai tilannetta, jossa ongelmaa ei ole tai se on ratkaistu:",
-                "Describe a world or situation where the problem has been solved or doesn't exist:",
-                "Ratkaisun jälkeen tämä ohjelma generoi kyselyt vastauksineen PDF-muodossa =)"));
+        ongelmanratkaisu.lisaaKysymys(new Kysymys("aiheuttajat, juuret, oletukset, mihin perustuu",
+                "causes, roots, assumptions, what is it based on ",
+                "computing tends to be done sitting still, moving and posture might drain focus"));
 
-        ongelmanratkaisu.lisaaKysymys(new Kysymys("Kenelle voisi tai kannattaisi puhua? Mistä voisi löytää tietoa?",
-                "Who could or should you talk to? Where could you find information?",
-                "iText-kirjasto, Stack Overflow; ehkä iTextiä käyttäneitä jos löytäisi."));
+        ongelmanratkaisu.lisaaKysymys(new Kysymys("muuttujia, aspekteja, konsideraatioita, ali-/yli-/analogisia ongelmia, uhrauksia/vaihtokauppoja",
+                "variables, aspects, considerations, sub-/super-/analogous problems, sacrifices/trade-offs",
+                "focus, effort, futuristic input devices, ergonomy, (aerobic) health, time"));
 
-        ongelmanratkaisu.lisaaKysymys(new Kysymys("Mitä kysymyksiä tai hakusanoja ongelmaan liittyy?",
-                "What questions or keywords are relevant to the problem?",
-                "iText, Java PDF generate, How to create and write to a PDF file in java"));
+        ongelmanratkaisu.lisaaKysymys(new Kysymys("ihmisiä, ongelmattomia, ratkaisseita, eksperttejä, apua",
+                "people, anyone without the problem, anyone who has solved it, experts, help",
+                "maybe those with working standing desks or treadmill desks; ergonomists; anyone who doesn't mind and manages both well"));
 
-        ongelmanratkaisu.lisaaKysymys(new Kysymys("Mitä muuttujia ongelmaan liittyy? Huomaatko vaihtokauppoja (tasapainottelua, 'trade-offs')?",
-                "What variables are there? Are there trade-offs, can it be described as an optimization or balancing problem?",
-                "PDF olisi kiva, mutta voi osoittautua työlääksi. Lassi sanoi että korvaisi graafisen UI:n :^D"));
+        ongelmanratkaisu.lisaaKysymys(new Kysymys("kuvaile mahdollisia ratkaisuja",
+                "describe possible solutions",
+                "standing desk, treadmill desk, mobile computing (futuristic I/O), better time management"));
 
-        ongelmanratkaisu.lisaaKysymys(new Kysymys("Mitä (erityis/tutkimus)aloja ongelmaan liittyy?",
-                "What fields of expertise are relevant to the problem?",
-                "What fields of expertise are relevant to the problem?"));
+        ongelmanratkaisu.lisaaKysymys(new Kysymys("tietolähteitä, hakusanoja, kysymyksiä, aloja/kategorioita",
+                "information sources, tags and keywords, questions, fields/categories",
+                "online: ergonomy while using a computer, finding time for diverse movement, standing/treadmill desks"));
 
-        ongelmanratkaisu.lisaaKysymys(new Kysymys("Mihin ongelma perustuu? Mitä oletuksia voisi kyseenalaistaa?",
-                "What is the problem based on? What assumptions could be questioned?",
-                "En vielä tiedä miten saisin ohjelmani generoimaan PDF-tiedostoja, ja luulen että se saattaisi olla hankalaa."
-                + "Valmiilla kirjastolla näin yksinkertaisen tulostamisen saattaa kuitenkin voida tehdä yllättävän helposti."
-                + "Sikäli ainakin ongelman vaikeus on atm tuntematon."));
+        ongelmanratkaisu.lisaaKysymys(new Kysymys("mahdollisia toimenpiteitä, pieniä askelia, mitä ainakin voisi tehdä seuraavaksi",
+                "possible actions, small steps, what at least could be done next",
+                "search, talk, ask, try to implement something for a while, experiment and see what happens"));
 
-        ongelmanratkaisu.lisaaKysymys(new Kysymys("Mitä voisit yrittää ainakin ensimmäiseksi tehdä?",
-                "What are some first small steps that could be taken?",
-                "Googlettelua, lukemista, iText-kirjaston installaamista ja esimerkin kopiointia."));
+        ongelmanratkaisu.lisaaKysymys(new Kysymys("mitä tahansa muuta",
+                "anything else",
+                "treadmill desks could cost a lot, drain too much focus, take space and/or be noisy"));
     }
 
     /**
@@ -198,7 +197,11 @@ public class Sovellus {
 
         paivakirja.lisaaKysymys(new Kysymys("huominen",
                 "tomorrow",
-                "visit center during the day, maybe swimming in the evening. no dl :)"));
+                "visit city center during the day, maybe swimming in the evening. no dl :)"));
+
+        paivakirja.lisaaKysymys(new Kysymys("mitä tahansa muuta",
+                "anything else",
+                "forgot to mention that during lunch we met more new people as well"));
     }
 
     private void luoUnipaivakirjaKysely() {
@@ -232,5 +235,9 @@ public class Sovellus {
         unipaivakirja.lisaaKysymys(new Kysymys("vaikutteita?",
                 "influences?",
                 "books, movies, article read, discussion had, mood experienced, person or character"));
+
+        unipaivakirja.lisaaKysymys(new Kysymys("mitä tahansa muuta",
+                "anything else",
+                "right, the elephant was loyal but only to physicists"));
     }
 }
