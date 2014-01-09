@@ -64,4 +64,14 @@ public class Kysely {
     public ArrayList<Kysymys> getKysymykset() {
         return this.kysymykset;
     }
+
+    public ArrayList<Integer> getKysymystenIndeksiLista() {
+        ArrayList<Integer> kysymystenIndeksiLista = new ArrayList<>();
+
+        for (int i = 0; i < this.kysymykset.size(); i++) {
+            kysymystenIndeksiLista.add(i);
+        }
+
+        return kysymystenIndeksiLista;
+    }
 }

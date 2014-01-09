@@ -52,8 +52,9 @@ public class Sovellus {
         this.hallinta = new KyselyHallinta();
         this.ohje = new Ohje(lukija, hallinta, null, "Valitse komento:", "Pick a command:", komennot.values());
         luoKomennot(this.hallinta);
-        luoOngelmanRatkaisuKysely();
-        luoPaivaKirjaKysely();
+        luoOngelmanratkaisuKysely();
+        luoPaivakirjaKysely();
+        luoUnipaivakirjaKysely();
     }
 
     /**
@@ -120,7 +121,7 @@ public class Sovellus {
      * Metodi luo ohjelman mukana tulevan kyselyn nimeltä 'ongelmanratkaisu'
      * KyselyHallintaan.
      */
-    private void luoOngelmanRatkaisuKysely() {
+    private void luoOngelmanratkaisuKysely() {
         this.hallinta.lisaaKysely("ongelmanratkaisu");
         Kysely ongelmanratkaisu = this.hallinta.haeKyselyNimenPerusteella("ongelmanratkaisu");
 
@@ -167,16 +168,69 @@ public class Sovellus {
      * Metodi luo ohjelman mukana tulevan kyselyn nimeltä 'päiväkirja'
      * KyselyHallintaan.
      */
-    private void luoPaivaKirjaKysely() {
+    private void luoPaivakirjaKysely() {
         this.hallinta.lisaaKysely("päiväkirja");
         Kysely paivakirja = hallinta.haeKyselyNimenPerusteella("päiväkirja");
 
-        paivakirja.lisaaKysymys(new Kysymys("Anna nimi päivälle (tämä tulee tekstitiedoston nimeksi):",
-                "Name a day (this will be the name of the file):",
-                "2014-1-1"));
+        paivakirja.lisaaKysymys(new Kysymys("ajoita ja/tai nimeä päivä (tämä tulee tekstitiedoston nimeksi):",
+                "time and/or name a day (this will be the name of the file):",
+                "2014-1-1 post-new year"));
 
-        paivakirja.lisaaKysymys(new Kysymys("Miltä tuntuu?",
-                "How are you feeling?",
-                "Could be worse!"));
+        paivakirja.lisaaKysymys(new Kysymys("keitä tuttuja? keitä muita?",
+                "familiar beings? others?",
+                "met a new student with an old friend"));
+
+        paivakirja.lisaaKysymys(new Kysymys("missä olit?",
+                "where were you?",
+                "home, campus, friend, shop, movies, eating"));
+
+        paivakirja.lisaaKysymys(new Kysymys("mitä teit tänään?",
+                "what did you do today?",
+                "browse news, program, math exercises, read books, discuss limits on deep sea fish weirdness"));
+
+        paivakirja.lisaaKysymys(new Kysymys("mitä opit tänään?",
+                "what did you learn today?",
+                "limits on fish weirdness might be unknowable, programming can make one forget the time"));
+
+        paivakirja.lisaaKysymys(new Kysymys("toteutuiko tavoitteita? oliko hyvä päivä?",
+                "did you meet any aims? was it a good day?",
+                "met a programming deadline and a friend, nice!"));
+
+        paivakirja.lisaaKysymys(new Kysymys("huominen",
+                "tomorrow",
+                "visit center during the day, maybe swimming in the evening. no dl :)"));
+    }
+
+    private void luoUnipaivakirjaKysely() {
+        this.hallinta.lisaaKysely("unipäiväkirja");
+        Kysely unipaivakirja = hallinta.haeKyselyNimenPerusteella("unipäiväkirja");
+
+        unipaivakirja.lisaaKysymys(new Kysymys("ajoita ja/tai nimeä uni (tämä tulee tekstitiedoston nimeksi):",
+                "time and/or name a dream (this will be the name of the file):",
+                "2014-1-1 moominvalley with a twist"));
+
+        unipaivakirja.lisaaKysymys(new Kysymys("keitä tuttuja? keitä muita?",
+                "familiar beings? others?",
+                "bro, old teacher, and a weird god-type with glasses"));
+
+        unipaivakirja.lisaaKysymys(new Kysymys("missä tapahtui?",
+                "where did stuff happen?",
+                "I was in a well, and the trees that were trying to get me out were on ISS"));
+
+        unipaivakirja.lisaaKysymys(new Kysymys("mitä tapahtui?",
+                "what happened?",
+                "more than what didn't >80"));
+
+        unipaivakirja.lisaaKysymys(new Kysymys("millaisia unilogiikan ilmentymiä?",
+                "what manifestations of dream logic?",
+                "shoes were kind of concerned. children felt formidable. math hat never laughs."));
+
+        unipaivakirja.lisaaKysymys(new Kysymys("tunnelmia?",
+                "moods?",
+                "everyone kept searching for something, until suddenly nomadic"));
+
+        unipaivakirja.lisaaKysymys(new Kysymys("vaikutteita?",
+                "influences?",
+                "books, movies, article read, discussion had, mood experienced, person or character"));
     }
 }

@@ -83,4 +83,14 @@ public class KyselyHallinta {
     public void setExamples(boolean examples) {
         this.examples = examples;
     }
+
+    public ArrayList<Integer> getKyselyidenIndeksiLista() {
+        ArrayList<Integer> kyselyidenIndeksiLista = new ArrayList<>();
+
+        for (int i = 0; i < this.kyselyt.size(); i++) {
+            kyselyidenIndeksiLista.add(i);
+        }
+
+        return kyselyidenIndeksiLista;
+    }
 }

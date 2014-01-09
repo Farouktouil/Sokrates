@@ -111,6 +111,10 @@ public abstract class Komento {
         while (true) {
             String syoteTeksti = lukija.lueMerkkijono(Tulostamo.kysely());
             System.out.println();
+            
+            if (syoteTeksti == "") {
+                continue;
+            }
 
             if (syoteTeksti.equals("x")) {
                 break;
