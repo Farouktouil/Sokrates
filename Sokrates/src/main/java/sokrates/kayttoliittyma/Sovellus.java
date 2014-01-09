@@ -125,11 +125,6 @@ public class Sovellus {
         this.hallinta.lisaaKysely("ongelmanratkaisu");
         Kysely ongelmanratkaisu = this.hallinta.haeKyselyNimenPerusteella("ongelmanratkaisu");
 
-//tietolähteitä, hakusanoja, kysymyksiä
-//ihmisiä, ongelmattomia, ratkaisseita, keskustelukumppaneita
-//toimintaa, askelia, mitä tahansa ainakin tehtävää
-//muuta
-
         ongelmanratkaisu.lisaaKysymys(new Kysymys("nimeä ongelma (tämä tulee tekstitiedoston nimeksi):",
                 "name a problem (this will be the name of the file):",
                 "combining computing and ergonomy, exercise"));
