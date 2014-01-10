@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import sokrates.sovelluslogiikka.Kysely;
 import sokrates.sovelluslogiikka.KyselyHallinta;
 import sokrates.sovelluslogiikka.Kysymys;
 
@@ -26,7 +27,7 @@ public class TiedostonLukija {
             }
         }
 
-        System.out.println(nimet); // TOIMII @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        System.out.println(nimet);
         return nimet;
     }
 
@@ -34,8 +35,6 @@ public class TiedostonLukija {
 
         for (File kyselyTiedosto : kyselyTiedostot) { // seuraava tapahtuu PER kyselytiedosto
             Scanner lukija = new Scanner(kyselyTiedosto);
-            lukija.nextLine();
-            lukija.nextLine();
 
             ArrayList<String> riviLista = new ArrayList<>();
             while (lukija.hasNextLine()) {
@@ -48,8 +47,23 @@ public class TiedostonLukija {
                 // System.out.println(riviLista.get(i));
                 String kyselyTiedostonNimi = kyselyTiedosto.getName();
                 String kyselynNimi = kyselyTiedostonNimi.substring(0, kyselyTiedostonNimi.length() - 4);
-                hallinta.haeKyselyNimenPerusteella(kyselynNimi).lisaaKysymys(
-                        new Kysymys(riviLista.get(i), riviLista.get(i + 1), riviLista.get(i + 2)));
+
+                String kysymysSuomeksi = riviLista.get(i);
+                String kysymysEnglanniksi = "";
+                String esimerkkiVastaus = "";
+
+                if (i < riviLista.size() - 1) {
+                    kysymysEnglanniksi = riviLista.get(i + 1);
+                    if (i < riviLista.size() - 2) {
+                        esimerkkiVastaus = riviLista.get(i + 2);
+                        i += 1;
+                    } else {
+                        i += 2;
+                    }
+                }
+
+                Kysely kohdeKysely = hallinta.haeKyselyNimenPerusteella(kyselynNimi);
+                kohdeKysely.lisaaKysymys(new Kysymys(kysymysSuomeksi, kysymysEnglanniksi, esimerkkiVastaus));
                 i += 3;
             }
         }

@@ -44,14 +44,11 @@ public class LisaaKysely extends Komento {
 
             if (!lisattavanKyselynNimi.isEmpty()) {
                 this.hallinta.lisaaKysely(lisattavanKyselynNimi);
-
                 try {
                     tk.luoKyselyTiedostoNimelta(lisattavanKyselynNimi);
-                    System.out.println("Luotiin kyselytiedosto nimeltä " + lisattavanKyselynNimi);
                 } catch (IOException ex) {
                     Logger.getLogger(LisaaKysely.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
                 System.out.println(Tulostamo.lisattyKyselyNimelta(lisattavanKyselynNimi));
                 break;
             }

@@ -1,0 +1,26 @@
+﻿diary
+
+ajoita ja/tai nimeä päivä (tämä tulee tekstitiedoston nimeksi):
+time and/or name a day (this will be the name of the file):
+2014-1-1 post-new year
+keitä tuttuja? keitä muita?
+familiar beings? others?
+met a new student with an old friend
+missä olit?
+where were you?
+home, campus, friend, shop, movies, eating
+mitä teit tänään?
+what did you do today?
+browse news, program, math exercises, read books, discuss limits on deep sea fish weirdness
+mitä opit tänään?
+what did you learn today?
+limits on fish weirdness might be unknowable, programming can make one forget the time
+toteutuiko tavoitteita? oliko hyvä päivä?
+did you meet any aims? was it a good day?
+met a programming deadline and a friend, nice!
+huominen
+tomorrow
+visit city center during the day, maybe swimming in the evening. no dl :)
+mitä tahansa muuta
+anything else
+forgot to mention that during lunch we met more new people as well
