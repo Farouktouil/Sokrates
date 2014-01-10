@@ -1,6 +1,9 @@
 package sokrates.tiedostonkasittely;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -16,6 +19,19 @@ import sokrates.sovelluslogiikka.Kysymys;
  * @author Teo
  */
 public class TiedostonKirjoittaja {
+
+    public void luoKyselyNimelta(String nimi) throws IOException {
+//        PrintWriter writer = null;
+
+        try {
+            File file = new File("src/inquiries/", nimi + ".txt");
+            try (FileWriter writer = new FileWriter(file)) {
+                writer.write(nimi);
+            }
+        } catch (FileNotFoundException | UnsupportedEncodingException ex) {
+            Logger.getLogger(KyseleKysely.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     /**
      * Metodi antaa tekstitiedoston nimeksi aina käyttäjän ensimmäisen

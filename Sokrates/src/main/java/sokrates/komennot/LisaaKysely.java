@@ -1,7 +1,11 @@
 package sokrates.komennot;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import sokrates.kayttoliittyma.Tulostamo;
 import sokrates.sovelluslogiikka.KyselyHallinta;
+import sokrates.tiedostonkasittely.TiedostonKirjoittaja;
 import sokrates.util.Lukija;
 
 /**
@@ -11,11 +15,11 @@ import sokrates.util.Lukija;
  */
 public class LisaaKysely extends Komento {
 
-    private Komento ohje;
+    private TiedostonKirjoittaja tk;
 
-    public LisaaKysely(Lukija lukija, KyselyHallinta hallinta, Komento ohje, String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
+    public LisaaKysely(Lukija lukija, KyselyHallinta hallinta, TiedostonKirjoittaja tk, String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
         super(lukija, hallinta, nimi, seliteSuomeksi, seliteEnglanniksi);
-        this.ohje = ohje;
+        this.tk = tk;
     }
 
     /**
@@ -35,16 +39,23 @@ public class LisaaKysely extends Komento {
 
             if (this.hallinta.haeKyselyNimenPerusteella(lisattavanKyselynNimi) != null) {
                 System.out.println(Tulostamo.tamanNiminenKyselyOnJoOlemassa(lisattavanKyselynNimi));
-                return ohje.suorita();
+                return true;
             }
 
             if (!lisattavanKyselynNimi.isEmpty()) {
                 this.hallinta.lisaaKysely(lisattavanKyselynNimi);
+
+                try {
+                    tk.luoKyselyNimelta(lisattavanKyselynNimi);
+                } catch (IOException ex) {
+                    Logger.getLogger(LisaaKysely.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
                 System.out.println(Tulostamo.lisattyKyselyNimelta(lisattavanKyselynNimi));
                 break;
             }
         }
 
-        return ohje.suorita();
+        return true;
     }
 }

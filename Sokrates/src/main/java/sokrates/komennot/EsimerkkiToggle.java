@@ -12,12 +12,9 @@ import sokrates.util.Lukija;
  * @author Teo
  */
 public class EsimerkkiToggle extends Komento {
-    
-        private Komento ohje;
 
-    public EsimerkkiToggle(Lukija lukija, KyselyHallinta hallinta, Komento ohje, String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
+    public EsimerkkiToggle(Lukija lukija, KyselyHallinta hallinta, String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
         super(lukija, hallinta, nimi, seliteSuomeksi, seliteEnglanniksi);
-        this.ohje = ohje;
     }
 
     /**
@@ -36,6 +33,6 @@ public class EsimerkkiToggle extends Komento {
             this.hallinta.setExamples(true);
             System.out.println(Tulostamo.examplesOn());
         }
-        return ohje.suorita();
+        return true;
     }
 }

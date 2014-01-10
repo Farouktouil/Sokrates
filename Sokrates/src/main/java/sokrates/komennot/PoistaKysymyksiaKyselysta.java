@@ -13,11 +13,8 @@ import sokrates.util.Lukija;
  */
 public class PoistaKysymyksiaKyselysta extends Komento {
 
-    private Komento ohje;
-
-    public PoistaKysymyksiaKyselysta(Lukija lukija, KyselyHallinta hallinta, Komento ohje, String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
+    public PoistaKysymyksiaKyselysta(Lukija lukija, KyselyHallinta hallinta, String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
         super(lukija, hallinta, nimi, seliteSuomeksi, seliteEnglanniksi);
-        this.ohje = ohje;
     }
 
     @Override
@@ -31,7 +28,7 @@ public class PoistaKysymyksiaKyselysta extends Komento {
             poistaKysymyksia(kohdeKysely);
         }
 
-        return ohje.suorita();
+        return true;
     }
 
     /**

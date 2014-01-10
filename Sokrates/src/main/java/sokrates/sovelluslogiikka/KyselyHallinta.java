@@ -1,6 +1,7 @@
 package sokrates.sovelluslogiikka;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Luokka KyselyHallinta pitää sisällään listan kyselyistä sekä
@@ -40,6 +41,12 @@ public class KyselyHallinta {
     public void lisaaKysely(String nimi) {
         if (haeKyselyNimenPerusteella(nimi) == null) {
             this.kyselyt.add(new Kysely(nimi));
+        }
+    }
+
+    public void lisaaKyselyt(List<String> nimet) {
+        for (String nimi : nimet) {
+            lisaaKysely(nimi);
         }
     }
 
