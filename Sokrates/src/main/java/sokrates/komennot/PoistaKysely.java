@@ -40,9 +40,7 @@ public class PoistaKysely extends Komento {
         if (poistettavaKysely != null) {
             String poistettavanKyselynNimi = poistettavaKysely.getNimi();
             this.hallinta.poistaKysely(poistettavaKysely);
-            if (tk.poistaKyselyTiedosto(tl.getNimeaVastaavaKyselyTiedosto(poistettavanKyselynNimi))) {
-                System.out.println("poisto onnistui@@@@@@@@@@@");
-            }
+            tk.poistaKyselyTiedosto(tl.getNimeaVastaavaKyselyTiedosto(poistettavanKyselynNimi));
             System.out.println(Tulostamo.poistettuKyselyNimelta(poistettavanKyselynNimi));
             System.out.println();
         }

@@ -47,6 +47,7 @@ public class LisaaKysely extends Komento {
 
                 try {
                     tk.luoKyselyTiedostoNimelta(lisattavanKyselynNimi);
+                    System.out.println("luotiin " + lisattavanKyselynNimi);
                 } catch (IOException ex) {
                     Logger.getLogger(LisaaKysely.class.getName()).log(Level.SEVERE, null, ex);
                 }

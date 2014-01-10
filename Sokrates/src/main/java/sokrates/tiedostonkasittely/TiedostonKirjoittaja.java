@@ -2,7 +2,6 @@ package sokrates.tiedostonkasittely;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
@@ -21,24 +20,23 @@ import sokrates.sovelluslogiikka.Kysymys;
 public class TiedostonKirjoittaja {
 
     public void luoKyselyTiedostoNimelta(String nimi) throws IOException {
-//        PrintWriter writer = null;
-
-        try {
-            File file = new File("src/inquiries/", nimi + ".txt");
-            try (FileWriter writer = new FileWriter(file)) {
-                writer.write(nimi);
-            }
-        } catch (FileNotFoundException | UnsupportedEncodingException ex) {
-            Logger.getLogger(KyseleKysely.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        File file = new File("src/inquiries/", nimi + ".txt");
     }
 
-    public boolean poistaKyselyTiedosto(File kysely) {
+    public void poistaKyselyTiedosto(File kysely) {
         if (kysely.exists()) {
-            return kysely.delete();
+            kysely.delete();
         }
-        
-        return false;
+    }
+    
+    public void kirjoitaTiedostoonRivit(File kysely, String s1, String s2, String s3) throws FileNotFoundException, UnsupportedEncodingException {
+        if (kysely.exists()) {
+            try (PrintWriter writer = new PrintWriter(kysely, "UTF-8")) {
+                writer.println(s1);
+                writer.println(s2);
+                writer.print(s3);
+            }
+        }
     }
 
     /**

@@ -6,8 +6,7 @@ import java.util.List;
 import java.util.TreeMap;
 import sokrates.komennot.*;
 import sokrates.sovelluslogiikka.*;
-import sokrates.tiedostonkasittely.TiedostonKirjoittaja;
-import sokrates.tiedostonkasittely.TiedostonLukija;
+import sokrates.tiedostonkasittely.*;
 import sokrates.util.Lukija;
 
 /**
@@ -117,7 +116,7 @@ public class Sovellus {
         luoKomento(new KyseleKysely(lukija, hallinta, tk, "0", "kysele kysely", "perform an inquiry"));
         luoKomento(new LisaaKysely(lukija, hallinta, tk, "1", "lisää uusi kysely", "add a new inquiry"));
         luoKomento(new PoistaKysely(lukija, hallinta, tk, tl, "2", "poista kysely", "remove an inquiry"));
-        luoKomento(new LisaaKysymyksiaKyselyyn(lukija, hallinta, "3", "lisää kysymyksiä kyselyyn", "add questions to an inquiry"));
+        luoKomento(new LisaaKysymyksiaKyselyyn(lukija, hallinta, tk, tl, "3", "lisää kysymyksiä kyselyyn", "add questions to an inquiry"));
         luoKomento(new PoistaKysymyksiaKyselysta(lukija, hallinta, "4", "poista kysymyksiä kyselystä", "remove questions from an inquiry"));
         luoKomento(new VaihdaKieli(lukija, hallinta, "5", "vaihda kieleksi englanti", "change language to Finnish"));
         luoKomento(new EsimerkkiToggle(lukija, hallinta, "6", "aseta esimerkkivastaukset off/on", "toggle examples off/on"));
