@@ -1,0 +1,45 @@
+ajoita ja/tai nimeÃ¤ pÃ¤ivÃ¤ (tÃ¤mÃ¤ tulee tekstitiedoston nimeksi):
+
+    s
+
+
+keitÃ¤ tuttuja? keitÃ¤ muita?
+
+    s
+
+
+missÃ¤ olit?
+
+    s
+
+
+mitÃ¤ teit tÃ¤nÃ¤Ã¤n?
+
+    s
+
+
+mitÃ¤ opit tÃ¤nÃ¤Ã¤n?
+
+    s
+
+
+toteutuiko tavoitteita? oliko hyvÃ¤ pÃ¤ivÃ¤?
+
+    s
+
+
+huominen
+
+    s
+
+
+mitÃ¤ tahansa muuta
+
+    s
+
+
+kool?
+
+    jes!
+
+

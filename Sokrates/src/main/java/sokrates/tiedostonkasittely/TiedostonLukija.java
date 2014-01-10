@@ -26,7 +26,7 @@ public class TiedostonLukija {
             }
         }
 
-        System.out.println(nimet); // [diary.txt, dream diary.txt, problem solving.txt]
+        System.out.println(nimet); // TOIMII @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
         return nimet;
     }
 

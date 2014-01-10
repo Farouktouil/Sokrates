@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.TreeMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import sokrates.komennot.*;
 import sokrates.sovelluslogiikka.*;
 import sokrates.tiedostonkasittely.*;
@@ -72,9 +74,9 @@ public class Sovellus {
      * Kuuntelulooppi jatkuu jos ja vain jos komento palauttaa true eli
      * käytännössä kunnes suoritetaan komento Lopeta.
      */
-    public void suorita() throws FileNotFoundException {
+    public void suorita() {
         System.out.print("Tervetuloa kyselyohjelmaan. ");
-        // paivitaKyselytKaynnistettaessa();
+        paivitaKyselytKaynnistettaessa();
 
         boolean jatketaan = true;
 
@@ -93,16 +95,20 @@ public class Sovellus {
             jatketaan = komento.suorita();
         }
     }
-    
-    public void paivitaKyselytKaynnistettaessa() throws FileNotFoundException {
+
+    public List<String> paivitaKyselyt() {
         List<String> kyselyTiedostojenNimet = tl.lueKyselyTiedostojenNimet("src/inquiries/");
         this.hallinta.lisaaKyselyt(kyselyTiedostojenNimet);
-        List<File> kyselyTiedostot = tl.getNimiaVastaavatKyselyTiedostot(kyselyTiedostojenNimet);
-        tl.lisaaKyselyTiedostojenSisallotKysymyksiksi(kyselyTiedostot, hallinta);
+        return kyselyTiedostojenNimet;
     }
-    
-    public void paivitaKyselyt() {
-        this.hallinta.lisaaKyselyt(tl.lueKyselyTiedostojenNimet("src/inquiries/"));
+
+    public void paivitaKyselytKaynnistettaessa() {
+        try {
+            List<File> kyselyTiedostot = tl.getNimiaVastaavatKyselyTiedostot(paivitaKyselyt());
+            tl.lisaaKyselyTiedostojenSisallotKysymyksiksi(kyselyTiedostot, hallinta);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Sovellus.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
