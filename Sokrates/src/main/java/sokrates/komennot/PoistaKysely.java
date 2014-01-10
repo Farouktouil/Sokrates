@@ -17,7 +17,7 @@ public class PoistaKysely extends Komento {
 
     private TiedostonKirjoittaja tk;
     private TiedostonLukija tl;
-    
+
     public PoistaKysely(Lukija lukija, KyselyHallinta hallinta, TiedostonKirjoittaja tk, TiedostonLukija tl, String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
         super(lukija, hallinta, nimi, seliteSuomeksi, seliteEnglanniksi);
         this.tk = tk;
@@ -40,7 +40,9 @@ public class PoistaKysely extends Komento {
         if (poistettavaKysely != null) {
             String poistettavanKyselynNimi = poistettavaKysely.getNimi();
             this.hallinta.poistaKysely(poistettavaKysely);
-            tk.poistaKyselyTiedosto(tl.getNimeaVastaavaKyselyTiedosto(poistettavanKyselynNimi));
+            if (tk.poistaKyselyTiedosto(tl.getNimeaVastaavaKyselyTiedosto(poistettavanKyselynNimi))) {
+                System.out.println("poisto onnistui@@@@@@@@@@@");
+            }
             System.out.println(Tulostamo.poistettuKyselyNimelta(poistettavanKyselynNimi));
             System.out.println();
         }

@@ -75,7 +75,7 @@ public class Sovellus {
      */
     public void suorita() throws FileNotFoundException {
         System.out.print("Tervetuloa kyselyohjelmaan. ");
-        paivitaKyselytKaynnistettaessa();
+        // paivitaKyselytKaynnistettaessa();
 
         boolean jatketaan = true;
 

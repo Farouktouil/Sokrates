@@ -33,10 +33,12 @@ public class TiedostonKirjoittaja {
         }
     }
 
-    public void poistaKyselyTiedosto(File kysely) {
+    public boolean poistaKyselyTiedosto(File kysely) {
         if (kysely.exists()) {
-            kysely.delete();
+            return kysely.delete();
         }
+        
+        return false;
     }
 
     /**
