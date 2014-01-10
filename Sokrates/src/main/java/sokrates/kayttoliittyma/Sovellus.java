@@ -1,5 +1,8 @@
 package sokrates.kayttoliittyma;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.List;
 import java.util.TreeMap;
 import sokrates.komennot.*;
 import sokrates.sovelluslogiikka.*;
@@ -57,7 +60,7 @@ public class Sovellus {
         this.ohje = new Ohje(lukija, hallinta, null, "Valitse komento:", "Pick a command:", komennot.values());
         this.tk = new TiedostonKirjoittaja();
         this.tl = new TiedostonLukija();
-        luoKomennot(this.hallinta);
+        luoKomennot(hallinta);
     }
 
     /**
@@ -70,9 +73,9 @@ public class Sovellus {
      * Kuuntelulooppi jatkuu jos ja vain jos komento palauttaa true eli
      * käytännössä kunnes suoritetaan komento Lopeta.
      */
-    public void suorita() {
+    public void suorita() throws FileNotFoundException {
         System.out.print("Tervetuloa kyselyohjelmaan. ");
-        
+        paivitaKyselytKaynnistettaessa();
 
         boolean jatketaan = true;
 
@@ -90,6 +93,13 @@ public class Sovellus {
 
             jatketaan = komento.suorita();
         }
+    }
+    
+    public void paivitaKyselytKaynnistettaessa() throws FileNotFoundException {
+        List<String> kyselyTiedostojenNimet = tl.lueKyselyTiedostojenNimet("src/inquiries/");
+        this.hallinta.lisaaKyselyt(kyselyTiedostojenNimet);
+        List<File> kyselyTiedostot = tl.getNimiaVastaavatKyselyTiedostot(kyselyTiedostojenNimet);
+        tl.lisaaKyselyTiedostojenSisallotKysymyksiksi(kyselyTiedostot, hallinta);
     }
     
     public void paivitaKyselyt() {
@@ -125,122 +135,4 @@ public class Sovellus {
     private void luoKomento(Komento komento) {
         this.komennot.put(komento.getNimi(), komento);
     }
-//    /**
-//     * Metodi luo ohjelman mukana tulevan kyselyn nimeltä 'ongelmanratkaisu'
-//     * KyselyHallintaan.
-//     */
-//    private void luoOngelmanratkaisuKysely() {
-//        this.hallinta.lisaaKysely("ongelmanratkaisu");
-//        Kysely ongelmanratkaisu = this.hallinta.haeKyselyNimenPerusteella("ongelmanratkaisu");
-//
-//        ongelmanratkaisu.lisaaKysymys(new Kysymys("nimeä ongelma (tämä tulee tekstitiedoston nimeksi):",
-//                "name a problem (this will be the name of the file):",
-//                "combining computing and ergonomy, exercise"));
-//
-//        ongelmanratkaisu.lisaaKysymys(new Kysymys("aiheuttajat, juuret, oletukset, mihin perustuu",
-//                "causes, roots, assumptions, what is it based on ",
-//                "computing tends to be done sitting still, moving and posture might drain focus"));
-//
-//        ongelmanratkaisu.lisaaKysymys(new Kysymys("muuttujia, aspekteja, konsideraatioita, ali-/yli-/analogisia ongelmia, uhrauksia/vaihtokauppoja",
-//                "variables, aspects, considerations, sub-/super-/analogous problems, sacrifices/trade-offs",
-//                "focus, effort, futuristic input devices, ergonomy, (aerobic) health, time"));
-//
-//        ongelmanratkaisu.lisaaKysymys(new Kysymys("ihmisiä, ongelmattomia, ratkaisseita, eksperttejä, apua",
-//                "people, anyone without the problem, anyone who has solved it, experts, help",
-//                "maybe those with working standing desks or treadmill desks; ergonomists; anyone who doesn't mind and manages both well"));
-//
-//        ongelmanratkaisu.lisaaKysymys(new Kysymys("kuvaile mahdollisia ratkaisuja",
-//                "describe possible solutions",
-//                "standing desk, treadmill desk, mobile computing (futuristic I/O), better time management"));
-//
-//        ongelmanratkaisu.lisaaKysymys(new Kysymys("tietolähteitä, hakusanoja, kysymyksiä, aloja/kategorioita",
-//                "information sources, tags and keywords, questions, fields/categories",
-//                "online: ergonomy while using a computer, finding time for diverse movement, standing/treadmill desks"));
-//
-//        ongelmanratkaisu.lisaaKysymys(new Kysymys("mahdollisia toimenpiteitä, pieniä askelia, mitä ainakin voisi tehdä seuraavaksi",
-//                "possible actions, small steps, what at least could be done next",
-//                "search, talk, ask, try to implement something for a while, experiment and see what happens"));
-//
-//        ongelmanratkaisu.lisaaKysymys(new Kysymys("mitä tahansa muuta",
-//                "anything else",
-//                "treadmill desks could cost a lot, drain too much focus, take space and/or be noisy"));
-//    }
-//
-//    /**
-//     * Metodi luo ohjelman mukana tulevan kyselyn nimeltä 'päiväkirja'
-//     * KyselyHallintaan.
-//     */
-//    private void luoPaivakirjaKysely() {
-//        this.hallinta.lisaaKysely("päiväkirja");
-//        Kysely paivakirja = hallinta.haeKyselyNimenPerusteella("päiväkirja");
-//
-//        paivakirja.lisaaKysymys(new Kysymys("ajoita ja/tai nimeä päivä (tämä tulee tekstitiedoston nimeksi):",
-//                "time and/or name a day (this will be the name of the file):",
-//                "2014-1-1 post-new year"));
-//
-//        paivakirja.lisaaKysymys(new Kysymys("keitä tuttuja? keitä muita?",
-//                "familiar beings? others?",
-//                "met a new student with an old friend"));
-//
-//        paivakirja.lisaaKysymys(new Kysymys("missä olit?",
-//                "where were you?",
-//                "home, campus, friend, shop, movies, eating"));
-//
-//        paivakirja.lisaaKysymys(new Kysymys("mitä teit tänään?",
-//                "what did you do today?",
-//                "browse news, program, math exercises, read books, discuss limits on deep sea fish weirdness"));
-//
-//        paivakirja.lisaaKysymys(new Kysymys("mitä opit tänään?",
-//                "what did you learn today?",
-//                "limits on fish weirdness might be unknowable, programming can make one forget the time"));
-//
-//        paivakirja.lisaaKysymys(new Kysymys("toteutuiko tavoitteita? oliko hyvä päivä?",
-//                "did you meet any aims? was it a good day?",
-//                "met a programming deadline and a friend, nice!"));
-//
-//        paivakirja.lisaaKysymys(new Kysymys("huominen",
-//                "tomorrow",
-//                "visit city center during the day, maybe swimming in the evening. no dl :)"));
-//
-//        paivakirja.lisaaKysymys(new Kysymys("mitä tahansa muuta",
-//                "anything else",
-//                "forgot to mention that during lunch we met more new people as well"));
-//    }
-//
-//    private void luoUnipaivakirjaKysely() {
-//        this.hallinta.lisaaKysely("unipäiväkirja");
-//        Kysely unipaivakirja = hallinta.haeKyselyNimenPerusteella("unipäiväkirja");
-//
-//        unipaivakirja.lisaaKysymys(new Kysymys("ajoita ja/tai nimeä uni (tämä tulee tekstitiedoston nimeksi):",
-//                "time and/or name a dream (this will be the name of the file):",
-//                "2014-1-1 moominvalley with a twist"));
-//
-//        unipaivakirja.lisaaKysymys(new Kysymys("keitä tuttuja? keitä muita?",
-//                "familiar beings? others?",
-//                "bro, old teacher, and a weird god-type with glasses"));
-//
-//        unipaivakirja.lisaaKysymys(new Kysymys("missä tapahtui?",
-//                "where did stuff happen?",
-//                "I was in a well, and the trees that were trying to get me out were on ISS"));
-//
-//        unipaivakirja.lisaaKysymys(new Kysymys("mitä tapahtui?",
-//                "what happened?",
-//                "more than what didn't >80"));
-//
-//        unipaivakirja.lisaaKysymys(new Kysymys("millaisia unilogiikan ilmentymiä?",
-//                "what manifestations of dream logic?",
-//                "shoes were kind of concerned. children felt formidable. math hat never laughs."));
-//
-//        unipaivakirja.lisaaKysymys(new Kysymys("tunnelmia?",
-//                "moods?",
-//                "everyone kept searching for something, until suddenly nomadic"));
-//
-//        unipaivakirja.lisaaKysymys(new Kysymys("vaikutteita?",
-//                "influences?",
-//                "books, movies, article read, discussion had, mood experienced, person or character"));
-//
-//        unipaivakirja.lisaaKysymys(new Kysymys("mitä tahansa muuta",
-//                "anything else",
-//                "right, the elephant was loyal but only to physicists"));
-//    }
 }
