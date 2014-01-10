@@ -25,7 +25,6 @@ public class KyseleKysely extends Komento {
      * Luokkaan KyseleKysely kapseloitu tiedostonkirjoittaja
      */
     private TiedostonKirjoittaja tk;
-    private Komento ohje;
 
     /**
      * Konstruktori luo tiedostonkirjoittajan
@@ -49,14 +48,14 @@ public class KyseleKysely extends Komento {
         Kysely kyseltavaKysely = super.kayttajanOsoittamaKysely();
 
         if (kyseltavaKysely == null) {
-            return ohje.suorita();
+            return true;
         }
 
         ArrayList<Kysymys> kysymykset = kyseltavaKysely.getKysymykset();
 
         if (kysymykset.isEmpty()) {
             System.out.println(Tulostamo.kyselyssaEiOleYhtaanKysymysta());
-            return ohje.suorita();
+            return true;
         } else {
             boolean examples = hallinta.getExamples();
             kysele(lukija, examples, kysymykset);

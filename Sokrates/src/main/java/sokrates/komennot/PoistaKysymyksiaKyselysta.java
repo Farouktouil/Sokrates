@@ -23,7 +23,7 @@ public class PoistaKysymyksiaKyselysta extends Komento {
         Kysely kohdeKysely = super.kayttajanOsoittamaKysely();
 
         if (kohdeKysely == null) {
-            System.out.println(Tulostamo.kysymyksiaEiOle());
+            System.out.println(Tulostamo.kysymyksiaEiOle()); // tämä tulostuu vielä epätoivotusti vaikka painettiin "x"
         } else {
             poistaKysymyksia(kohdeKysely);
         }

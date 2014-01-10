@@ -3,6 +3,8 @@ package sokrates.komennot;
 import sokrates.kayttoliittyma.Tulostamo;
 import sokrates.sovelluslogiikka.Kysely;
 import sokrates.sovelluslogiikka.KyselyHallinta;
+import sokrates.tiedostonkasittely.TiedostonKirjoittaja;
+import sokrates.tiedostonkasittely.TiedostonLukija;
 import sokrates.util.Lukija;
 
 /**
@@ -13,8 +15,13 @@ import sokrates.util.Lukija;
  */
 public class PoistaKysely extends Komento {
 
-    public PoistaKysely(Lukija lukija, KyselyHallinta hallinta, String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
+    private TiedostonKirjoittaja tk;
+    private TiedostonLukija tl;
+    
+    public PoistaKysely(Lukija lukija, KyselyHallinta hallinta, TiedostonKirjoittaja tk, TiedostonLukija tl, String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
         super(lukija, hallinta, nimi, seliteSuomeksi, seliteEnglanniksi);
+        this.tk = tk;
+        this.tl = tl;
     }
 
     /**
@@ -33,6 +40,7 @@ public class PoistaKysely extends Komento {
         if (poistettavaKysely != null) {
             String poistettavanKyselynNimi = poistettavaKysely.getNimi();
             this.hallinta.poistaKysely(poistettavaKysely);
+            tk.poistaKyselyTiedosto(tl.getNimeaVastaavaKyselyTiedosto(poistettavanKyselynNimi));
             System.out.println(Tulostamo.poistettuKyselyNimelta(poistettavanKyselynNimi));
             System.out.println();
         }

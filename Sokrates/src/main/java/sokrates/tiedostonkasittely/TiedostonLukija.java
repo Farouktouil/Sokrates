@@ -10,22 +10,33 @@ import java.util.List;
  */
 public class TiedostonLukija {
 
-    public List<String> lueTiedostotKyselyiksi() {
-        List<String> textFiles = textFiles("src/inquiries/");
-        System.out.println(textFiles); // [diary.txt, dream diary.txt, problem solving.txt]
-        return textFiles;
-    }
-
-    public List<String> textFiles(String directory) {
-        List<String> textFiles = new ArrayList<>();
+    public List<String> lueKyselyTiedostojenNimet(String directory) {
+        List<String> nimet = new ArrayList<>();
         File dir = new File(directory);
 
         for (File file : dir.listFiles()) {
-            if (file.getName().endsWith((".txt"))) {
-                textFiles.add(file.getName().substring(0, file.getName().length() - 4));
+            String kyselyTiedostonNimi = file.getName();
+
+            if (kyselyTiedostonNimi.endsWith((".txt"))) {
+                nimet.add(kyselyTiedostonNimi.substring(0, kyselyTiedostonNimi.length() - 4));
             }
         }
 
-        return textFiles;
+        System.out.println(nimet); // [diary.txt, dream diary.txt, problem solving.txt]
+        return nimet;
+    }
+
+    public File getNimeaVastaavaKyselyTiedosto(String nimi) {
+        File dir = new File("src/inquiries/");
+
+        for (File file : dir.listFiles()) {
+            String kyselyTiedostonNimi = file.getName();
+
+            if (kyselyTiedostonNimi.equals(nimi + ".txt")) {
+                return file;
+            }
+        }
+
+        return null;
     }
 }

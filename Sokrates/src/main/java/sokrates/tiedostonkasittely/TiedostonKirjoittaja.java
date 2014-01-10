@@ -20,7 +20,7 @@ import sokrates.sovelluslogiikka.Kysymys;
  */
 public class TiedostonKirjoittaja {
 
-    public void luoKyselyNimelta(String nimi) throws IOException {
+    public void luoKyselyTiedostoNimelta(String nimi) throws IOException {
 //        PrintWriter writer = null;
 
         try {
@@ -30,6 +30,12 @@ public class TiedostonKirjoittaja {
             }
         } catch (FileNotFoundException | UnsupportedEncodingException ex) {
             Logger.getLogger(KyseleKysely.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void poistaKyselyTiedosto(File kysely) {
+        if (kysely.exists()) {
+            kysely.delete();
         }
     }
 
