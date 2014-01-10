@@ -1,6 +1,4 @@
-﻿dream diary
-
-ajoita ja/tai nimeä uni (tämä tulee tekstitiedoston nimeksi):
+﻿ajoita ja/tai nimeä uni (tämä tulee tekstitiedoston nimeksi):
 time and/or name a dream (this will be the name of the file):
 2014-1-1 moominvalley with a twist
 keitä tuttuja? keitä muita?

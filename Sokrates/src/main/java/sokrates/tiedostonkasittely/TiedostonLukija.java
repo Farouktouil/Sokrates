@@ -56,15 +56,19 @@ public class TiedostonLukija {
                     kysymysEnglanniksi = riviLista.get(i + 1);
                     if (i < riviLista.size() - 2) {
                         esimerkkiVastaus = riviLista.get(i + 2);
-                        i += 1;
-                    } else {
-                        i += 2;
                     }
                 }
 
                 Kysely kohdeKysely = hallinta.haeKyselyNimenPerusteella(kyselynNimi);
                 kohdeKysely.lisaaKysymys(new Kysymys(kysymysSuomeksi, kysymysEnglanniksi, esimerkkiVastaus));
-                i += 3;
+
+                if (i < riviLista.size() - 2) {
+                    i += 3;
+                } else if (i < riviLista.size() - 1) {
+                    i += 2;
+                } else {
+                    i += 1;
+                }
             }
         }
     }
