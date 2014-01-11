@@ -1,6 +1,5 @@
 package sokrates.sovelluslogiikka;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -20,14 +19,14 @@ public class Kysymys {
      */
     private HashMap<Kieli, String> kysymysKaikillaKielilla;
     /**
-     * Kysymykseen liitetty vastaus merkkijonona
-     */
-    private String vastaus;
-    /**
      * Kysymyksen esimerkkivastaus (tällä hetkellä riippumaton kielistä; vain
      * yksi per kysymys).
      */
     private String esimerkkivastaus;
+    /**
+     * Kysymykseen liitetty vastaus merkkijonona
+     */
+    private String vastaus;
 
     /**
      * Metodi luo uuden kysymyksen parametrina saaduilla muotoiluilla suomeksi

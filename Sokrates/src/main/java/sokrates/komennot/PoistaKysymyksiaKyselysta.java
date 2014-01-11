@@ -13,7 +13,8 @@ import sokrates.util.Lukija;
  */
 public class PoistaKysymyksiaKyselysta extends Komento {
 
-    public PoistaKysymyksiaKyselysta(Lukija lukija, KyselyHallinta hallinta, String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
+    public PoistaKysymyksiaKyselysta(Lukija lukija, KyselyHallinta hallinta,
+            String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
         super(lukija, hallinta, nimi, seliteSuomeksi, seliteEnglanniksi);
     }
 

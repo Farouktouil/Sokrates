@@ -17,7 +17,8 @@ public class Ohje extends Komento {
      */
     private Collection<Komento> komennot;
 
-    public Ohje(Lukija lukija, KyselyHallinta hallinta, String nimi, String seliteSuomeksi, String seliteEnglanniksi, Collection<Komento> komennot) {
+    public Ohje(Lukija lukija, KyselyHallinta hallinta, Collection<Komento> komennot,
+            String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
         super(lukija, hallinta, nimi, seliteSuomeksi, seliteEnglanniksi);
         this.komennot = komennot;
     }

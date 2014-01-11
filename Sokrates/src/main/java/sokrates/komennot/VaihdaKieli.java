@@ -13,7 +13,8 @@ import sokrates.util.Lukija;
  */
 public class VaihdaKieli extends Komento {
 
-    public VaihdaKieli(Lukija lukija, KyselyHallinta hallinta, String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
+    public VaihdaKieli(Lukija lukija, KyselyHallinta hallinta,
+            String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
         super(lukija, hallinta, nimi, seliteSuomeksi, seliteEnglanniksi);
     }
 

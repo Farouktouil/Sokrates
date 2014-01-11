@@ -31,6 +31,10 @@ public class Kysely {
         this.nimi = nimi;
     }
 
+    public ArrayList<Kysymys> getKysymykset() {
+        return this.kysymykset;
+    }
+
     /**
      * Metodi palauttaa nimen joka kyselylle tätä luodessa annettiin.
      *
@@ -59,10 +63,6 @@ public class Kysely {
      */
     public void poistaKysymys(Kysymys kysymys) {
         this.kysymykset.remove(kysymys);
-    }
-
-    public ArrayList<Kysymys> getKysymykset() {
-        return this.kysymykset;
     }
 
     public ArrayList<Integer> getKysymystenIndeksiLista() {

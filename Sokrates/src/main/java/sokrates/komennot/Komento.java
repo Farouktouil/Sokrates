@@ -33,6 +33,11 @@ public abstract class Komento {
      */
     protected Lukija lukija;
     /**
+     * Jokainen komento muistaa KyselyHallinnan, vaikka ihan jokainen ei sitä
+     * tarvitsisikaan.
+     */
+    protected KyselyHallinta hallinta;
+    /**
      * Jokaisella komennolla on nimi, jonka hyödyntämistapa näkyy Sovelluksen
      * puolella.
      */
@@ -41,11 +46,6 @@ public abstract class Komento {
      * Jokainen komento muistaa selitteensä kaikilla kielillä.
      */
     private HashMap<Kieli, String> seliteKaikillaKielilla;
-    /**
-     * Jokainen komento muistaa KyselyHallinnan, vaikka ihan jokainen ei sitä
-     * tarvitsisikaan.
-     */
-    protected KyselyHallinta hallinta;
 
     /**
      * Selkeyden vuoksi _jokainen_ komento muistaa Lukijan ja KyselyHallinnan,
@@ -62,7 +62,8 @@ public abstract class Komento {
      * @param seliteEnglanniksi Käyttäjälle tulostettava kuvaus siitä, mitä
      * komento tekee, englanniksi
      */
-    public Komento(Lukija lukija, KyselyHallinta hallinta, String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
+    public Komento(Lukija lukija, KyselyHallinta hallinta,
+            String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
         this.lukija = lukija;
         this.hallinta = hallinta;
         this.nimi = nimi;
@@ -81,6 +82,17 @@ public abstract class Komento {
      */
     public String getSelite() {
         return this.seliteKaikillaKielilla.get(Asetukset.getKieli());
+    }
+
+    /**
+     * Metodi tulostaa jokaisen hallinnan muistaman kyselyn indekseineen sekä
+     * peruutusvaihtoehdon.
+     */
+    private void tulostaKyselyVaihtoehdot() {
+        for (int i = 0; i < this.hallinta.getKyselyt().size(); i++) {
+            System.out.println("  " + i + " = " + this.hallinta.getKyselyt().get(i).getNimi());
+        }
+        System.out.println("(x = " + Tulostamo.peruuta() + ")\n");
     }
 
     /**
@@ -108,17 +120,6 @@ public abstract class Komento {
 
         tulostaKyselyVaihtoehdot();
         return loopataanKayttajaltaKysely(kysely);
-    }
-
-    /**
-     * Metodi tulostaa jokaisen hallinnan muistaman kyselyn indekseineen sekä
-     * peruutusvaihtoehdon.
-     */
-    private void tulostaKyselyVaihtoehdot() {
-        for (int i = 0; i < this.hallinta.getKyselyt().size(); i++) {
-            System.out.println("  " + i + " = " + this.hallinta.getKyselyt().get(i).getNimi());
-        }
-        System.out.println("(x = " + Tulostamo.peruuta() + ")\n");
     }
 
     private Kysely loopataanKayttajaltaKysely(Kysely kysely) {

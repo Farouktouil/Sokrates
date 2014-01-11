@@ -19,7 +19,8 @@ public class PoistaKysely extends Komento {
     private TiedostonKirjoittaja tk;
     private TiedostonLukija tl;
 
-    public PoistaKysely(Lukija lukija, KyselyHallinta hallinta, TiedostonKirjoittaja tk, TiedostonLukija tl, String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
+    public PoistaKysely(Lukija lukija, KyselyHallinta hallinta, TiedostonKirjoittaja tk, TiedostonLukija tl,
+            String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
         super(lukija, hallinta, nimi, seliteSuomeksi, seliteEnglanniksi);
         this.tk = tk;
         this.tl = tl;

@@ -36,7 +36,7 @@ public class TiedostonLukija {
 
         for (File kyselyTiedosto : kyselyTiedostot) { // seuraava tapahtuu PER kyselytiedosto
             Scanner lukija = new Scanner(new FileInputStream(kyselyTiedosto), "UTF-8");
-            
+
             if (lukija.hasNextLine()) {
                 lukija.nextLine();
             } else {
@@ -66,7 +66,7 @@ public class TiedostonLukija {
                     }
                 }
 
-                Kysely kohdeKysely = hallinta.haeKyselyNimenPerusteella(kyselynNimi);
+                Kysely kohdeKysely = hallinta.getKyselyNimenPerusteella(kyselynNimi);
                 kohdeKysely.lisaaKysymys(new Kysymys(kysymysSuomeksi, kysymysEnglanniksi, esimerkkiVastaus));
 
                 if (i < riviLista.size() - 2) {

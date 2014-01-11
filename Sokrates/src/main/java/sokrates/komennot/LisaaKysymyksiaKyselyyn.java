@@ -20,11 +20,12 @@ import sokrates.util.Lukija;
  * @author Teo
  */
 public class LisaaKysymyksiaKyselyyn extends Komento {
-    
+
     private TiedostonKirjoittaja tk;
     private TiedostonLukija tl;
 
-    public LisaaKysymyksiaKyselyyn(Lukija lukija, KyselyHallinta hallinta, TiedostonKirjoittaja tk, TiedostonLukija tl, String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
+    public LisaaKysymyksiaKyselyyn(Lukija lukija, KyselyHallinta hallinta, TiedostonKirjoittaja tk, TiedostonLukija tl,
+            String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
         super(lukija, hallinta, nimi, seliteSuomeksi, seliteEnglanniksi);
         this.tk = tk;
         this.tl = tl;
@@ -65,7 +66,7 @@ public class LisaaKysymyksiaKyselyyn extends Komento {
             String kohdeKyselynNimi = kohdeKysely.getNimi();
             try {
                 tk.kirjoitaTiedostoonRivit(tl.getNimeaVastaavaKyselyTiedosto(kohdeKyselynNimi), kysymysSuomeksi, kysymysEnglanniksi, esimerkkiVastaus);
-            } catch (    FileNotFoundException | UnsupportedEncodingException ex) {
+            } catch (FileNotFoundException | UnsupportedEncodingException ex) {
                 Logger.getLogger(LisaaKysymyksiaKyselyyn.class.getName()).log(Level.SEVERE, null, ex);
             }
             System.out.println(Tulostamo.lisattyKysymys(kohdeKysely.getNimi()));

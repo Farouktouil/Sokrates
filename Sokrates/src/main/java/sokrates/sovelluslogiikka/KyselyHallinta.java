@@ -39,7 +39,7 @@ public class KyselyHallinta {
      * @param nimi Kyselylle annettava nimi.
      */
     public void lisaaKysely(String nimi) {
-        if (haeKyselyNimenPerusteella(nimi) == null) {
+        if (getKyselyNimenPerusteella(nimi) == null) {
             this.kyselyt.add(new Kysely(nimi));
         }
     }
@@ -66,7 +66,7 @@ public class KyselyHallinta {
      * @param nimi Nimi jonka perusteella kyselyä haetaan.
      * @return
      */
-    public Kysely haeKyselyNimenPerusteella(String nimi) {
+    public Kysely getKyselyNimenPerusteella(String nimi) {
         Kysely loydettyKysely = null;
         for (Kysely kysely : this.kyselyt) {
             if (kysely.getNimi().equals(nimi)) {

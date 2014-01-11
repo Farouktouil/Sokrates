@@ -17,7 +17,8 @@ public class LisaaKysely extends Komento {
 
     private TiedostonKirjoittaja tk;
 
-    public LisaaKysely(Lukija lukija, KyselyHallinta hallinta, TiedostonKirjoittaja tk, String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
+    public LisaaKysely(Lukija lukija, KyselyHallinta hallinta, TiedostonKirjoittaja tk,
+            String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
         super(lukija, hallinta, nimi, seliteSuomeksi, seliteEnglanniksi);
         this.tk = tk;
     }
@@ -37,7 +38,7 @@ public class LisaaKysely extends Komento {
         while (true) {
             String lisattavanKyselynNimi = lukija.lueMerkkijono(Tulostamo.annaKyselylleNimi());
 
-            if (this.hallinta.haeKyselyNimenPerusteella(lisattavanKyselynNimi) != null) {
+            if (this.hallinta.getKyselyNimenPerusteella(lisattavanKyselynNimi) != null) {
                 System.out.println(Tulostamo.tamanNiminenKyselyOnJoOlemassa(lisattavanKyselynNimi));
                 return true;
             }

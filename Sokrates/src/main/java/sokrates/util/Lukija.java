@@ -24,18 +24,8 @@ public class Lukija {
     }
 
     /**
-     * Metodi lukee ja palauttaa merkkijonona seuraavan käyttäjän kirjoittaman
-     * rivin.
-     *
-     * @return Käyttäjän kirjoittama rivi.
-     */
-    public String lueMerkkijono() {
-        return lukija.nextLine();
-    }
-
-    /**
      * Metodi tulostaa merkkijonon (kysymys tai lause), johon käyttäjän antama
-     * vastaus toimii edellisen metodin tapaan palautettavana merkkijonona.
+     * vastaus toimii palautettavana merkkijonona.
      *
      * @param kysymys Tulostettava kysymys
      * @return Käyttäjän (tulostetun kysymyksen perään) kirjoittama rivi.

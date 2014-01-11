@@ -49,7 +49,6 @@ public class TiedostonKirjoittaja {
 //            System.out.println("Kyselyä ei ole");
 //        }
 //    }
-
     public void kirjoitaTiedostoonRivit(File kysely, String s1, String s2, String s3) throws FileNotFoundException, UnsupportedEncodingException {
         if (kysely.exists()) {
             try {

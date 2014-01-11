@@ -39,14 +39,14 @@ public class KyselyTest {
         kysely.lisaaKysymys(kysymys);
         assertEquals(1, kysely.getKysymykset().size());
     }
-    
+
     @Test
     public void KahdenKysymyksenLisaamisenJalkeenIndeksiListassaOnYkkonen() {
         kysely.lisaaKysymys(kysymys);
         kysely.lisaaKysymys(new Kysymys("Moi?", "Hi?", null));
         assertTrue(kysely.getKysymystenIndeksiLista().contains(1));
     }
-    
+
     @Test
     public void aluksiIndeksiListaOnTyhja() {
         assertTrue(kysely.getKysymystenIndeksiLista().isEmpty());

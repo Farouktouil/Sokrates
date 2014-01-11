@@ -29,7 +29,8 @@ public class KyseleKysely extends Komento {
     /**
      * Konstruktori luo tiedostonkirjoittajan
      */
-    public KyseleKysely(Lukija lukija, KyselyHallinta hallinta, TiedostonKirjoittaja tk, String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
+    public KyseleKysely(Lukija lukija, KyselyHallinta hallinta, TiedostonKirjoittaja tk,
+            String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
         super(lukija, hallinta, nimi, seliteSuomeksi, seliteEnglanniksi);
         this.tk = tk;
     }
@@ -56,10 +57,10 @@ public class KyseleKysely extends Komento {
         if (kysymykset.isEmpty()) {
             System.out.println(Tulostamo.kyselyssaEiOleYhtaanKysymysta());
             return true;
-        } else {
-            boolean examples = hallinta.getExamples();
-            kysele(lukija, examples, kysymykset);
         }
+
+        boolean examples = hallinta.getExamples();
+        kysele(lukija, examples, kysymykset);
         String tekstitiedostonNimi = kysymykset.get(0).getVastaus();
         System.out.println(Tulostamo.kyselyOnValmis(tekstitiedostonNimi));
         return true;
@@ -86,7 +87,7 @@ public class KyseleKysely extends Komento {
                 System.out.println(Tulostamo.esimerkkiVastaus(esimerkkiVastaus));
             }
             System.out.print("\n    ");
-            String kayttajanVastaus = lukija.lueMerkkijono();
+            String kayttajanVastaus = lukija.lueMerkkijono("");
             System.out.println();
             kysymys.setVastaus(kayttajanVastaus);
         }

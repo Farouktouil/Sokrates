@@ -58,42 +58,48 @@ public class Sovellus {
         this.lukija = new Lukija();
         this.komennot = new TreeMap<>();
         this.hallinta = new KyselyHallinta();
-        this.ohje = new Ohje(lukija, hallinta, null, "Valitse komento:", "Pick a command:", komennot.values());
+        this.ohje = new Ohje(lukija, hallinta, komennot.values(), null, "Valitse komento:", "Pick a command:");
         this.tk = new TiedostonKirjoittaja();
         this.tl = new TiedostonLukija();
-        luoKomennot(hallinta);
+        luoKomennot();
     }
 
     /**
-     * Metodi tulostaa käyttäjälle ohjelman käyttöohjeet eli valittavissa olevat
-     * komennot ja kuuntelee käyttäjän syötettä kunnes syöte vastaa jotakin
-     * tunnettua komentoa, jolloin poiketaan suorittamaan kyseinen komento.
-     * Komennon ollessa tyhjä (eli kai pakostikin pelkkä enterin painallus)
-     * tulostetaan uudelleen sallitut komennot.
+     * Metodi laittaa Sovelluksen komentotaulukkoon kunkin luodun komennon,
+     * avaimenaan kyseisen komennon muistama nimi (käytännössä usein tai aina
+     * yksittäinen numero tai kirjain).
      *
-     * Kuuntelulooppi jatkuu jos ja vain jos komento palauttaa true eli
-     * käytännössä kunnes suoritetaan komento Lopeta.
+     * @param komento Parametrina saatu komento joka taulukkoon nimineen
+     * lisätään.
      */
-    public void suorita() {
-        System.out.print("Tervetuloa kyselyohjelmaan. ");
-        paivitaKyselytKaynnistettaessa();
+    private void luoKomento(Komento komento) {
+        this.komennot.put(komento.getNimi(), komento);
+    }
 
-        boolean jatketaan = true;
-
-        while (jatketaan) {
-            ohje.suorita();
-            paivitaKyselyt();
-            String syote = lukija.lueMerkkijono(Tulostamo.komento());
-            System.out.println("");
-
-            Komento komento = komennot.get(syote);
-
-            if (komento == null) {
-                komento = ohje;
-            }
-
-            jatketaan = komento.suorita();
-        }
+    /**
+     * Metodi luo(duttaa) yksitellen jokaisen ohjelman käyttämän komennon
+     * lukuunottamatta Ohjetta, joka luodaan Sovelluksen konstruktorissa.
+     *
+     * @param hallinta Parametrina saatu KyselyHallinta annetaan edelleen
+     * jokaiselle komennolle tiedoksi
+     */
+    private void luoKomennot() {
+        luoKomento(new KyseleKysely(lukija, hallinta, tk,
+                "0", "kysele kysely", "perform an inquiry"));
+        luoKomento(new LisaaKysely(lukija, hallinta, tk,
+                "1", "lisää uusi kysely", "add a new inquiry"));
+        luoKomento(new PoistaKysely(lukija, hallinta, tk, tl,
+                "2", "poista kysely", "remove an inquiry"));
+        luoKomento(new LisaaKysymyksiaKyselyyn(lukija, hallinta, tk, tl,
+                "3", "lisää kysymyksiä kyselyyn", "add questions to an inquiry"));
+        luoKomento(new PoistaKysymyksiaKyselysta(lukija, hallinta,
+                "4", "poista kysymyksiä kyselystä", "remove questions from an inquiry"));
+        luoKomento(new VaihdaKieli(lukija, hallinta,
+                "5", "vaihda kieleksi englanti", "change language to Finnish"));
+        luoKomento(new EsimerkkiToggle(lukija, hallinta,
+                "6", "aseta esimerkkivastaukset off/on", "toggle examples off/on"));
+        luoKomento(new Lopeta(lukija, hallinta,
+                "x", "lopeta", "quit"));
     }
 
     public List<String> paivitaKyselyt() {
@@ -112,32 +118,32 @@ public class Sovellus {
     }
 
     /**
-     * Metodi luo(duttaa) yksitellen jokaisen ohjelman käyttämän komennon
-     * lukuunottamatta Ohjetta, joka luodaan Sovelluksen konstruktorissa.
+     * Metodi tulostaa käyttäjälle ohjelman käyttöohjeet eli valittavissa olevat
+     * komennot ja kuuntelee käyttäjän syötettä kunnes syöte vastaa jotakin
+     * tunnettua komentoa, jolloin poiketaan suorittamaan kyseinen komento.
+     * Komennon ollessa tyhjä (eli kai pakostikin pelkkä enterin painallus)
+     * tulostetaan uudelleen sallitut komennot.
      *
-     * @param hallinta Parametrina saatu KyselyHallinta annetaan edelleen
-     * jokaiselle komennolle tiedoksi
+     * Kuuntelulooppi jatkuu jos ja vain jos komento palauttaa true eli
+     * käytännössä kunnes suoritetaan komento Lopeta.
      */
-    private void luoKomennot(KyselyHallinta hallinta) {
-        luoKomento(new KyseleKysely(lukija, hallinta, tk, "0", "kysele kysely", "perform an inquiry"));
-        luoKomento(new LisaaKysely(lukija, hallinta, tk, "1", "lisää uusi kysely", "add a new inquiry"));
-        luoKomento(new PoistaKysely(lukija, hallinta, tk, tl, "2", "poista kysely", "remove an inquiry"));
-        luoKomento(new LisaaKysymyksiaKyselyyn(lukija, hallinta, tk, tl, "3", "lisää kysymyksiä kyselyyn", "add questions to an inquiry"));
-        luoKomento(new PoistaKysymyksiaKyselysta(lukija, hallinta, "4", "poista kysymyksiä kyselystä", "remove questions from an inquiry"));
-        luoKomento(new VaihdaKieli(lukija, hallinta, "5", "vaihda kieleksi englanti", "change language to Finnish"));
-        luoKomento(new EsimerkkiToggle(lukija, hallinta, "6", "aseta esimerkkivastaukset off/on", "toggle examples off/on"));
-        luoKomento(new Lopeta(lukija, hallinta, "x", "lopeta", "quit"));
-    }
+    public void suorita() {
+        System.out.print("Tervetuloa kyselyohjelmaan. ");
+        paivitaKyselytKaynnistettaessa();
+        boolean jatketaan = true;
 
-    /**
-     * Metodi laittaa Sovelluksen komentotaulukkoon kunkin luodun komennon,
-     * avaimenaan kyseisen komennon muistama nimi (käytännössä usein tai aina
-     * yksittäinen numero tai kirjain).
-     *
-     * @param komento Parametrina saatu komento joka taulukkoon nimineen
-     * lisätään.
-     */
-    private void luoKomento(Komento komento) {
-        this.komennot.put(komento.getNimi(), komento);
+        while (jatketaan) {
+            ohje.suorita();
+            paivitaKyselyt();
+            String syote = lukija.lueMerkkijono(Tulostamo.komento());
+            System.out.println("");
+            Komento komento = komennot.get(syote);
+
+            if (komento == null) {
+                komento = ohje;
+            }
+
+            jatketaan = komento.suorita();
+        }
     }
 }

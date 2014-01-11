@@ -13,7 +13,8 @@ import sokrates.util.Lukija;
  */
 public class EsimerkkiToggle extends Komento {
 
-    public EsimerkkiToggle(Lukija lukija, KyselyHallinta hallinta, String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
+    public EsimerkkiToggle(Lukija lukija, KyselyHallinta hallinta,
+            String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
         super(lukija, hallinta, nimi, seliteSuomeksi, seliteEnglanniksi);
     }
 
