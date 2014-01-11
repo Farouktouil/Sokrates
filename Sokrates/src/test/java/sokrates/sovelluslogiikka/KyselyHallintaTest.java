@@ -1,5 +1,7 @@
 package sokrates.sovelluslogiikka;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -22,6 +24,37 @@ public class KyselyHallintaTest {
     public void KahdenKyselynLisaamisenJalkeenHallinnassaOnKaksiKyselya() {
         hallinta.lisaaKysely("ongelmanratkaisu");
         hallinta.lisaaKysely("paivakirja");
+        assertEquals(2, hallinta.getKyselyt().size());
+    }
+    
+    @Test
+    public void yhdenKokoisenListanLisaamisenJalkeenKyselyHallinnassaOnYksiKysely() {
+        List<String> kyselylista = new ArrayList<>();
+        kyselylista.add("ongelmanratkaisu");
+        
+        hallinta.lisaaKyselyt(kyselylista);
+        assertEquals(1, hallinta.getKyselyt().size());
+    }
+    
+    @Test
+    public void KahdenKyselynLisaamisenJalkeenIndeksiListassaOnYkkonen() {
+        hallinta.lisaaKysely("ongelmanratkaisu");
+        hallinta.lisaaKysely("paivakirja");
+        assertTrue(hallinta.getKyselyidenIndeksiLista().contains(1));
+    }
+    
+    @Test
+    public void aluksiIndeksiListaOnTyhja() {
+        assertTrue(hallinta.getKyselyidenIndeksiLista().isEmpty());
+    }
+    
+    @Test
+    public void kahdenKokoisenListanLisaamisenJalkeenKyselyHallinnassaOnKaksiKyselya() {
+        List<String> kyselylista = new ArrayList<>();
+        kyselylista.add("ongelmanratkaisu");
+        kyselylista.add("päiväkirja");
+        
+        hallinta.lisaaKyselyt(kyselylista);
         assertEquals(2, hallinta.getKyselyt().size());
     }
 
@@ -67,4 +100,6 @@ public class KyselyHallintaTest {
         hallinta.setExamples(false);
         assertTrue(!hallinta.getExamples());
     }
+    
+    
 }
