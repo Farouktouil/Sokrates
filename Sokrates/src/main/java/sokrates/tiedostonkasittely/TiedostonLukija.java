@@ -36,7 +36,12 @@ public class TiedostonLukija {
 
         for (File kyselyTiedosto : kyselyTiedostot) { // seuraava tapahtuu PER kyselytiedosto
             Scanner lukija = new Scanner(new FileInputStream(kyselyTiedosto), "UTF-8");
-            lukija.nextLine();
+            
+            if (lukija.hasNextLine()) {
+                lukija.nextLine();
+            } else {
+                return;
+            }
 
             ArrayList<String> riviLista = new ArrayList<>();
             while (lukija.hasNextLine()) {

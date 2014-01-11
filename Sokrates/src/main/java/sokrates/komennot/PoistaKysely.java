@@ -1,5 +1,6 @@
 package sokrates.komennot;
 
+import java.io.File;
 import sokrates.kayttoliittyma.Tulostamo;
 import sokrates.sovelluslogiikka.Kysely;
 import sokrates.sovelluslogiikka.KyselyHallinta;
@@ -40,7 +41,10 @@ public class PoistaKysely extends Komento {
         if (poistettavaKysely != null) {
             String poistettavanKyselynNimi = poistettavaKysely.getNimi();
             this.hallinta.poistaKysely(poistettavaKysely);
-            tk.poistaKyselyTiedosto(tl.getNimeaVastaavaKyselyTiedosto(poistettavanKyselynNimi));
+
+            File poistettava = tl.getNimeaVastaavaKyselyTiedosto(poistettavanKyselynNimi);
+            tk.poistaKyselyTiedosto(poistettava); // onnistuu
+
             System.out.println(Tulostamo.poistettuKyselyNimelta(poistettavanKyselynNimi));
             System.out.println();
         }

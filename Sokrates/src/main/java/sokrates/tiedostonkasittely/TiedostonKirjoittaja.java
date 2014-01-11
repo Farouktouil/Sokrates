@@ -33,19 +33,22 @@ public class TiedostonKirjoittaja {
 
     public void poistaKyselyTiedosto(File kysely) {
         if (kysely.exists()) {
-            tyhjennaKyselyTiedosto(kysely);
-            kysely.delete();
+            String poistettiin = kysely.getAbsolutePath();
+//             tyhjennaKyselyTiedosto(kysely);
+            boolean onnistuiko = kysely.delete();
+            System.out.println("Poistettiin " + poistettiin + " " + onnistuiko);
         }
     }
 
-    public void tyhjennaKyselyTiedosto(File kysely) {
-        try {
-            FileWriter writer = new FileWriter(kysely);
-            writer.write("");
-        } catch (Exception ex) {
-            System.out.println("Kyselyä ei ole");
-        }
-    }
+//    private void tyhjennaKyselyTiedosto(File kysely) {
+//        try {
+//            FileWriter writer = new FileWriter(kysely);
+//            writer.write("");
+//            writer.close();
+//        } catch (Exception ex) {
+//            System.out.println("Kyselyä ei ole");
+//        }
+//    }
 
     public void kirjoitaTiedostoonRivit(File kysely, String s1, String s2, String s3) throws FileNotFoundException, UnsupportedEncodingException {
         if (kysely.exists()) {
