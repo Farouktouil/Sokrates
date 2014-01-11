@@ -72,6 +72,9 @@ public abstract class Komento {
         this.seliteKaikillaKielilla.put(Kieli.ENGLANTI, seliteEnglanniksi);
     }
 
+    /**
+     * @return Komennon nimi eli valikossa näkyvä numero tai kirjain
+     */
     public String getNimi() {
         return this.nimi;
     }
@@ -115,7 +118,7 @@ public abstract class Komento {
 
         if (this.hallinta.getKyselyt().isEmpty()) {
             System.out.println(Tulostamo.kyselyitaEiOle());
-            return kysely;
+            return null;
         }
 
         tulostaKyselyVaihtoehdot();

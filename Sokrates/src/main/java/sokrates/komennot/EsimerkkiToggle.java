@@ -27,13 +27,16 @@ public class EsimerkkiToggle extends Komento {
      */
     @Override
     public boolean suorita() {
+
         if (this.hallinta.getExamples() == true) {
             this.hallinta.setExamples(false);
             System.out.println(Tulostamo.examplesOff());
+
         } else if (this.hallinta.getExamples() == false) {
             this.hallinta.setExamples(true);
             System.out.println(Tulostamo.examplesOn());
         }
+
         return true;
     }
 }

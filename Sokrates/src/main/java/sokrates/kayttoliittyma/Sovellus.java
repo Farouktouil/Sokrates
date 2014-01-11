@@ -42,7 +42,13 @@ public class Sovellus {
      * Sovellukseen kapseloitu Ohje-komento
      */
     private Komento ohje;
+    /**
+     * TiedostonKirjoittaja
+     */
     private TiedostonKirjoittaja tk;
+    /**
+     * TiedostonLukija
+     */
     private TiedostonLukija tl;
 
     /**
@@ -52,7 +58,7 @@ public class Sovellus {
      * Sovellus myös luo kaikki komennot ja lisää ne muistamaansa
      * komennot-TreeMapiin.
      *
-     * Luo myös kyselyt.
+     * Luo myös tiedostonkäsittelijät.
      */
     public Sovellus() {
         this.lukija = new Lukija();
@@ -66,8 +72,8 @@ public class Sovellus {
 
     /**
      * Metodi laittaa Sovelluksen komentotaulukkoon kunkin luodun komennon,
-     * avaimenaan kyseisen komennon muistama nimi (käytännössä usein tai aina
-     * yksittäinen numero tai kirjain).
+     * avaimenaan kyseisen komennon muistama nimi (käytännössä aina yksittäinen
+     * numero tai kirjain).
      *
      * @param komento Parametrina saatu komento joka taulukkoon nimineen
      * lisätään.
@@ -79,9 +85,6 @@ public class Sovellus {
     /**
      * Metodi luo(duttaa) yksitellen jokaisen ohjelman käyttämän komennon
      * lukuunottamatta Ohjetta, joka luodaan Sovelluksen konstruktorissa.
-     *
-     * @param hallinta Parametrina saatu KyselyHallinta annetaan edelleen
-     * jokaiselle komennolle tiedoksi
      */
     private void luoKomennot() {
         luoKomento(new KyseleKysely(lukija, hallinta, tk,
@@ -102,12 +105,26 @@ public class Sovellus {
                 "x", "lopeta", "quit"));
     }
 
+    /**
+     * Metodi lukee src/inquiries-kansiosta löytyvien tekstitiedostojen nimet,
+     * lisää(nnyttää) ne KyselyHallintaan ja palauttaa ne alempaa metodia varten
+     * listana. Metodia kutsutaan aina suorita()-metodin loopatessa, jotta tieto
+     * olemassaolevista kyselyistä pysyisi ajantasaisena.
+     *
+     * @return Kansiosta löytyneiden kyselyjen nimet listana.
+     */
     public List<String> paivitaKyselyt() {
         List<String> kyselyTiedostojenNimet = tl.lueKyselyTiedostojenNimet("src/inquiries/");
         this.hallinta.lisaaKyselyt(kyselyTiedostojenNimet);
         return kyselyTiedostojenNimet;
     }
 
+    /**
+     * Metodi hakee paivitaKyselyt()-metodin palauttaman nimilistan avulla
+     * TiedostonLukijalta vastaavan tiedostolistan. Tiedostot metodi käskee
+     * sitten TiedostonLukijaa avaamaan ja tulkitsemaan sisällöt kysymyksiksi,
+     * jotka lisätään KyselyHallintaan. Tämä suoritetaan ohjelma avattaessa.
+     */
     public void paivitaKyselytKaynnistettaessa() {
         try {
             List<File> kyselyTiedostot = tl.getNimiaVastaavatKyselyTiedostot(paivitaKyselyt());
@@ -121,11 +138,10 @@ public class Sovellus {
      * Metodi tulostaa käyttäjälle ohjelman käyttöohjeet eli valittavissa olevat
      * komennot ja kuuntelee käyttäjän syötettä kunnes syöte vastaa jotakin
      * tunnettua komentoa, jolloin poiketaan suorittamaan kyseinen komento.
-     * Komennon ollessa tyhjä (eli kai pakostikin pelkkä enterin painallus)
-     * tulostetaan uudelleen sallitut komennot.
      *
      * Kuuntelulooppi jatkuu jos ja vain jos komento palauttaa true eli
-     * käytännössä kunnes suoritetaan komento Lopeta.
+     * käytännössä kunnes suoritetaan komento Lopeta. Joka looppauksella
+     * päivitetään kyselytilanne kutsumalla metodia paivitaKyselyt().
      */
     public void suorita() {
         System.out.print("Tervetuloa kyselyohjelmaan. ");
@@ -140,7 +156,7 @@ public class Sovellus {
             Komento komento = komennot.get(syote);
 
             if (komento == null) {
-                komento = ohje;
+                continue;
             }
 
             jatketaan = komento.suorita();

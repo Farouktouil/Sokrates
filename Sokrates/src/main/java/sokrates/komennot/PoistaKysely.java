@@ -4,19 +4,25 @@ import java.io.File;
 import sokrates.kayttoliittyma.Tulostamo;
 import sokrates.sovelluslogiikka.Kysely;
 import sokrates.sovelluslogiikka.KyselyHallinta;
-import sokrates.tiedostonkasittely.TiedostonKirjoittaja;
-import sokrates.tiedostonkasittely.TiedostonLukija;
+import sokrates.tiedostonkasittely.*;
 import sokrates.util.Lukija;
 
 /**
  * Komento PoistaKysely laittaa käyttäjän valitsemaan poistettavan kyselyn ja
- * poistaa sitten valitun kyselyn KyselyHallinnan muistista.
+ * poistaa sitten valitun kyselyn KyselyHallinnan muistista sekä
+ * kyselytiedostojen kansiosta.
  *
  * @author Teo
  */
 public class PoistaKysely extends Komento {
 
+    /**
+     * Kapseloitu TiedostonKirjoittaja
+     */
     private TiedostonKirjoittaja tk;
+    /**
+     * Kapseloitu TiedostonLukija
+     */
     private TiedostonLukija tl;
 
     public PoistaKysely(Lukija lukija, KyselyHallinta hallinta, TiedostonKirjoittaja tk, TiedostonLukija tl,
@@ -32,6 +38,9 @@ public class PoistaKysely extends Komento {
      * kysely KyselyHallinnasta ja tulostetaan käyttäjälle tieto siitä, minkä
      * niminen kysely on poistettu.
      *
+     * TiedostonLukijalta saadaan poistettavan kyselyn nimeä vastaava tiedosto,
+     * joka TiedostonKirjoittajaa pyydetään poistamaan.
+     *
      * @return true jotta Sovelluksen komentolooppi voi jatkua.
      */
     @Override
@@ -44,7 +53,7 @@ public class PoistaKysely extends Komento {
             this.hallinta.poistaKysely(poistettavaKysely);
 
             File poistettava = tl.getNimeaVastaavaKyselyTiedosto(poistettavanKyselynNimi);
-            tk.poistaKyselyTiedosto(poistettava); // onnistuu
+            tk.poistaKyselyTiedosto(poistettava);
 
             System.out.println(Tulostamo.poistettuKyselyNimelta(poistettavanKyselynNimi));
             System.out.println();

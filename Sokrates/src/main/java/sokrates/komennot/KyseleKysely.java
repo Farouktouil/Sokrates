@@ -26,9 +26,6 @@ public class KyseleKysely extends Komento {
      */
     private TiedostonKirjoittaja tk;
 
-    /**
-     * Konstruktori luo tiedostonkirjoittajan
-     */
     public KyseleKysely(Lukija lukija, KyselyHallinta hallinta, TiedostonKirjoittaja tk,
             String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
         super(lukija, hallinta, nimi, seliteSuomeksi, seliteEnglanniksi);
@@ -60,7 +57,9 @@ public class KyseleKysely extends Komento {
         }
 
         boolean examples = hallinta.getExamples();
+        
         kysele(lukija, examples, kysymykset);
+        
         String tekstitiedostonNimi = kysymykset.get(0).getVastaus();
         System.out.println(Tulostamo.kyselyOnValmis(tekstitiedostonNimi));
         return true;
@@ -91,6 +90,7 @@ public class KyseleKysely extends Komento {
             System.out.println();
             kysymys.setVastaus(kayttajanVastaus);
         }
+        
         this.tk.luoTiedosto(kysymykset);
     }
 }

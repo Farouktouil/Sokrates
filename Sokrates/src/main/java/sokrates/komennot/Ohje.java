@@ -24,8 +24,8 @@ public class Ohje extends Komento {
     }
 
     /**
-     * Ohjeen suorittaminen tulostuttaa kehotuksen valita komento followed by
-     * mahdolliset komennot kivasti numeroituina.
+     * Ohjeen suorittaminen tulostuttaa kehotuksen valita komento (oman
+     * selitteensä) sekä mahdolliset komennot kivasti numeroituina.
      *
      * @return true jotta Sovelluksen komentolooppi jatkuu.
      */

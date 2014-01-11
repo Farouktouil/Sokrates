@@ -18,13 +18,21 @@ public class PoistaKysymyksiaKyselysta extends Komento {
         super(lukija, hallinta, nimi, seliteSuomeksi, seliteEnglanniksi);
     }
 
+    /**
+     * Suoritettaessa laitetaan käyttäjä valitsemaan yläluokan metodilla kysely,
+     * josta kysymyksiä halutaan poistaa. Jos kyselyssä on kysymyksiä,
+     * poistetaan niitä kutsumalla alempaa metodia.
+     *
+     * @return true jotta Sovelluksen komentolooppi voi jatkua.
+     */
     @Override
     public boolean suorita() {
         System.out.println(Tulostamo.valitseKohdeKysely());
         Kysely kohdeKysely = super.kayttajanOsoittamaKysely();
 
         if (kohdeKysely == null) {
-            System.out.println(Tulostamo.kysymyksiaEiOle()); // tämä tulostuu vielä epätoivotusti vaikka painettiin "x"
+        } else if (kohdeKysely.getKysymykset().isEmpty()) {
+            System.out.println(Tulostamo.kysymyksiaEiOle());
         } else {
             poistaKysymyksia(kohdeKysely);
         }
@@ -35,7 +43,11 @@ public class PoistaKysymyksiaKyselysta extends Komento {
     /**
      * Looppaa käyttäjältä valintoja poistettavista kysymyksistä. Poistaa.
      *
-     * @param kohdeKysely
+     * Tarkistaa että käyttäjän syöttämä kysymyksen indeksi todella löytyy
+     * kohdekyselyn kysymysten indeksilistasta, jotta ArrayList ei kaada
+     * ohjelmaa.
+     *
+     * @param kohdeKysely Kysely josta kysymyksiä poistetaan
      */
     private void poistaKysymyksia(Kysely kohdeKysely) {
         while (true) {

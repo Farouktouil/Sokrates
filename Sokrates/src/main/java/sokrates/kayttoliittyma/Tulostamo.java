@@ -218,6 +218,10 @@ public class Tulostamo {
         return "\n    Added an inquiry named '" + nimi + "'.\n";
     }
 
+    /**
+     * @return Kehotus muotoilla kysymys suomeksi (lisättäessä kysymyksiä
+     * kyselyyn).
+     */
     public static String muotoileKysymysSuomeksi() {
         if (Asetukset.getKieli() == Kieli.SUOMI) {
             return "\nMuotoile kysymys suomeksi: ";
@@ -225,6 +229,10 @@ public class Tulostamo {
         return "\nFormulate the question in Finnish: ";
     }
 
+    /**
+     * @return Kehotus muotoilla kysymys englanniksi (lisättäessä kysymyksiä
+     * kyselyyn).
+     */
     public static String muotoileKysymysEnglanniksi() {
         if (Asetukset.getKieli() == Kieli.SUOMI) {
             return "Muotoile kysymys englanniksi: ";
@@ -232,6 +240,10 @@ public class Tulostamo {
         return "Formulate the question in English: ";
     }
 
+    /**
+     * @return Kehotus muotoilla esimerkkivastaus (lisättäessä kysymyksiä
+     * kyselyyn).
+     */
     public static String muotoileEsimerkkiVastaus() {
         if (Asetukset.getKieli() == Kieli.SUOMI) {
             return "Muotoile esimerkkivastaus: ";
@@ -239,6 +251,10 @@ public class Tulostamo {
         return "Formulate an example answer: ";
     }
 
+    /**
+     * @param kohdeKyselynNimi Nimi kyselyn, johon on lisätty kysymys.
+     * @return Ilmoitus siitä, että on juuri lisätty kysymys valittuun kyselyyn.
+     */
     public static String lisattyKysymys(String kohdeKyselynNimi) {
         if (Asetukset.getKieli() == Kieli.SUOMI) {
             return "\n    Lisätty kysymys kyselyyn '" + kohdeKyselynNimi + "'.\n";
@@ -246,19 +262,30 @@ public class Tulostamo {
         return "\n    A question was added to the inquiry '" + kohdeKyselynNimi + "'.\n";
     }
 
+    /**
+     * @param kohdeKyselynNimi Nimi kyselyn, josta on poistettu kysymys.
+     * @return Ilmoitus siitä, että on juuri poistettu kysymys valitusta
+     * kyselystä.
+     */
     public static String poistettuKysymys(String kohdeKyselynNimi) {
         if (Asetukset.getKieli() == Kieli.SUOMI) {
-            return "\n    Poistettu kysymys kyselystä '" + kohdeKyselynNimi + "'.\n";
+            return "\n    Poistettu kysymys kyselystä '" + kohdeKyselynNimi + "'.";
         }
-        return "\n    A question was removed from the inquiry '" + kohdeKyselynNimi + "'.\n";
+        return "\n    A question was removed from the inquiry '" + kohdeKyselynNimi + "'.";
     }
 
+    /**
+     * @param kohdeKyselynNimi Nimi kyselyn, johon on mahdollisuus lisätä
+     * kysymys.
+     * @return Kaksirivinen ilmoitus vaihtoehdoista ennen kysymyksen lisäämistä
+     * ja sen jälkeen (peruuta tai jatka).
+     */
     public static String vaihtoehdotKysymyksiaLisatessa(String kohdeKyselynNimi) {
         if (Asetukset.getKieli() == Kieli.SUOMI) {
-            return "enter = lisää uusi kysymys kyselyyn '" + kohdeKyselynNimi + "'\n"
-                    + "x = peruuta\n\n" + komento();
+            return "enter = jatka lisäämään kysymys kyselyyn '" + kohdeKyselynNimi + "'\n"
+                    + "x = peruuta\n" + komento();
         }
-        return "enter = add a new question to the inquiry '" + kohdeKyselynNimi + "'\n"
-                + "x = cancel\n\n" + komento();
+        return "enter = continue to add a new question to '" + kohdeKyselynNimi + "'\n"
+                + "x = cancel\n" + komento();
     }
 }

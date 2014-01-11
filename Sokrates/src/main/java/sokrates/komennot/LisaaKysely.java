@@ -15,6 +15,9 @@ import sokrates.util.Lukija;
  */
 public class LisaaKysely extends Komento {
 
+    /**
+     * Kapseloitu TiedostonKirjoittaja
+     */
     private TiedostonKirjoittaja tk;
 
     public LisaaKysely(Lukija lukija, KyselyHallinta hallinta, TiedostonKirjoittaja tk,
@@ -29,7 +32,8 @@ public class LisaaKysely extends Komento {
      *
      * Epätyhjää nimeä (vihdoin jos onnekkaasti on saatu niin) käytetään nimenä
      * KyselyHallintaan lisättävälle kyselylle, ja ilmoitetaan käyttäjälle että
-     * hänen antamansa niminen kysely on lisätty.
+     * hänen antamansa niminen kysely on lisätty. TiedostonKirjoittajaa
+     * käsketään luomaan kyselytiedosto valitulla nimellä.
      *
      * @return true jotta Sovelluksen komentolooppi voi jatkua.
      */
