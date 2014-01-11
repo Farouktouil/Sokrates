@@ -1,5 +1,6 @@
 package sokrates.tiedostonkasittely;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -24,7 +25,6 @@ public class TiedostonKirjoittaja {
         try {
             File file = new File("src/inquiries/", nimi + ".txt");
             try (FileWriter writer = new FileWriter(file)) {
-                writer.write(nimi);
             }
         } catch (FileNotFoundException | UnsupportedEncodingException ex) {
             Logger.getLogger(KyseleKysely.class.getName()).log(Level.SEVERE, null, ex);
@@ -33,16 +33,33 @@ public class TiedostonKirjoittaja {
 
     public void poistaKyselyTiedosto(File kysely) {
         if (kysely.exists()) {
+            tyhjennaKyselyTiedosto(kysely);
             kysely.delete();
+        }
+    }
+
+    public void tyhjennaKyselyTiedosto(File kysely) {
+        try {
+            FileWriter writer = new FileWriter(kysely);
+            writer.write("");
+        } catch (Exception ex) {
+            System.out.println("Kyselyä ei ole");
         }
     }
 
     public void kirjoitaTiedostoonRivit(File kysely, String s1, String s2, String s3) throws FileNotFoundException, UnsupportedEncodingException {
         if (kysely.exists()) {
-            try (PrintWriter writer = new PrintWriter(kysely, "UTF-8")) {
-                writer.println(s1);
-                writer.println(s2);
-                writer.print(s3);
+            try {
+                try (BufferedWriter output = new BufferedWriter(new FileWriter(kysely, true))) {
+                    output.newLine();
+                    output.append(s1);
+                    output.newLine();
+                    output.append(s2);
+                    output.newLine();
+                    output.append(s3);
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(TiedostonKirjoittaja.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }

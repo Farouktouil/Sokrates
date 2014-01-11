@@ -1,6 +1,7 @@
 package sokrates.tiedostonkasittely;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +35,8 @@ public class TiedostonLukija {
     public void lisaaKyselyTiedostojenSisallotKysymyksiksi(List<File> kyselyTiedostot, KyselyHallinta hallinta) throws FileNotFoundException {
 
         for (File kyselyTiedosto : kyselyTiedostot) { // seuraava tapahtuu PER kyselytiedosto
-            Scanner lukija = new Scanner(kyselyTiedosto);
+            Scanner lukija = new Scanner(new FileInputStream(kyselyTiedosto), "UTF-8");
+            lukija.nextLine();
 
             ArrayList<String> riviLista = new ArrayList<>();
             while (lukija.hasNextLine()) {
