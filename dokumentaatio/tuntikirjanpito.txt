@@ -15,3 +15,4 @@
 08.01.    12h    javadoc; siistimist‰; LisaaKysymyksiaKyselyyn; PoistaKysymyksiaKyselysta; testej‰; testiraportti; fiksuutta
                  tekstik‰yttikseen; p‰ivitetty aiheenKuvausJaRakenne + luokkakaavio; sekvenssikaavio; kivoja default-kyselyit‰
 09.01.     3h    kaatumistilanteiden paikkaaminen; mainin mavenille m‰‰ritt‰misess‰ onnistumattomuus
+10.01.    16h    tiedostonk‰sittely/tallentuminen, javadoc, siistimist‰, testit ja dokumentaatio
