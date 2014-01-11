@@ -3,11 +3,9 @@ package sokrates.sovelluslogiikka;
 import java.util.HashMap;
 
 /**
- * Luokka Kysymys edustaa kysymyksiä. Kysymys on olemassa aina vähintään yhdellä
- * kielellä. Kysymys muistaa listan kysymyksestä kaikilla eri kielillä, ja
- * listaan voidaan lisätä kysymyksen erikielisiä muotoiluja. Kysymys muistaa
- * esimerkkivastauksensa (ainakin toistaiseksi vain yhdellä kielellä)
- * kysymykseen liitetyn vastauksen (String).
+ * Kysymys on olemassa monella eri kielellä ja muistaa HashMapin muotoilustaan
+ * eri kielillä (avaimina). Kysymykseen liittyy esimerkkivastaus ja myöhemmin
+ * mahdollisesti käyttäjän syötteestä kysymykseen liitettävä vastaus.
  *
  * @author Teo
  */

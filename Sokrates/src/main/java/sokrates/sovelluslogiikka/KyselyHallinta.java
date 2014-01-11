@@ -44,6 +44,12 @@ public class KyselyHallinta {
         }
     }
 
+    /**
+     * Metodi yrittää lisätä KyselyHallintaan parametrina saamansa nimilistan
+     * nimet.
+     *
+     * @param nimet Lista kyselyiden nimistä jotka halutaan lisätä hallintaan.
+     */
     public void lisaaKyselyt(List<String> nimet) {
         for (String nimi : nimet) {
             lisaaKysely(nimi);
@@ -91,6 +97,13 @@ public class KyselyHallinta {
         this.examples = examples;
     }
 
+    /**
+     * Metodi auttaa estämään ohjelman kaatumista kun käyttäjä yrittää syöttää
+     * olemassaolevaa indeksiä valitakseen kyselyn.
+     *
+     * @return Hallinnan sisältämien kyselyiden indeksit Integer-listana
+     * (kyselyiden järjestysnumerot siis, nollasta alkaen).
+     */
     public ArrayList<Integer> getKyselyidenIndeksiLista() {
         ArrayList<Integer> kyselyidenIndeksiLista = new ArrayList<>();
 

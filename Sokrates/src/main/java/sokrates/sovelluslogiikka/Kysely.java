@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * Luokan Kysely olio on yksittäinen kysely, joka sisältää listan kysymyksiä.
  * Kyselyllä on aina jonkinlainen merkkijono nimenä. Kyselyyn voi lisätä
- * kysymyksiä. TODO: Mahdollisuus poistaa kysymyksiä.
+ * kysymyksiä.
  *
  * @author Teo
  */
@@ -31,13 +31,14 @@ public class Kysely {
         this.nimi = nimi;
     }
 
+    /**
+     * @return Kyselyn kysymykset listana
+     */
     public ArrayList<Kysymys> getKysymykset() {
         return this.kysymykset;
     }
 
     /**
-     * Metodi palauttaa nimen joka kyselylle tätä luodessa annettiin.
-     *
      * @return Kyselylle annettu nimi
      */
     public String getNimi() {
@@ -65,6 +66,13 @@ public class Kysely {
         this.kysymykset.remove(kysymys);
     }
 
+    /**
+     * Metodi auttaa estämään ohjelman kaatumista kun käyttäjä yrittää syöttää
+     * olemassaolevaa indeksiä valitakseen kysymyksen.
+     *
+     * @return Kyselyn sisältämien kysymysten indeksit Integer-listana
+     * (kysymysten järjestysnumerot siis, nollasta alkaen).
+     */
     public ArrayList<Integer> getKysymystenIndeksiLista() {
         ArrayList<Integer> kysymystenIndeksiLista = new ArrayList<>();
 

@@ -36,7 +36,8 @@ public class Lukija {
     }
 
     /**
-     * Metodi tulkitsee kokonaisluvuksi parametrina saamansa merkkijonon.
+     * Metodi tulkitsee kokonaisluvuksi parametrina saamansa merkkijonon. Jos ei
+     * onnistu niin palauttaa -1.
      *
      * @param merkkiJono Kokonaisluvuksi tulkittava merkkijono
      * @return Kokonaisluvuksi tulkittu merkkijono

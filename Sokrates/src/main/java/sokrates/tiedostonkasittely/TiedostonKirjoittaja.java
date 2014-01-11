@@ -14,13 +14,23 @@ import sokrates.komennot.KyseleKysely;
 import sokrates.sovelluslogiikka.Kysymys;
 
 /**
- * Vastaa tekstitiedoston luomisesta ja siihen kirjoittelusta kyselytyksen
- * jälkeen.
+ * TiedostonKirjoittaja vastaa tekstitiedostojen luomisesta, niihin
+ * kirjoittamisesta ja niiden poistamisesta. Se luo kyselytiedostot, sekä
+ * vastauskoosteet kyselytysten jälkeen. Se myös kirjoittaa käyttäjän lisäämät
+ * kysymykset kyselytiedostoihin, jotta ne säilyvät seuraavaankin
+ * käynnistyskertaan.
  *
  * @author Teo
  */
 public class TiedostonKirjoittaja {
 
+    /**
+     * Metodi luo src/inquiries-kansioon kyselytiedoston parametrinaan saamalla
+     * nimellä.
+     *
+     * @param nimi jolla kyselytiedosto luodaan, .txt päätteenään.
+     * @throws IOException
+     */
     public void luoKyselyTiedostoNimelta(String nimi) throws IOException {
         try {
             File file = new File("src/inquiries/", nimi + ".txt");
@@ -31,12 +41,17 @@ public class TiedostonKirjoittaja {
         }
     }
 
+    /**
+     * Metodi poistaa parametrinaan saamansa kyselytiedoston.
+     *
+     * @param kysely Poistettava kyselytiedosto
+     */
     public void poistaKyselyTiedosto(File kysely) {
         if (kysely.exists()) {
-            String poistettiin = kysely.getAbsolutePath();
+//            String poistettiin = kysely.getAbsolutePath();
 //             tyhjennaKyselyTiedosto(kysely);
             boolean onnistuiko = kysely.delete();
-            System.out.println("Poistettiin " + poistettiin + " " + onnistuiko);
+//            System.out.println("Poistettiin " + poistettiin + " " + onnistuiko);
         }
     }
 
@@ -49,6 +64,18 @@ public class TiedostonKirjoittaja {
 //            System.out.println("Kyselyä ei ole");
 //        }
 //    }
+    /**
+     * Metodi lisää käyttäjän luoman kysymyksen parametrinaan saamaan
+     * kyselytiedostoon. Kysymyksen tiedot kirjoitetaan tiedostoon entisen
+     * sisällön jatkoksi.
+     *
+     * @param kysely Kyselytiedosto johon kysymys lisätään
+     * @param s1 Käyttäjän antama kysymys suomeksi
+     * @param s2 Käyttäjän antama kysymys englanniksi
+     * @param s3 Käyttäjän antama esimerkkivastaus kysymykseen
+     * @throws FileNotFoundException
+     * @throws UnsupportedEncodingException
+     */
     public void kirjoitaTiedostoonRivit(File kysely, String s1, String s2, String s3) throws FileNotFoundException, UnsupportedEncodingException {
         if (kysely.exists()) {
             try {
@@ -59,6 +86,7 @@ public class TiedostonKirjoittaja {
                     output.append(s2);
                     output.newLine();
                     output.append(s3);
+                    output.close();
                 }
             } catch (IOException ex) {
                 Logger.getLogger(TiedostonKirjoittaja.class.getName()).log(Level.SEVERE, null, ex);
@@ -83,7 +111,7 @@ public class TiedostonKirjoittaja {
         try {
             String ekanKysymyksenVastaus = kysymykset.get(0).getVastaus();
             String tekstiTiedostonNimi = ekanKysymyksenVastaus;
-            writer = new PrintWriter(tekstiTiedostonNimi + ".txt", "UTF-8");
+            writer = new PrintWriter("src/completed/" + tekstiTiedostonNimi + ".txt", "UTF-8");
         } catch (FileNotFoundException | UnsupportedEncodingException ex) {
             Logger.getLogger(KyseleKysely.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -107,6 +135,7 @@ public class TiedostonKirjoittaja {
             writer.println();
             writer.println();
         }
+
         writer.close();
     }
 }

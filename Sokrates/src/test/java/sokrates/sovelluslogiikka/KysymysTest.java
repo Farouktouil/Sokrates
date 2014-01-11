@@ -40,8 +40,8 @@ public class KysymysTest {
 
     @Test
     public void getKysymysNykyisellaKielellaPalauttaaKysymyksenSuomeksiKunKieliOnSuomi() {
-        Kysymys kysymys = new Kysymys("Hei, maailma?", null, null);
+        Kysymys q = new Kysymys("Hei, maailma?", null, null);
         Asetukset.setKieli(Kieli.SUOMI);
-        assertEquals("Hei, maailma?", kysymys.getKysymysNykyisellaKielella());
+        assertEquals("Hei, maailma?", q.getKysymysNykyisellaKielella());
     }
 }

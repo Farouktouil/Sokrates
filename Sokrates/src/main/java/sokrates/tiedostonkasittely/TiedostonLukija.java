@@ -11,11 +11,21 @@ import sokrates.sovelluslogiikka.KyselyHallinta;
 import sokrates.sovelluslogiikka.Kysymys;
 
 /**
+ * TiedostonLukija vastaa tekstitiedostojen (kyselytiedostojen) lukemisesta ja
+ * tulkitsemisesta kyselyiksi ja kysymyksiksi.
  *
  * @author Teo
  */
 public class TiedostonLukija {
 
+    /**
+     * Metodi lukee parametrina saamansa kansion sisältämien tekstitiedostojen
+     * nimet ja palauttaa ne sanalistana.
+     *
+     * @param directory Kansio jonka sisältämien tekstitiedostojen nimet
+     * halutaan kyselyiden nimiksi.
+     * @return Sanalista kansion sisältämien tekstitiedostojen nimistä.
+     */
     public List<String> lueKyselyTiedostojenNimet(String directory) {
         List<String> nimet = new ArrayList<>();
         File dir = new File(directory);
@@ -28,10 +38,21 @@ public class TiedostonLukija {
             }
         }
 
-        System.out.println(nimet);
+//      System.out.println(nimet);
         return nimet;
     }
 
+    /**
+     * Metodi lisää parametrina saamansa kyselytiedostojen sisällöt hallintaan
+     * kysymyksiksi tulkittuina alempi metodi apunaan. Tämä metodi kerää kunkin
+     * tiedoston sisältämät rivit listaksi jonka syöttää sitten alemmalle
+     * metodille.
+     *
+     * @param kyselyTiedostot Lista tiedostoista jotka on tarkoitus tulkita
+     * hallintaan.
+     * @param hallinta jonne tiedostot on tarkoitus tulkita.
+     * @throws FileNotFoundException
+     */
     public void lisaaKyselyTiedostojenSisallotKysymyksiksi(List<File> kyselyTiedostot, KyselyHallinta hallinta) throws FileNotFoundException {
 
         for (File kyselyTiedosto : kyselyTiedostot) { // seuraava tapahtuu PER kyselytiedosto
@@ -45,41 +66,67 @@ public class TiedostonLukija {
 
             ArrayList<String> riviLista = new ArrayList<>();
             while (lukija.hasNextLine()) {
-                riviLista.add(lukija.nextLine()); // rivilistaan lisätään jokainen kysymys suomeksi, englanniksi ja esim.vastaus
+                riviLista.add(lukija.nextLine());
             }
 
-            int i = 0;
+            tulkitseKysymyksiksi(riviLista, kyselyTiedosto, hallinta);
+        }
+    }
 
-            while (i < riviLista.size()) {
-                // System.out.println(riviLista.get(i));
-                String kyselyTiedostonNimi = kyselyTiedosto.getName();
-                String kyselynNimi = kyselyTiedostonNimi.substring(0, kyselyTiedostonNimi.length() - 4);
+    /**
+     * Metodi tulkitsee listana saamistaan riveistä joka ensimmäisen suomi-,
+     * joka toisen englanti- ja joka kolmannen esimerkkivastausosaksi kysymystä,
+     * ja lisää kysymykset yksi kerrallaan kohdekyselyyn KyselyHallinnassa.
+     *
+     * Metodi varautuu myös epätarkoituksenmukaisesti rakentuneisiin
+     * kyselytiedostoihin tulkiten tarvittaessa puuttuviin kohtiin tyhjää (""),
+     * ja saattaa siten luoda myös puutteellisia kysymyksiä, mutta parempi se
+     * kuin kaatua.
+     *
+     * @param riviLista Kumppanimetodin tuottama lista riveistä joita tiedoston
+     * sisältä löytyi.
+     * @param kyselyTiedosto Tiedosto jota vastaavaa kyselyä ollaan tässä
+     * tiedostosta hallintaan kääntämässä.
+     * @param hallinta jonne ollaan vääntämässä.
+     */
+    private void tulkitseKysymyksiksi(ArrayList<String> riviLista, File kyselyTiedosto, KyselyHallinta hallinta) {
+        int i = 0;
 
-                String kysymysSuomeksi = riviLista.get(i);
-                String kysymysEnglanniksi = "";
-                String esimerkkiVastaus = "";
+        while (i < riviLista.size()) {
+            String kyselyTiedostonNimi = kyselyTiedosto.getName();
+            String kyselynNimi = kyselyTiedostonNimi.substring(0, kyselyTiedostonNimi.length() - 4);
 
-                if (i < riviLista.size() - 1) {
-                    kysymysEnglanniksi = riviLista.get(i + 1);
-                    if (i < riviLista.size() - 2) {
-                        esimerkkiVastaus = riviLista.get(i + 2);
-                    }
-                }
+            String kysymysSuomeksi = riviLista.get(i);
+            String kysymysEnglanniksi = "";
+            String esimerkkiVastaus = "";
 
-                Kysely kohdeKysely = hallinta.getKyselyNimenPerusteella(kyselynNimi);
-                kohdeKysely.lisaaKysymys(new Kysymys(kysymysSuomeksi, kysymysEnglanniksi, esimerkkiVastaus));
-
+            if (i < riviLista.size() - 1) {
+                kysymysEnglanniksi = riviLista.get(i + 1);
                 if (i < riviLista.size() - 2) {
-                    i += 3;
-                } else if (i < riviLista.size() - 1) {
-                    i += 2;
-                } else {
-                    i += 1;
+                    esimerkkiVastaus = riviLista.get(i + 2);
                 }
+            }
+
+            Kysely kohdeKysely = hallinta.getKyselyNimenPerusteella(kyselynNimi);
+            kohdeKysely.lisaaKysymys(new Kysymys(kysymysSuomeksi, kysymysEnglanniksi, esimerkkiVastaus));
+
+            if (i < riviLista.size() - 2) {
+                i += 3;
+            } else if (i < riviLista.size() - 1) {
+                i += 2;
+            } else {
+                i += 1;
             }
         }
     }
 
+    /**
+     * Metodi palauttaa parametrina saamaansa nimeä vastaavan (kansion
+     * src/inquiries) kyselytiedoston.
+     *
+     * @param nimi Nimi jota vastaava kyselytiedosto halutaan.
+     * @return Kyselytiedosto (File), tai null jos mikään ei täsmää.
+     */
     public File getNimeaVastaavaKyselyTiedosto(String nimi) {
         File dir = new File("src/inquiries/");
 
@@ -94,6 +141,13 @@ public class TiedostonLukija {
         return null;
     }
 
+    /**
+     * Metodi palauttaa parametrina saamansa sanalistan sisältämiä nimiä
+     * vastaavat (kansion src/inquiries) kyselytiedostot tiedostolistana.
+     *
+     * @param nimet Lista nimistä joita vastaavat kyselytiedostot halutaan.
+     * @return Lista nimiä vastaavista tiedostoista.
+     */
     public List<File> getNimiaVastaavatKyselyTiedostot(List<String> nimet) {
         List<File> kyselyTiedostot = new ArrayList<>();
 
