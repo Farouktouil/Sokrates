@@ -19,7 +19,7 @@ public class LisaaKysely extends Komento {
      * Kapseloitu TiedostonKirjoittaja
      */
     private TiedostonKirjoittaja tk;
-
+    
     public LisaaKysely(Lukija lukija, KyselyHallinta hallinta, TiedostonKirjoittaja tk,
             String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
         super(lukija, hallinta, nimi, seliteSuomeksi, seliteEnglanniksi);
@@ -41,13 +41,13 @@ public class LisaaKysely extends Komento {
     public boolean suorita() {
         while (true) {
             String lisattavanKyselynNimi = lukija.lueMerkkijono(Tulostamo.annaKyselylleNimi());
-
+            
             if (this.hallinta.getKyselyNimenPerusteella(lisattavanKyselynNimi) != null) {
                 System.out.println(Tulostamo.tamanNiminenKyselyOnJoOlemassa(lisattavanKyselynNimi));
                 return true;
             }
-
-            if (!lisattavanKyselynNimi.isEmpty()) {
+            
+            if (!lisattavanKyselynNimi.isEmpty() && !lisattavanKyselynNimi.contains("?")) {
                 this.hallinta.lisaaKysely(lisattavanKyselynNimi);
                 try {
                     tk.luoKyselyTiedostoNimelta(lisattavanKyselynNimi);
@@ -58,7 +58,7 @@ public class LisaaKysely extends Komento {
                 break;
             }
         }
-
+        
         return true;
     }
 }

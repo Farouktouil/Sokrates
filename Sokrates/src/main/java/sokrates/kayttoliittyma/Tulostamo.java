@@ -177,9 +177,9 @@ public class Tulostamo {
      */
     public static String kyselyOnValmis(String nimi) {
         if (Asetukset.getKieli() == Kieli.SUOMI) {
-            return "Kysely on valmis. Tekstitiedosto nimeltä '" + nimi + "' löytyy kansiosta src/completed.\n";
+            return "Kysely on valmis. Tekstitiedosto nimeltä '" + nimi + "' löytyy kansiosta 'completed'.\n";
         }
-        return "The inquiry is completed. Text file named '" + nimi + "' is found in the folder src/completed.\n";
+        return "The inquiry is completed. Text file named '" + nimi + "' is found in the folder 'completed'.\n";
     }
 
     /**

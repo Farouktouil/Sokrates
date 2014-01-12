@@ -106,7 +106,7 @@ public class Sovellus {
     }
 
     /**
-     * Metodi lukee src/inquiries-kansiosta löytyvien tekstitiedostojen nimet,
+     * Metodi lukee inquiries-kansiosta löytyvien tekstitiedostojen nimet,
      * lisää(nnyttää) ne KyselyHallintaan ja palauttaa ne alempaa metodia varten
      * listana. Metodia kutsutaan aina suorita()-metodin loopatessa, jotta tieto
      * olemassaolevista kyselyistä pysyisi ajantasaisena.
@@ -114,7 +114,7 @@ public class Sovellus {
      * @return Kansiosta löytyneiden kyselyjen nimet listana.
      */
     public List<String> paivitaKyselyt() {
-        List<String> kyselyTiedostojenNimet = tl.lueKyselyTiedostojenNimet("src/inquiries/");
+        List<String> kyselyTiedostojenNimet = tl.lueKyselyTiedostojenNimet("inquiries/");
         this.hallinta.lisaaKyselyt(kyselyTiedostojenNimet);
         return kyselyTiedostojenNimet;
     }

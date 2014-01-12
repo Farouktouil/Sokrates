@@ -7,6 +7,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,19 +27,23 @@ import sokrates.sovelluslogiikka.Kysymys;
 public class TiedostonKirjoittaja {
 
     /**
-     * Metodi luo src/inquiries-kansioon kyselytiedoston parametrinaan saamalla
+     * Metodi luo inquiries-kansioon kyselytiedoston parametrinaan saamalla
      * nimellä.
      *
      * @param nimi jolla kyselytiedosto luodaan, .txt päätteenään.
      * @throws IOException
      */
     public void luoKyselyTiedostoNimelta(String nimi) throws IOException {
-        try {
-            File file = new File("src/inquiries/", nimi + ".txt");
-            try (FileWriter writer = new FileWriter(file)) {
+        if (new File("inquiries/").exists()) {
+            try {
+                File file = new File("inquiries/", nimi + ".txt");
+                FileWriter writer = new FileWriter(file);
+            } catch (FileNotFoundException | UnsupportedEncodingException ex) {
+                Logger.getLogger(KyseleKysely.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (FileNotFoundException | UnsupportedEncodingException ex) {
-            Logger.getLogger(KyseleKysely.class.getName()).log(Level.SEVERE, null, ex);
+        } else {
+            System.out.println("HUOM. kansiota 'inquiries' ei ole olemassa."
+                    + "Se pitää luoda juurikansioon jotta kyselyt tallentuvat pysyvästi.");
         }
     }
 
@@ -111,7 +117,7 @@ public class TiedostonKirjoittaja {
         try {
             String ekanKysymyksenVastaus = kysymykset.get(0).getVastaus();
             String tekstiTiedostonNimi = ekanKysymyksenVastaus;
-            writer = new PrintWriter("src/completed/" + tekstiTiedostonNimi + ".txt", "UTF-8");
+            writer = new PrintWriter("completed/" + tekstiTiedostonNimi + ".txt", "UTF-8");
         } catch (FileNotFoundException | UnsupportedEncodingException ex) {
             Logger.getLogger(KyseleKysely.class.getName()).log(Level.SEVERE, null, ex);
         }

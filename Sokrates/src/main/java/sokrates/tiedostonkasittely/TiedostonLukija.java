@@ -30,11 +30,13 @@ public class TiedostonLukija {
         List<String> nimet = new ArrayList<>();
         File dir = new File(directory);
 
-        for (File file : dir.listFiles()) {
-            String kyselyTiedostonNimi = file.getName();
+        if (dir.isDirectory() && dir.canRead()) {
+            for (File file : dir.listFiles()) {
+                String kyselyTiedostonNimi = file.getName();
 
-            if (kyselyTiedostonNimi.endsWith((".txt"))) {
-                nimet.add(kyselyTiedostonNimi.substring(0, kyselyTiedostonNimi.length() - 4));
+                if (kyselyTiedostonNimi.endsWith((".txt"))) {
+                    nimet.add(kyselyTiedostonNimi.substring(0, kyselyTiedostonNimi.length() - 4));
+                }
             }
         }
 
@@ -122,13 +124,13 @@ public class TiedostonLukija {
 
     /**
      * Metodi palauttaa parametrina saamaansa nimeä vastaavan (kansion
-     * src/inquiries) kyselytiedoston.
+     * inquiries) kyselytiedoston.
      *
      * @param nimi Nimi jota vastaava kyselytiedosto halutaan.
      * @return Kyselytiedosto (File), tai null jos mikään ei täsmää.
      */
     public File getNimeaVastaavaKyselyTiedosto(String nimi) {
-        File dir = new File("src/inquiries/");
+        File dir = new File("inquiries/");
 
         for (File file : dir.listFiles()) {
             String kyselyTiedostonNimi = file.getName();
@@ -143,7 +145,7 @@ public class TiedostonLukija {
 
     /**
      * Metodi palauttaa parametrina saamansa sanalistan sisältämiä nimiä
-     * vastaavat (kansion src/inquiries) kyselytiedostot tiedostolistana.
+     * vastaavat (kansion inquiries) kyselytiedostot tiedostolistana.
      *
      * @param nimet Lista nimistä joita vastaavat kyselytiedostot halutaan.
      * @return Lista nimiä vastaavista tiedostoista.
