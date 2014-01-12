@@ -113,7 +113,7 @@ public class TiedostonKirjoittaja {
     public void luoTiedosto(ArrayList<Kysymys> kysymykset) {
         PrintWriter writer = null;
 
-        if (new File("/completed/").exists()) {
+        if (new File("completed/").exists()) {
             try {
                 String ekanKysymyksenVastaus = kysymykset.get(0).getVastaus();
                 String tekstiTiedostonNimi = ekanKysymyksenVastaus;
