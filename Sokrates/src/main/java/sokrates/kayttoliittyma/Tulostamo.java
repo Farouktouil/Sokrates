@@ -283,11 +283,11 @@ public class Tulostamo {
     public static String vaihtoehdotKysymyksiaLisatessa(String kohdeKyselynNimi) {
         if (Asetukset.getKieli() == Kieli.SUOMI) {
             return "Valitse komento:\n"
-                    + "  [ENTER] = aloita kysymyksen lisääminen kyselyyn '" + kohdeKyselynNimi + "'?\n"
+                    + "  [ENTER] = aloita lisäämään kysymys kyselyyn '" + kohdeKyselynNimi + "'\n"
                     + "(x = takaisin)\n\n" + komento();
         }
         return "Pick a command:\n"
-                + "  [ENTER] = begin adding a new question to the inquiry '" + kohdeKyselynNimi + "'?\n"
+                + "  [ENTER] = start to add a new question to the inquiry '" + kohdeKyselynNimi + "'\n"
                 + "(x = back)\n\n" + komento();
     }
 }

@@ -1,14 +1,10 @@
 package sokrates.komennot;
 
-import java.io.File;
-import java.util.ArrayList;
 import sokrates.kayttoliittyma.Tulostamo;
 import sokrates.sovelluslogiikka.Asetukset;
 import sokrates.sovelluslogiikka.Kysely;
 import sokrates.sovelluslogiikka.KyselyHallinta;
 import sokrates.sovelluslogiikka.Kysymys;
-import sokrates.tiedostonkasittely.TiedostonKirjoittaja;
-import sokrates.tiedostonkasittely.TiedostonLukija;
 import sokrates.util.Lukija;
 
 /**
@@ -18,17 +14,9 @@ import sokrates.util.Lukija;
  */
 public class PoistaKysymyksiaKyselysta extends Komento {
 
-    /**
-     * Kapseloitu TiedostonKirjoittaja
-     */
-    private TiedostonKirjoittaja tk;
-    private TiedostonLukija tl;
-
-    public PoistaKysymyksiaKyselysta(Lukija lukija, KyselyHallinta hallinta, TiedostonKirjoittaja tk, TiedostonLukija tl,
+    public PoistaKysymyksiaKyselysta(Lukija lukija, KyselyHallinta hallinta,
             String nimi, String seliteSuomeksi, String seliteEnglanniksi) {
         super(lukija, hallinta, nimi, seliteSuomeksi, seliteEnglanniksi);
-        this.tk = tk;
-        this.tl = tl;
     }
 
     /**
@@ -80,9 +68,6 @@ public class PoistaKysymyksiaKyselysta extends Komento {
                 String kohdeKyselynNimi = kohdeKysely.getNimi();
 
                 kohdeKysely.poistaKysymys(poistettavaKysymys);
-                File kohdeKyselyTiedosto = tl.getNimeaVastaavaKyselyTiedosto(kohdeKysely.getNimi());
-                ArrayList<String> riviLista = tl.lueKyselyTiedostoRiviListaksi(kohdeKyselyTiedosto);
-                tk.poistaKyselystaKysymys(kohdeKyselyTiedosto, riviLista, poistettavaKysymys);
                 System.out.println(Tulostamo.poistettuKysymys(kohdeKyselynNimi));
             }
 

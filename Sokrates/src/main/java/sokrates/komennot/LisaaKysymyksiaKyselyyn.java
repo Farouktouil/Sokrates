@@ -3,7 +3,6 @@ package sokrates.komennot;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import sokrates.kayttoliittyma.Tulostamo;
@@ -77,18 +76,17 @@ public class LisaaKysymyksiaKyselyyn extends Komento {
                 break;
             }
 
-            ArrayList<String> lisattavaKysymys = new ArrayList<>();
-            lisattavaKysymys.add(lukija.lueMerkkijono(Tulostamo.muotoileKysymysSuomeksi()));
-            lisattavaKysymys.add(lukija.lueMerkkijono(Tulostamo.muotoileKysymysEnglanniksi()));
-            lisattavaKysymys.add(lukija.lueMerkkijono(Tulostamo.muotoileEsimerkkiVastaus()));
-            kohdeKysely.lisaaKysymys(new Kysymys(lisattavaKysymys.get(0), lisattavaKysymys.get(1), lisattavaKysymys.get(2)));
+            String kysymysSuomeksi = lukija.lueMerkkijono(Tulostamo.muotoileKysymysSuomeksi());
+            String kysymysEnglanniksi = lukija.lueMerkkijono(Tulostamo.muotoileKysymysEnglanniksi());
+            String esimerkkiVastaus = lukija.lueMerkkijono(Tulostamo.muotoileEsimerkkiVastaus());
+            kohdeKysely.lisaaKysymys(new Kysymys(kysymysSuomeksi, kysymysEnglanniksi, esimerkkiVastaus));
 
             String kohdeKyselynNimi = kohdeKysely.getNimi();
 
             if (new File("inquiries/").exists()) {
                 try {
                     File kohdeTiedosto = tl.getNimeaVastaavaKyselyTiedosto(kohdeKyselynNimi);
-                    tk.kirjoitaTiedostoonRivit(kohdeTiedosto, lisattavaKysymys);
+                    tk.kirjoitaTiedostoonRivit(kohdeTiedosto, kysymysSuomeksi, kysymysEnglanniksi, esimerkkiVastaus);
                 } catch (FileNotFoundException | UnsupportedEncodingException ex) {
                     Logger.getLogger(LisaaKysymyksiaKyselyyn.class.getName()).log(Level.SEVERE, null, ex);
                 }

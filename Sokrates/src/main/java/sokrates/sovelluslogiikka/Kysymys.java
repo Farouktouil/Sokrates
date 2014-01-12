@@ -70,7 +70,7 @@ public class Kysymys {
      * @return kysymyksen String-muotoilu nykyisellä oletuskielellä
      */
     public String getKysymysKielella(Kieli kieli) {
-        String kysymysKielella = this.kysymysKaikillaKielilla.get(kieli);
-        return kysymysKielella;
+        String kysymysNykyisellaKielella = this.kysymysKaikillaKielilla.get(kieli);
+        return kysymysNykyisellaKielella;
     }
 }
