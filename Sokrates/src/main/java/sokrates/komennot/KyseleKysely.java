@@ -57,9 +57,9 @@ public class KyseleKysely extends Komento {
         }
 
         boolean examples = hallinta.getExamples();
-        
+
         kysele(lukija, examples, kysymykset);
-        
+
         String tekstitiedostonNimi = kysymykset.get(0).getVastaus();
         System.out.println(Tulostamo.kyselyOnValmis(tekstitiedostonNimi));
         return true;
@@ -90,7 +90,7 @@ public class KyseleKysely extends Komento {
             System.out.println();
             kysymys.setVastaus(kayttajanVastaus);
         }
-        
+
         this.tk.luoTiedosto(kysymykset);
     }
 }

@@ -82,11 +82,14 @@ public class LisaaKysymyksiaKyselyyn extends Komento {
             kohdeKysely.lisaaKysymys(new Kysymys(kysymysSuomeksi, kysymysEnglanniksi, esimerkkiVastaus));
 
             String kohdeKyselynNimi = kohdeKysely.getNimi();
-            try {
-                File kohdeTiedosto = tl.getNimeaVastaavaKyselyTiedosto(kohdeKyselynNimi);
-                tk.kirjoitaTiedostoonRivit(kohdeTiedosto, kysymysSuomeksi, kysymysEnglanniksi, esimerkkiVastaus);
-            } catch (FileNotFoundException | UnsupportedEncodingException ex) {
-                Logger.getLogger(LisaaKysymyksiaKyselyyn.class.getName()).log(Level.SEVERE, null, ex);
+
+            if (new File("inquiries/").exists()) {
+                try {
+                    File kohdeTiedosto = tl.getNimeaVastaavaKyselyTiedosto(kohdeKyselynNimi);
+                    tk.kirjoitaTiedostoonRivit(kohdeTiedosto, kysymysSuomeksi, kysymysEnglanniksi, esimerkkiVastaus);
+                } catch (FileNotFoundException | UnsupportedEncodingException ex) {
+                    Logger.getLogger(LisaaKysymyksiaKyselyyn.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
 
             System.out.println(Tulostamo.lisattyKysymys(kohdeKysely.getNimi()));

@@ -52,13 +52,15 @@ public class PoistaKysely extends Komento {
             String poistettavanKyselynNimi = poistettavaKysely.getNimi();
             this.hallinta.poistaKysely(poistettavaKysely);
 
-            File poistettava = tl.getNimeaVastaavaKyselyTiedosto(poistettavanKyselynNimi);
-            tk.poistaKyselyTiedosto(poistettava);
+            if (new File("inquiries/").exists()) {
+                File poistettava = tl.getNimeaVastaavaKyselyTiedosto(poistettavanKyselynNimi);
+                tk.poistaKyselyTiedosto(poistettava);
 
-            System.out.println(Tulostamo.poistettuKyselyNimelta(poistettavanKyselynNimi));
-            System.out.println();
+                System.out.println(Tulostamo.poistettuKyselyNimelta(poistettavanKyselynNimi));
+                System.out.println();
+            }
         }
-
+        
         return true;
     }
 }

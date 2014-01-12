@@ -143,9 +143,9 @@ public class Tulostamo {
      */
     public static String kyselyitaEiOle() {
         if (Asetukset.getKieli() == Kieli.SUOMI) {
-            return "    Kyselyitä ei ole. Voit lisätä uuden kyselyn komennolla 1.\n";
+            return "\n    Kyselyitä ei ole. Voit lisätä uuden kyselyn komennolla 1.\n";
         }
-        return "    There are no inquiries. You can add an inquiry with command 1.\n";
+        return "\n    There are no inquiries. You can add an inquiry with command 1.\n";
     }
 
     /**
