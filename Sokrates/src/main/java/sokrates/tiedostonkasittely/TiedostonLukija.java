@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import sokrates.sovelluslogiikka.Kysely;
 import sokrates.sovelluslogiikka.KyselyHallinta;
 import sokrates.sovelluslogiikka.Kysymys;
@@ -56,23 +58,32 @@ public class TiedostonLukija {
      * @throws FileNotFoundException
      */
     public void lisaaKyselyTiedostojenSisallotKysymyksiksi(List<File> kyselyTiedostot, KyselyHallinta hallinta) throws FileNotFoundException {
+        for (File kyselyTiedosto : kyselyTiedostot) {
+            ArrayList<String> riviLista = lueKyselyTiedostoRiviListaksi(kyselyTiedosto);
+            tulkitseKysymyksiksi(riviLista, kyselyTiedosto, hallinta);
+        }
+    }
 
-        for (File kyselyTiedosto : kyselyTiedostot) { // seuraava tapahtuu PER kyselytiedosto
+    public ArrayList<String> lueKyselyTiedostoRiviListaksi(File kyselyTiedosto) {
+        ArrayList<String> riviLista = new ArrayList<>();
+
+        try {
             Scanner lukija = new Scanner(new FileInputStream(kyselyTiedosto), "UTF-8");
 
             if (lukija.hasNextLine()) {
                 lukija.nextLine();
             } else {
-                return;
+                return null;
             }
 
-            ArrayList<String> riviLista = new ArrayList<>();
             while (lukija.hasNextLine()) {
                 riviLista.add(lukija.nextLine());
             }
-
-            tulkitseKysymyksiksi(riviLista, kyselyTiedosto, hallinta);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(TiedostonLukija.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        return riviLista;
     }
 
     /**
@@ -91,7 +102,7 @@ public class TiedostonLukija {
      * tiedostosta hallintaan kääntämässä.
      * @param hallinta jonne ollaan vääntämässä.
      */
-    private void tulkitseKysymyksiksi(ArrayList<String> riviLista, File kyselyTiedosto, KyselyHallinta hallinta) {
+    public void tulkitseKysymyksiksi(ArrayList<String> riviLista, File kyselyTiedosto, KyselyHallinta hallinta) {
         int i = 0;
 
         while (i < riviLista.size()) {

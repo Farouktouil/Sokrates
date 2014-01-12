@@ -117,8 +117,8 @@ public abstract class Komento {
     public Kysely kayttajanOsoittamaKysely() {
         Kysely kysely = null;
         
-        if (!(new File("/inquiries/").exists())) {
-            System.out.println("HUOM. kyselytiedostoja ei voi olla olemassa jos juurikansiosta puuttuu kansio 'inquiries'.");
+        if (!(new File("inquiries/").exists())) {
+            System.out.println("HUOM. kyselytiedostoja ei voi olla olemassa jos juurikansiosta puuttuu kansio 'inquiries'.\n");
         }
 
         if (this.hallinta.getKyselyt().isEmpty()) {

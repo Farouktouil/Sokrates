@@ -12,6 +12,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import sokrates.komennot.KyseleKysely;
 import sokrates.sovelluslogiikka.Asetukset;
+import sokrates.sovelluslogiikka.Kieli;
+import sokrates.sovelluslogiikka.Kysely;
 import sokrates.sovelluslogiikka.Kysymys;
 
 /**
@@ -33,7 +35,7 @@ public class TiedostonKirjoittaja {
      * @throws IOException
      */
     public void luoKyselyTiedostoNimelta(String nimi) throws IOException {
-        if (new File("/inquiries/").exists()) {
+        if (new File("inquiries/").exists()) {
             try {
                 File file = new File("inquiries/", nimi + ".txt");
                 FileWriter writer = new FileWriter(file);
@@ -60,15 +62,21 @@ public class TiedostonKirjoittaja {
         }
     }
 
-//    private void tyhjennaKyselyTiedosto(File kysely) {
-//        try {
-//            FileWriter writer = new FileWriter(kysely);
-//            writer.write("");
-//            writer.close();
-//        } catch (Exception ex) {
-//            System.out.println("Kyselyä ei ole");
-//        }
-//    }
+    /**
+     * Tyhjentää kyselytiedoston
+     *
+     * @param kysely Tyhjennettävä kyselytiedosto
+     */
+    private void tyhjennaKyselyTiedosto(File kysely) {
+        try {
+            try (FileWriter writer = new FileWriter(kysely)) {
+                writer.write("");
+            }
+        } catch (Exception ex) {
+            System.out.println("Kyselyä ei ole");
+        }
+    }
+
     /**
      * Metodi lisää käyttäjän luoman kysymyksen parametrinaan saamaan
      * kyselytiedostoon. Kysymyksen tiedot kirjoitetaan tiedostoon entisen
@@ -81,16 +89,14 @@ public class TiedostonKirjoittaja {
      * @throws FileNotFoundException
      * @throws UnsupportedEncodingException
      */
-    public void kirjoitaTiedostoonRivit(File kysely, String s1, String s2, String s3) throws FileNotFoundException, UnsupportedEncodingException {
+    public void kirjoitaTiedostoonRivit(File kysely, ArrayList<String> rivit) throws FileNotFoundException, UnsupportedEncodingException {
         if (kysely.exists()) {
             try {
                 try (BufferedWriter output = new BufferedWriter(new FileWriter(kysely, true))) {
-                    output.newLine();
-                    output.append(s1);
-                    output.newLine();
-                    output.append(s2);
-                    output.newLine();
-                    output.append(s3);
+                    for (String rivi : rivit) {
+                        output.newLine();
+                        output.append(rivi);
+                    }
                     output.close();
                 }
             } catch (IOException ex) {
@@ -113,7 +119,7 @@ public class TiedostonKirjoittaja {
     public void luoTiedosto(ArrayList<Kysymys> kysymykset) {
         PrintWriter writer = null;
 
-        if (new File("/completed/").exists()) {
+        if (new File("completed/").exists()) {
             try {
                 String ekanKysymyksenVastaus = kysymykset.get(0).getVastaus();
                 String tekstiTiedostonNimi = ekanKysymyksenVastaus;
@@ -147,5 +153,51 @@ public class TiedostonKirjoittaja {
         }
 
         writer.close();
+    }
+
+    /**
+     * Metodi poistaa parametrina saamastaan (parametrina saamansa tiedoston)
+     * rivilistata sellaisen rivin ja kaksi seuraavaa, jotka vastaavat
+     * kysymyksen tietoja.
+     *
+     * Sitten metodi tyhjennyttää kyselytiedoston ja kirjoituttaa sinne
+     * kysymykset uudestaan lukuunottamatta poistettuja.
+     *
+     * @param kohdeKyselyTiedosto Kyselytiedosto, josta kysymyksiä poistetaan.
+     * @param riviLista Rivit jotka kyselystä poistetaan.
+     * @param kysymys Kysymys jonka tietoja vastaavat rivit poistetaan.
+     */
+    public void poistaKyselystaKysymys(File kohdeKyselyTiedosto, ArrayList<String> riviLista, Kysymys kysymys) {
+        try {
+            ArrayList<String> poistettavatRivit = new ArrayList<>();
+            ArrayList<String> uusiRiviLista = riviLista;
+            String poistettavaSuomi = kysymys.getKysymysKielella(Kieli.SUOMI);
+            String poistettavaEnglanti = kysymys.getKysymysKielella(Kieli.ENGLANTI);
+            String poistettavaEsim = kysymys.getEsimerkkiVastaus();
+
+            int i = 0;
+
+            while (i < riviLista.size() - 2) {
+                if (riviLista.get(i).equals(poistettavaSuomi)
+                        && riviLista.get(i + 1).equals(poistettavaEnglanti)
+                        && riviLista.get(i + 2).equals(poistettavaEsim)) {
+                    poistettavatRivit.add(riviLista.get(i));
+                    poistettavatRivit.add(riviLista.get(i + 1));
+                    poistettavatRivit.add(riviLista.get(i + 2));
+                }
+
+                i++;
+            }
+
+            for (String rivi : poistettavatRivit) {
+                uusiRiviLista.remove(rivi);
+            }
+
+            tyhjennaKyselyTiedosto(kohdeKyselyTiedosto);
+
+            kirjoitaTiedostoonRivit(kohdeKyselyTiedosto, uusiRiviLista);
+        } catch (FileNotFoundException | UnsupportedEncodingException ex) {
+            Logger.getLogger(TiedostonKirjoittaja.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

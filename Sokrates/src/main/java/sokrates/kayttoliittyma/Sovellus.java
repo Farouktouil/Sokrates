@@ -95,7 +95,7 @@ public class Sovellus {
                 "2", "poista kysely", "remove an inquiry"));
         luoKomento(new LisaaKysymyksiaKyselyyn(lukija, hallinta, tk, tl,
                 "3", "lisää kysymyksiä kyselyyn", "add questions to an inquiry"));
-        luoKomento(new PoistaKysymyksiaKyselysta(lukija, hallinta,
+        luoKomento(new PoistaKysymyksiaKyselysta(lukija, hallinta, tk, tl,
                 "4", "poista kysymyksiä kyselystä", "remove questions from an inquiry"));
         luoKomento(new VaihdaKieli(lukija, hallinta,
                 "5", "vaihda kieleksi englanti (English)", "change language to Finnish (suomi)"));
