@@ -43,7 +43,7 @@ public class TiedostonKirjoittaja {
             }
         } else {
             System.out.println("HUOM. kansiota 'inquiries' ei ole olemassa."
-                    + "Se pitää luoda juurikansioon jotta kyselyt tallentuvat pysyvästi.");
+                    + "Se pitää luoda juurikansioon jotta kyselyt tallentuvat.");
         }
     }
 
@@ -114,15 +114,20 @@ public class TiedostonKirjoittaja {
     public void luoTiedosto(ArrayList<Kysymys> kysymykset) {
         PrintWriter writer = null;
 
-        try {
-            String ekanKysymyksenVastaus = kysymykset.get(0).getVastaus();
-            String tekstiTiedostonNimi = ekanKysymyksenVastaus;
-            writer = new PrintWriter("completed/" + tekstiTiedostonNimi + ".txt", "UTF-8");
-        } catch (FileNotFoundException | UnsupportedEncodingException ex) {
-            Logger.getLogger(KyseleKysely.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        if (new File("inquiries/").exists()) {
+            try {
+                String ekanKysymyksenVastaus = kysymykset.get(0).getVastaus();
+                String tekstiTiedostonNimi = ekanKysymyksenVastaus;
+                writer = new PrintWriter("completed/" + tekstiTiedostonNimi + ".txt", "UTF-8");
+            } catch (FileNotFoundException | UnsupportedEncodingException ex) {
+                Logger.getLogger(KyseleKysely.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
-        kirjoitaKysymyksetVastauksineenLuotuunTiedostoon(writer, kysymykset);
+            kirjoitaKysymyksetVastauksineenLuotuunTiedostoon(writer, kysymykset);
+        } else {
+            System.out.println("HUOM. kansiota 'completed' ei ole olemassa."
+                    + "Se pitää luoda juurikansioon jotta kyselytykset tallentuvat.");
+        }
     }
 
     /**

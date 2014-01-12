@@ -98,7 +98,7 @@ public class Sovellus {
         luoKomento(new PoistaKysymyksiaKyselysta(lukija, hallinta,
                 "4", "poista kysymyksiä kyselystä", "remove questions from an inquiry"));
         luoKomento(new VaihdaKieli(lukija, hallinta,
-                "5", "vaihda kieleksi englanti", "change language to Finnish"));
+                "5", "vaihda kieleksi englanti (English)", "change language to Finnish (suomi)"));
         luoKomento(new EsimerkkiToggle(lukija, hallinta,
                 "6", "aseta esimerkkivastaukset off/on", "toggle examples off/on"));
         luoKomento(new Lopeta(lukija, hallinta,
@@ -144,7 +144,7 @@ public class Sovellus {
      * päivitetään kyselytilanne kutsumalla metodia paivitaKyselyt().
      */
     public void suorita() {
-        System.out.print("Tervetuloa kyselyohjelmaan. ");
+        System.out.println("\nTervetuloa kyselyohjelmaan.");
         paivitaKyselytKaynnistettaessa();
         boolean jatketaan = true;
 

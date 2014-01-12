@@ -282,10 +282,12 @@ public class Tulostamo {
      */
     public static String vaihtoehdotKysymyksiaLisatessa(String kohdeKyselynNimi) {
         if (Asetukset.getKieli() == Kieli.SUOMI) {
-            return "enter = jatka lisäämään kysymys kyselyyn '" + kohdeKyselynNimi + "'\n"
-                    + "x = peruuta\n" + komento();
+            return "Valitse komento:\n"
+                    + "    Jatka lisäämään kysymys kyselyyn '" + kohdeKyselynNimi + "'?\n"
+                    + "(x = takaisin)\n\n" + komento();
         }
-        return "enter = continue to add a new question to '" + kohdeKyselynNimi + "'\n"
-                + "x = cancel\n" + komento();
+        return "Pick a command:\n"
+                + "    Continue to add a new question to the inquiry '" + kohdeKyselynNimi + "'?\n"
+                + "      x = back\n\n" + komento();
     }
 }
