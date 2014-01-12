@@ -7,12 +7,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import sokrates.komennot.KyseleKysely;
+import sokrates.sovelluslogiikka.Asetukset;
 import sokrates.sovelluslogiikka.Kysymys;
 
 /**
@@ -140,7 +139,7 @@ public class TiedostonKirjoittaja {
      */
     private void kirjoitaKysymyksetVastauksineenLuotuunTiedostoon(PrintWriter writer, ArrayList<Kysymys> kysymykset) {
         for (Kysymys kysymys : kysymykset) {
-            writer.println(kysymys.getKysymysNykyisellaKielella());
+            writer.println(kysymys.getKysymysKielella(Asetukset.getKieli()));
             writer.println();
             writer.println("    " + kysymys.getVastaus());
             writer.println();

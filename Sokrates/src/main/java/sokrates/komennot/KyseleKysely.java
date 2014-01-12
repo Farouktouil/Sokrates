@@ -2,6 +2,7 @@ package sokrates.komennot;
 
 import java.util.ArrayList;
 import sokrates.kayttoliittyma.Tulostamo;
+import sokrates.sovelluslogiikka.Asetukset;
 import sokrates.sovelluslogiikka.Kysely;
 import sokrates.sovelluslogiikka.KyselyHallinta;
 import sokrates.sovelluslogiikka.Kysymys;
@@ -80,7 +81,7 @@ public class KyseleKysely extends Komento {
      */
     private void kysele(Lukija lukija, boolean examples, ArrayList<Kysymys> kysymykset) {
         for (Kysymys kysymys : kysymykset) {
-            System.out.println(kysymys.getKysymysNykyisellaKielella());
+            System.out.println(kysymys.getKysymysKielella(Asetukset.getKieli()));
             if (examples) {
                 String esimerkkiVastaus = kysymys.getEsimerkkiVastaus();
                 System.out.println(Tulostamo.esimerkkiVastaus(esimerkkiVastaus));

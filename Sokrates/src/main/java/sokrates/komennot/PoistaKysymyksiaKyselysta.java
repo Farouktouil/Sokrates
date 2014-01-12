@@ -1,6 +1,7 @@
 package sokrates.komennot;
 
 import sokrates.kayttoliittyma.Tulostamo;
+import sokrates.sovelluslogiikka.Asetukset;
 import sokrates.sovelluslogiikka.Kysely;
 import sokrates.sovelluslogiikka.KyselyHallinta;
 import sokrates.sovelluslogiikka.Kysymys;
@@ -82,7 +83,7 @@ public class PoistaKysymyksiaKyselysta extends Komento {
      */
     private void tulostaKysymysVaihtoehdot(Kysely kohdeKysely) {
         for (int i = 0; i < kohdeKysely.getKysymykset().size(); i++) {
-            System.out.println("  " + i + " = " + kohdeKysely.getKysymykset().get(i).getKysymysNykyisellaKielella());
+            System.out.println("  " + i + " = " + kohdeKysely.getKysymykset().get(i).getKysymysKielella(Asetukset.getKieli()));
         }
         System.out.println("(x = " + Tulostamo.peruuta() + ")\n");
     }

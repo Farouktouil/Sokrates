@@ -69,9 +69,8 @@ public class Kysymys {
      *
      * @return kysymyksen String-muotoilu nykyisellä oletuskielellä
      */
-    public String getKysymysNykyisellaKielella() {
-        Kieli nykyinenKieli = Asetukset.getKieli();
-        String kysymysNykyisellaKielella = this.kysymysKaikillaKielilla.get(nykyinenKieli);
+    public String getKysymysKielella(Kieli kieli) {
+        String kysymysNykyisellaKielella = this.kysymysKaikillaKielilla.get(kieli);
         return kysymysNykyisellaKielella;
     }
 }
