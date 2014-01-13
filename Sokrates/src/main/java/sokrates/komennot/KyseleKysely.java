@@ -70,6 +70,9 @@ public class KyseleKysely extends Komento {
      * Metodi tulostaa kunkin kysymyksen Asetusten nykyisellä kielellä.
      * Esimerkkivastaus tulostetaan joss examples = true.
      *
+     * Ensimmäiseen kysymykseen vaaditaan epätyhjä vastaus, sillä se tulee
+     * tekstitiedoston nimeksi.
+     *
      * Jokaiseen kysymykseen liitetään käyttäjän vastaus.
      *
      * Lopuksi kutstutaan TiedostonKirjoittajan metodia luoTiedosto parametrina
@@ -80,7 +83,28 @@ public class KyseleKysely extends Komento {
      * @param kysymykset Lista kyseltävistä kysymyksistä
      */
     private void kysele(Lukija lukija, boolean examples, ArrayList<Kysymys> kysymykset) {
-        for (Kysymys kysymys : kysymykset) {
+        Kysymys ekaKysymys = kysymykset.get(0);
+        System.out.println(ekaKysymys.getKysymysKielella(Asetukset.getKieli()));
+        if (examples) {
+            String esimerkkiVastaus = ekaKysymys.getEsimerkkiVastaus();
+            System.out.println(Tulostamo.esimerkkiVastaus(esimerkkiVastaus));
+        }
+
+        while (true) {
+            System.out.print("\n    ");
+            String kayttajanVastaus = lukija.lueMerkkijono("");
+            if (kayttajanVastaus.isEmpty()) {
+                continue;
+            }
+            System.out.println();
+            ekaKysymys.setVastaus(kayttajanVastaus);
+            break;
+
+        }
+
+        for (int i = 1; i < kysymykset.size(); i++) {
+            Kysymys kysymys = kysymykset.get(i);
+
             System.out.println(kysymys.getKysymysKielella(Asetukset.getKieli()));
             if (examples) {
                 String esimerkkiVastaus = kysymys.getEsimerkkiVastaus();
